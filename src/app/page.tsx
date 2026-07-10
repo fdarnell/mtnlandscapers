@@ -65,8 +65,7 @@ export default function HomePage() {
                 Rated {site.rating.value}/5 by {site.rating.source} reviewers in Sevier County
               </p>
               <h1 className="font-display text-[2.75rem] font-medium leading-[1.04] tracking-tight text-parchment-50 text-balance sm:text-6xl lg:text-[4.25rem]">
-                Landscapes worthy of the{" "}
-                <em className="text-ember-300">Smoky Mountains</em>
+                Landscaping <em className="text-ember-300">Sevierville</em>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-mist-200 sm:text-xl">
                 {site.tagline}. Design, hardscapes, and grounds care built for East
