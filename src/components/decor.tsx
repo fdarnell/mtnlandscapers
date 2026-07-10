@@ -73,23 +73,3 @@ export function Mist({ className = "" }: { className?: string }) {
     </div>
   );
 }
-
-/** The MTN wordmark lockup used in header/footer (SVG mark + type). */
-export function BrandMark({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 44 30"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      focusable="false"
-    >
-      {/* back ridge — bark brown, echoing the logo's mountains */}
-      <path d="M8 26 18 6l5 9 3-5 10 16Z" fill="var(--color-bark-500)" />
-      <path d="m18 6 2.6 4.6L23 7.4 20.8 11Z" fill="var(--color-parchment-100)" opacity="0.85" />
-      {/* front ridge — ember */}
-      <path d="M0 26 9 12l6 8 4-6 9 12Z" fill="var(--color-ember-500)" />
-      <path d="m9 12 2.8 3.7 2-2.5L11.5 9Z" fill="var(--color-parchment-100)" opacity="0.9" />
-    </svg>
-  );
-}

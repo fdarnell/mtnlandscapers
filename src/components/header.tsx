@@ -1,10 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { nav, site } from "@/lib/site";
-import { BrandMark } from "@/components/decor";
 import { IconMenu, IconPhone, IconX } from "@/components/icons";
 
 export function Header() {
@@ -58,17 +58,19 @@ export function Header() {
       <div className="mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
         <Link
           href="/"
-          className="flex shrink-0 items-center gap-3 rounded-sm"
+          className="shrink-0 rounded-xl"
           aria-label={`${site.name} — home`}
         >
-          <BrandMark className="h-8 w-auto" />
-          <span className="flex flex-col leading-none">
-            <span className="font-display text-[1.35rem] font-semibold tracking-tight text-parchment-50">
-              MTN
-            </span>
-            <span className="text-[0.6rem] font-semibold uppercase tracking-[0.34em] text-mist-300">
-              Landscapers
-            </span>
+          {/* The logo is dark-on-transparent, so it sits on a parchment chip. */}
+          <span className="inline-flex items-center rounded-xl bg-parchment-50 px-2.5 py-1.5 shadow-soft">
+            <Image
+              src="/images/logo.png"
+              alt=""
+              width={128}
+              height={88}
+              priority
+              className="h-10 w-auto sm:h-11"
+            />
           </span>
         </Link>
 
