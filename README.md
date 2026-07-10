@@ -36,21 +36,19 @@ phone, email, address, hours, service areas, services, testimonials, social
 links. Change a value there and every page, the footer, the JSON-LD, and the
 metadata update together.
 
-## ⚠️ Before go-live — owner review checklist
+## Owner decisions on file (July 2026)
 
-Facts below could not be confirmed from official sources and are marked `TODO`
-in `src/lib/site.ts` (two are also visibly flagged in the UI):
+These were confirmed with the business — don't "fix" them without asking:
 
-- [ ] **Street address** — official site lists only "Sevierville, TN 37862";
-      a third-party directory shows "109 Bruce St". Confirm before publishing
-      (visible TODO card on the Contact page).
-- [ ] **Founding story** — no founding year or history is published anywhere;
-      the About page has a clearly marked TODO block awaiting the owner's story.
-- [ ] **Brands carried** — no hardscape/lighting/irrigation brands are published;
-      add a brands section if desired once confirmed.
-- [ ] **Google rating (4.7★ / 17 reviews)** and the three customer quotes were
-      taken from the business's public Birdeye/Google profile in July 2026 —
-      verify they're current.
+- **No street address on the site.** The "109 Bruce St" listing on
+  Birdeye/Google Business Profile exists for SEO only; the company does not
+  want walk-in visits. The site shows city/state/zip and says consultations
+  happen at the customer's property.
+- **No founding story or owner names.** The owner prefers to stay anonymous;
+  the About page leans on craft and reviews instead.
+- **Google rating (4.7★ / 17 reviews) and the three customer quotes** are
+  confirmed accurate and current as of July 2026.
+- **No brands section** for now, by choice.
 
 ### Draft copy for review
 
@@ -60,7 +58,8 @@ site and should be reviewed by the owner, notably:
 
 - "Landscapes worthy of the Smoky Mountains" (hero + OG image)
 - "Mountain ground demands mountain craft" (process section)
-- Service one-liners and descriptions in `src/lib/site.ts`
+- Service one-liners and descriptions in `src/lib/site.ts` — including the
+  "certified arborists" claim inherited from the old site's shrub-care page
 - Process steps, About-page values, and the 404 copy
 
 ## Design

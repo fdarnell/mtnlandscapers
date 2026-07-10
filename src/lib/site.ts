@@ -21,10 +21,10 @@ export const site = {
   emailHref: "mailto:mtnlandscapers@mtnlandscapers.com",
 
   address: {
-    // TODO: confirm street address with the owner. Their official site lists
-    // only "Sevierville, TN 37862"; a third-party directory (Birdeye) shows
-    // "109 Bruce St" — verify before publishing a street address.
-    street: "", // intentionally blank until confirmed
+    // Street intentionally omitted (owner decision, July 2026): the business
+    // does not want in-person visits. Their Google Business Profile / Birdeye
+    // list "109 Bruce St" for SEO only — do not display it on the site.
+    street: "",
     city: "Sevierville",
     state: "TN",
     stateFull: "Tennessee",
@@ -55,8 +55,7 @@ export const site = {
   ],
   serviceAreaNote: "Proudly serving Sevier County and the surrounding East Tennessee foothills.",
 
-  // 4.7 stars across 17 Google reviews (via Birdeye, July 2026).
-  // TODO: confirm the live rating before publishing and keep it fresh.
+  // 4.7 stars across 17 Google reviews — confirmed accurate July 2026.
   rating: { value: 4.7, count: 17, source: "Google" },
 
   social: {
@@ -75,8 +74,8 @@ export const site = {
     },
   ],
 
-  // TODO: confirm founding year and company history with the owner.
-  // TODO: confirm hardscape / lighting / irrigation brands carried, if any.
+  // No founding story on the site: the owner prefers to stay anonymous
+  // (decision, July 2026). Brands carried intentionally omitted for now.
 } as const;
 
 export type ServiceGroup = "Design & Build" | "Care & Maintain" | "Site & Specialty";
@@ -251,8 +250,8 @@ export const serviceGroups: ServiceGroup[] = ["Design & Build", "Care & Maintain
 
 /**
  * Customer quotes are real Google reviews (via the business's public Birdeye
- * profile, July 2026), lightly trimmed for length.
- * TODO: verify quotes against the live Google listing before publishing.
+ * profile), lightly trimmed for length. Confirmed accurate and current
+ * July 2026.
  */
 export const testimonials = [
   {

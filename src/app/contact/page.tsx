@@ -14,8 +14,8 @@ import { PageHero } from "@/components/sections";
 import { ButtonLink } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Contact & Visit",
-  description: `Get a free landscaping quote from ${site.name} in Sevierville, TN. Call ${site.phone}, email us, or plan a visit — serving ${site.serviceAreas.join(", ")}.`,
+  title: "Contact",
+  description: `Get a free landscaping quote from ${site.name} in Sevierville, TN. Call ${site.phone} or email us — serving ${site.serviceAreas.join(", ")}.`,
   alternates: { canonical: "/contact" },
   openGraph: {
     title: `Contact | ${site.name}`,
@@ -28,9 +28,9 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="Contact & visit"
+        eyebrow="Contact"
         title="Let's walk your property"
-        lede="Every project starts with a free quote and a conversation. Call, email, or catch us Monday through Friday — Saturdays by appointment."
+        lede="Every project starts with a free quote and a conversation — at your place, not ours. Call or email Monday through Friday; Saturdays by appointment."
       />
 
       <section aria-label="Contact details" className="bg-parchment-100 py-8 pb-16 sm:pb-24">
@@ -110,10 +110,10 @@ export default function ContactPage() {
                   Minutes from the Parkway, on the doorstep of the Great Smoky
                   Mountains National Park.
                 </p>
-                {/* TODO: publish full street address once the owner confirms it. */}
-                <p className="mt-4 rounded-xl border border-dashed border-ember-500/50 bg-parchment-100 p-3 text-sm text-pine-700">
-                  <strong className="font-semibold text-ember-700">TODO:</strong> street address
-                  pending owner confirmation before publishing.
+                {/* No street address by owner decision — consultations happen on site. */}
+                <p className="mt-4 rounded-xl bg-pine-50 p-3 text-sm text-pine-700">
+                  Consultations happen at your property, not an office — call and
+                  we&rsquo;ll come to you.
                 </p>
               </div>
             </Reveal>

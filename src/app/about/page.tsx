@@ -63,13 +63,13 @@ export default function AboutPage() {
                 across {site.serviceAreas.slice(0, 5).join(", ")}, and the
                 surrounding foothills.
               </p>
-              {/* TODO: Replace with the founder's own history — founding year,
-                  how the company started, team size. Not published anywhere
-                  official, so we kept this paragraph generic. */}
-              <p className="rounded-2xl border border-dashed border-ember-500/50 bg-parchment-50 p-5 text-base text-pine-700">
-                <strong className="font-semibold text-ember-700">TODO for owner review:</strong>{" "}
-                Add your founding story here — when you started, who leads the crew,
-                and what you&rsquo;re proudest of. We didn&rsquo;t want to invent it for you.
+              {/* Intentionally no founding story or names — the owner prefers
+                  to stay anonymous; the work speaks for the company. */}
+              <p>
+                You won&rsquo;t find founder portraits or a company timeline here — we
+                let the walls, water, and gardens do the talking. What matters is
+                simple: when we take on your property, we treat it like the
+                masterpiece it can become.
               </p>
             </div>
           </Reveal>
