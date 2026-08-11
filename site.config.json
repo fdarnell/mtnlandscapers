@@ -1,0 +1,53 @@
+{
+  "name": "Mountain Landscapers",
+  "legalName": "Mountain Landscapers, LLC",
+  "tagline": "We Turn Your Property Into a Masterpiece",
+  "domain": "https://www.mtnlandscapers.com",
+  "phone": "(865) 280-4642",
+  "phoneHref": "tel:+18652804642",
+  "phoneDigits": "+18652804642",
+  "smsHelpNumber": "+1 (866) 846-6002",
+  "email": "mtnlandscapers@mtnlandscapers.com",
+  "address": {
+    "street": "109 Bruce St",
+    "city": "Sevierville",
+    "region": "TN",
+    "postalCode": "37862",
+    "country": "US"
+  },
+  "geo": { "lat": "35.86712", "lng": "-83.56547" },
+  "hours": [
+    { "label": "Mon - Fri", "value": "9:00 am - 5:00 pm" },
+    { "label": "Saturday", "value": "Appointment Only" },
+    { "label": "Sunday", "value": "Closed" }
+  ],
+  "openingHoursSpec": [
+    {
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "17:00"
+    }
+  ],
+  "priceRange": "$500-$100,000",
+  "serviceArea": ["Sevierville", "Pigeon Forge", "Gatlinburg", "Kodak", "Seymour", "Knoxville"],
+  "cityPages": [
+    { "name": "Sevierville", "slug": "sevierville" },
+    { "name": "Gatlinburg", "slug": "gatlinburg" },
+    { "name": "Seymour", "slug": "seymour" }
+  ],
+  "social": {
+    "facebook": "https://facebook.com/profile.php?id=61550909527865",
+    "twitter": "https://twitter.com/mtnlandscapers",
+    "youtube": "https://youtube.com/channel/UCOz0z2s_JVvkSdAY8MKUVew",
+    "linkedin": "https://linkedin.com/in/mountainlandscapers"
+  },
+  "clientPortal": "https://portal.golmn.com/login/WzdzJ4PMq9Di9sLfCNjXCg",
+  "partners": {
+    "middleTennessee": "https://www.franklinlandscapingsolutions.com/"
+  },
+  "formEndpoint": "TODO_CORALINE_FORM",
+  "notes": {
+    "addressVerify": "Street address 109 Bruce St comes from the live site's JSON-LD; the contact page shows city/state only. Confirm before publishing.",
+    "secondPhone": "The live site also uses (865) 518-8533 in two meta descriptions and one homepage link. Standardized to (865) 280-4642 here — confirm this is correct."
+  }
+}

@@ -1,93 +1,95 @@
 # Mountain Landscapers — mtnlandscapers.com
 
-Production marketing site for **Mountain Landscapers** (Sevierville, TN).
-Next.js 15 (App Router) · TypeScript strict · Tailwind CSS 4 · fully static — every route is prerendered at build time.
+A rebuild of the existing Duda site as plain HTML, CSS and vanilla JavaScript.
+No framework, no build tooling to install, no JavaScript required to read any
+page. Every URL, page title, meta description and paragraph of copy from the
+live site is preserved, so the rebuild keeps the rankings the old site earned.
 
-## Quick start
+## What's here
+
+```
+build.py            the generator — run this after ANY content change
+pages.py            page inventory: slugs, titles, meta descriptions, FAQs
+content.json        page copy, extracted from the live site
+patches.py          deliberate corrections to that copy (each one documented)
+legal.py            privacy policy, terms, accessibility statement
+site.config.json    business facts: phone, address, hours, socials
+serve.py            local preview server
+css/style.css       one stylesheet for the whole site (~16 KB)
+js/main.js          nav toggle + dropdowns (~2 KB), nothing else
+img/                every photo, converted to WebP at 1600px and 800px
+fonts/              Poppins, self-hosted
+screenshots/        desktop + mobile captures of the built pages
+*.html              generated — do not hand-edit, your changes get overwritten
+```
+
+## Editing the site
+
+**The HTML files are generated. Never edit them directly** — `build.py`
+rewrites them. Edit the source instead:
+
+| To change | Edit | Then |
+|---|---|---|
+| Phone, address, hours, socials | `site.config.json` | `python3 build.py` |
+| A page title or meta description | `pages.py` | `python3 build.py` |
+| Words on a page | `content.json` (find the slug) | `python3 build.py` |
+| Legal pages | `legal.py` | `python3 build.py` |
+| Colors, spacing, layout | `css/style.css` | `python3 build.py` |
+| Add a photo | drop in `img/`, reference it in `content.json` | `python3 build.py` |
+
+`build.py` also regenerates `sitemap.xml`, `robots.txt`, `llms.txt` and
+`404.html`, and re-stamps the `?v=` cache-busting hash on the CSS and JS so
+returning visitors always get the current version.
+
+### Business facts live in one place
+
+Phone, address and hours come from `site.config.json` and are written into
+every page's footer and structured data by the generator. After any change,
+confirm the number is identical everywhere:
 
 ```bash
-npm ci          # install exact locked dependencies
-npm run dev     # dev server at http://localhost:3000
-npm run build   # production build (all pages static)
-npm run start   # serve the production build
-npm run lint    # ESLint
-npx tsc --noEmit  # type check
+grep -c "(865) 280-4642" *.html
 ```
 
-Node 20+ recommended (built and verified on Node 22).
+Every page must match — Google cross-checks this against the Google Business
+Profile, and a mismatch costs local rankings.
 
-## Deploy to Vercel
+## Preview before you publish
 
-1. Push this repo to GitHub (see below if you received it as a tarball).
-2. Go to **vercel.com/new** → **Import** the `mtnlandscapers` repo → **Deploy**.
-   No settings changes needed — framework, build command, and output are auto-detected.
-3. After the first deploy, add the custom domain (`mtnlandscapers.com`) in
-   *Project → Settings → Domains*.
-4. If the final domain differs, change `site.url` in `src/lib/site.ts`
-   (one line) so canonicals, sitemap, and Open Graph URLs match.
-
-Security headers (CSP, HSTS, X-Frame-Options, etc.) are set in `next.config.ts`
-and served by Vercel automatically.
-
-## Editing business facts
-
-**Everything editable lives in [`src/lib/site.ts`](src/lib/site.ts)** — name,
-phone, email, address, hours, service areas, services, testimonials, social
-links. Change a value there and every page, the footer, the JSON-LD, and the
-metadata update together.
-
-## Owner decisions on file (July 2026)
-
-These were confirmed with the business — don't "fix" them without asking:
-
-- **No street address on the site.** The "109 Bruce St" listing on
-  Birdeye/Google Business Profile exists for SEO only; the company does not
-  want walk-in visits. The site shows city/state/zip and says consultations
-  happen at the customer's property.
-- **No founding story or owner names.** The owner prefers to stay anonymous;
-  the About page leans on craft and reviews instead.
-- **Google rating (4.7★ / 17 reviews) and the three customer quotes** are
-  confirmed accurate and current as of July 2026.
-- **No brands section** for now, by choice.
-
-### Draft copy for review
-
-All headlines and taglines **except** the official
-"We Turn Your Property Into a Masterpiece" are new draft copy written for this
-site and should be reviewed by the owner, notably:
-
-- "Landscapes worthy of the Smoky Mountains" (hero + OG image)
-- "Mountain ground demands mountain craft" (process section)
-- Service one-liners and descriptions in `src/lib/site.ts` — including the
-  "certified arborists" claim inherited from the old site's shrub-care page
-- Process steps, About-page values, and the 404 copy
-
-## Design
-
-A custom "Smoky Ridge" identity (not a template): deep evergreen +
-parchment + ember copper drawn from the actual MTN logo, Fraunces (display) +
-Instrument Sans (body) self-hosted as variable WOFF2 in `src/fonts/`, layered
-SVG ridgelines and drifting mist, film-grain texture, and scroll reveals.
-**All motion is disabled under `prefers-reduced-motion`.** Icons are inline SVG
-(no icon font, no emoji). Direction was generated with the
-[UI/UX Pro Max design skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)
-(`.claude/skills/`, MIT) and then composed by hand.
-
-## Structure
-
-```
-src/
-  lib/site.ts          ← all business facts (edit here)
-  lib/fonts.ts         ← self-hosted variable fonts
-  app/                 ← pages: / /about /services /contact + branded 404
-    sitemap.ts robots.ts icon.png apple-icon.png favicon.ico
-  components/          ← header (mobile menu), footer, sections, ui, icons, decor
-public/images/         ← photos + logo from the business's existing site
-public/og.png          ← generated 1200×630 Open Graph card
+```bash
+python3 serve.py
 ```
 
-SEO: per-page metadata with canonicals, Open Graph + Twitter cards,
-`sitemap.xml`, `robots.txt`, and `LocalBusiness` (HomeAndConstructionBusiness)
-JSON-LD in the root layout.
+Then open http://localhost:8787. The preview server mimics Vercel's clean URLs,
+so `/retaining-walls` works exactly as it will in production.
 
-Photos and logo are the business's own assets from their current website.
+### The edit → preview → publish loop
+
+Production deploys from `main` only. Never edit `main` directly.
+
+```bash
+git checkout -b edits
+# make changes, run python3 build.py, check with python3 serve.py
+git add -A && git commit -m "Update Saturday hours"
+git push -u origin edits
+```
+
+Pushing the branch gives you a Vercel preview URL — a private copy of the site
+with the change applied. Send it to the client for approval. Merging that
+branch into `main` publishes it.
+
+## Publishing
+
+The site is static files. On Vercel: **New Project → import this repo →
+Framework Preset: Other → Deploy.** No settings to change. `vercel.json`
+already sets clean URLs, security headers, and long-lived caching for images
+and fonts.
+
+## Before go-live
+
+See `CLIENT-HANDOFF.md` for the full checklist. The blocking items:
+
+1. Wire the contact form to Coraline (set `formEndpoint` in `site.config.json`)
+2. Confirm the street address and the second phone number
+3. Point the domain at Vercel and add the Search Console verification tag
+4. Submit `sitemap.xml` in Google Search Console
