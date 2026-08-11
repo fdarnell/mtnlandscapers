@@ -9,7 +9,7 @@
     {
       "source": "/tree-removal-and-service",
       "destination": "/",
-      "permanent": true
+      "statusCode": 301
     }
   ],
   "headers": [
