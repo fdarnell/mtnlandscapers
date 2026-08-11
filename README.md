@@ -85,11 +85,24 @@ Framework Preset: Other → Deploy.** No settings to change. `vercel.json`
 already sets clean URLs, security headers, and long-lived caching for images
 and fonts.
 
+## Two things to know before editing
+
+**The street address is deliberately schema-only.** There is no public office,
+so `109 Bruce Street` lives in `site.config.json` as `address.streetPrivate`
+and is written *only* into the JSON-LD, so the site's NAP matches the Google
+Business Profile. The visible address everywhere is "Sevierville, TN 37862".
+Don't print `streetPrivate` in a template.
+
+**Retired URLs need a redirect, not a deletion.** `/tree-removal-and-service`
+was removed when that service was discontinued; it 301s to the home page via
+`vercel.json`. If another page is ever retired, add the redirect at the same
+time — a bare 404 throws away whatever authority the page had.
+
 ## Before go-live
 
-See `CLIENT-HANDOFF.md` for the full checklist. The blocking items:
+See `CLIENT-HANDOFF.md` for the full checklist. The blocking item:
 
 1. Wire the contact form to Coraline (set `formEndpoint` in `site.config.json`)
-2. Confirm the street address and the second phone number
-3. Point the domain at Vercel and add the Search Console verification tag
-4. Submit `sitemap.xml` in Google Search Console
+
+Then: point the domain at Vercel, add the Search Console verification tag, and
+submit `sitemap.xml` in Google Search Console.

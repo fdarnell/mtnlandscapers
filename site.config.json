@@ -9,7 +9,8 @@
   "smsHelpNumber": "+1 (866) 846-6002",
   "email": "mtnlandscapers@mtnlandscapers.com",
   "address": {
-    "street": "109 Bruce St",
+    "_comment": "streetPrivate is NEVER rendered as visible text — it goes only into the JSON-LD so the site's NAP matches the Google Business Profile. There is no public office. Visible address is city/region/postalCode only.",
+    "streetPrivate": "109 Bruce Street",
     "city": "Sevierville",
     "region": "TN",
     "postalCode": "37862",
@@ -47,7 +48,8 @@
   },
   "formEndpoint": "TODO_CORALINE_FORM",
   "notes": {
-    "addressVerify": "Street address 109 Bruce St comes from the live site's JSON-LD; the contact page shows city/state only. Confirm before publishing.",
-    "secondPhone": "The live site also uses (865) 518-8533 in two meta descriptions and one homepage link. Standardized to (865) 280-4642 here — confirm this is correct."
+    "addressPrivacy": "Owner confirmed 2026-08-11: 109 Bruce Street is not a public office. It must stay out of all visible page text and appear only in the JSON-LD, so structured data matches the Google Business Profile. Keep the GBP listing address-hidden (service-area business) to match.",
+    "secondPhone": "Owner confirmed 2026-08-11: (865) 280-4642 is the only number. The old (865) 518-8533 references were leftovers and have been removed.",
+    "treeService": "Owner confirmed 2026-08-11: tree removal/tree care is no longer offered. Page deleted, 301 to home in vercel.json, all claims removed via patches.py."
   }
 }

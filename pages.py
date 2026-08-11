@@ -113,13 +113,6 @@ PAGES = [
         'desc': 'Need Septic install? Look no further than Mountain Landscapers. Call for a quote today! 865-280-4642',
         'kind': 'service', 'service': 'Septic Tank Installation',
     },
-    {
-        'slug': 'tree-removal-and-service', 'src': 'tree-removal-and-service',
-        # FIXED: live title/description belonged to two other pages (garden design + pressure washing).
-        'title': 'Tree Removal and Tree Service | Mountain Landscapers',
-        'desc': 'Need a tree removed or trimmed in Sevier County? Mountain Landscapers handles tree removal, trimming, and cleanup. Call for a quote today! 865-280-4642',
-        'kind': 'service', 'service': 'Tree Removal and Tree Service',
-    },
 
     # ---------------- city pages ----------------
     {
@@ -225,8 +218,9 @@ PAGES = [
     },
 ]
 
-# Main navigation, mirroring the live site exactly (plus tree removal, which was
-# orphaned on the live site — reachable only from sitemap.xml).
+# Main navigation, mirroring the live site exactly. (Tree removal was orphaned
+# on the live site and the service has since been discontinued — the page is
+# gone and /tree-removal-and-service 301s to the home page via vercel.json.)
 NAV = [
     {'label': 'Home', 'href': '/'},
     {'label': 'Services', 'children': [
@@ -241,7 +235,6 @@ NAV = [
         {'label': 'Retaining Walls', 'href': '/retaining-walls'},
         {'label': 'Irrigation Services', 'href': '/irrigation-services'},
         {'label': 'Lawn Care', 'href': '/lawn-care'},
-        {'label': 'Tree Removal', 'href': '/tree-removal-and-service'},
     ]},
     {'label': 'Industrial Services', 'children': [
         {'label': 'Retaining Walls', 'href': '/retaining-walls'},

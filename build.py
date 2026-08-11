@@ -375,7 +375,9 @@ def business_node():
         'priceRange': CFG['priceRange'],
         'address': {
             '@type': 'PostalAddress',
-            'streetAddress': ADDR['street'],
+            # street address appears ONLY here, never as visible text on the
+            # site — there is no public office, but the GBP listing has it
+            'streetAddress': ADDR['streetPrivate'],
             'addressLocality': ADDR['city'],
             'addressRegion': ADDR['region'],
             'postalCode': ADDR['postalCode'],

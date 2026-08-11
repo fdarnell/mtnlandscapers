@@ -13,9 +13,13 @@ JavaScript per page. It looks the same, says the same things, lives at the same
 URLs — it just loads far faster and is readable by AI search crawlers that don't
 run JavaScript.
 
-**Nothing that earns the current rankings was changed.** All 29 URLs are
-identical. All the page copy is identical, word for word. The home page and
-every service page keep their exact title and meta description.
+**Nothing that earns the current rankings was changed.** Every URL that still
+belongs on the site is identical, the page copy is identical word for word, and
+the home page and every service page keep their exact title and meta
+description.
+
+The one deliberate exception is tree service, which you no longer offer — that
+page is gone and every claim to tree work has been removed. See below.
 
 ---
 
@@ -23,8 +27,8 @@ every service page keep their exact title and meta description.
 
 | | |
 |---|---|
-| **URLs** | All 29, unchanged — `/retaining-walls`, `/Garden-Services`, `/sevierville`, every one |
-| **Page copy** | 653 passages checked automatically; 100% present |
+| **URLs** | All 28 remaining pages unchanged — `/retaining-walls`, `/Garden-Services`, `/sevierville`, every one |
+| **Page copy** | 620 passages checked automatically; 100% present |
 | **Titles & descriptions** | Unchanged on 14 pages, including the home page and all 12 service pages |
 | **Design** | Same palette (`#2D483B` green), same Poppins type, same layout, same photos |
 | **Photos** | All 173 images, re-encoded to WebP (typically 70–80% smaller, visually identical) |
@@ -38,17 +42,42 @@ every service page keep their exact title and meta description.
 
 | Page | Problem | Fix |
 |---|---|---|
-| `/tree-removal-and-service` | Title read "Exquisite Garden Design Services"; description was about pressure washing | Title and description now describe tree service |
 | `/sevierville`, `/gatlinburg`, `/seymour` | All three shared the **home page's exact title and description**, competing with it in Google | Each city page now has its own title and description |
 | `/leaf-removal` | Description had a typo ("Leaf Remobal") and the wrong phone number | Corrected |
-| `/apply` | Job listing read "Crew Foreman: $50,(865) 280-4642,000 /yr" — a phone number had been pasted into the salary | Corrupted figure removed — **send me the real range and it goes back in** |
+| `/apply` | Job listing read "Crew Foreman: $50,(865) 280-4642,000 /yr" — a phone number had been pasted into the salary | Now reads $60,000/yr |
 | `/accessibility` | Raw HTML code was showing as visible text; "Phone: Phone: +1865-280-4642" | Cleaned up |
 | `/contact` | "Adress" | "Address" |
 | `/pressure-washing` | "PressureWashing Service" | "Pressure Washing Service" |
 | 6 pages | Shared one generic title, "Mountain Landscapers of Sevierville! \| (865) 280-4642" | Each has a descriptive title |
-| Site-wide | Two different phone numbers in use — (865) 280-4642 and (865) 518-8533 | Standardized on 280-4642 (**please confirm**) |
+| Site-wide | Two different phone numbers in use — (865) 280-4642 and (865) 518-8533 | Standardized on 280-4642 |
 | Site-wide | Business hours said 5:00 pm on the page but 6:00 pm in the structured data | Both now say 5:00 pm |
-| `/tree-removal-and-service` | Not linked from anywhere — only findable via sitemap | Added to the Services menu |
+| Site-wide | Street address was in the structured data but the site has no public office | Address now appears **only** in structured data, never as visible text |
+
+### Tree service removed
+
+You no longer offer tree removal or tree care, so it is gone from the site:
+
+- **`/tree-removal-and-service` is deleted**, and it **301-redirects to the home
+  page**. That matters — a deleted page that just 404s throws away whatever
+  authority it had and leaves dead links in Google's index. A 301 passes that
+  signal to the home page and tells Google the URL is permanently gone.
+- Removed from the Services menu.
+- **"Tree and shrub care"** removed from the Sevierville, Gatlinburg and
+  Seymour service lists.
+- On `/shrub-care`: "tree and shrub care" now reads "shrub care", and
+  "certified arborists ... nurturing trees and shrubs" now reads "shrub care
+  specialists ... nurturing shrubs and ornamental plantings". (That also drops
+  an arborist credential claim I couldn't verify.)
+- On `/Garden-Services`: "our garden and tree experts" is now "our garden
+  experts".
+- The outbound links to **treeservice-lakecharles.com** — the "sister tree
+  service" on the home page and the "partners in Southern LA" links on the
+  three city pages — are removed.
+
+**What I left in, on purpose:** references to trees that aren't service claims.
+Planting trees as part of garden design, drip irrigation for trees, trimming
+*around* trees while mowing, and the blog posts about pruning and evergreens.
+Say the word if you want any of those gone too.
 
 ### Added — new ranking and AI-search signals
 
@@ -107,22 +136,33 @@ is worth it, and the signed service agreement matters more than the website ToS.
 1. **Wire up the contact form.** It currently posts nowhere. Send me the
    client's Coraline form embed code or inbound webhook URL and I'll connect it,
    then submit a test lead and confirm it lands in their account.
-2. **Confirm the phone number.** The live site uses (865) 280-4642 nearly
-   everywhere but (865) 518-8533 in a few spots. I standardized on 280-4642 —
-   confirm that's right, or tell me what the second number is for.
-3. **Confirm the street address.** The old site's structured data says
-   *109 Bruce St, Sevierville, TN 37862*, but the contact page only shows city
-   and state. Whatever goes on the site must match the Google Business Profile
-   exactly. (Note: 37862 is the Pigeon Forge ZIP — worth double-checking.)
-4. **Send the Crew Foreman salary range** so it can go back on the careers page.
+
+**Settled — no action needed:**
+
+- **Phone:** (865) 280-4642 is the only number. The old (865) 518-8533
+  references were leftovers and are gone.
+- **Crew Foreman salary:** $60,000/yr, now on the careers page.
+- **Address:** 109 Bruce Street is **not printed anywhere on the site.** There
+  is no public office, so the only visible address is "Sevierville, TN 37862".
+  The full street address appears solely inside the structured data on every
+  page, so Google can match the site to the Google Business Profile. Verified:
+  0 visible occurrences, present in the schema on all 28 pages.
+
+  One related thing worth doing: if the Google Business Profile currently shows
+  the street address publicly, set it to a **service-area business** and hide
+  the address there too. The site and the profile should tell Google the same
+  story.
 
 **At launch:**
 
-5. Deploy to Vercel and point mtnlandscapers.com at it.
-6. Paste the Google Search Console verification tag — there's a marked slot in
+2. Deploy to Vercel and point mtnlandscapers.com at it.
+3. Paste the Google Search Console verification tag — there's a marked slot in
    `build.py`'s page template.
-7. Submit `sitemap.xml` in Search Console and Bing Webmaster Tools.
-8. Watch Search Console for two weeks. Rankings normally hold through a
+4. Submit `sitemap.xml` in Search Console and Bing Webmaster Tools.
+5. In Search Console, use **Removals → Outdated content** for
+   `/tree-removal-and-service` if you want it out of results quickly; otherwise
+   the 301 handles it within a few weeks.
+6. Watch Search Console for two weeks. Rankings normally hold through a
    like-for-like rebuild on identical URLs; if anything moves, we'll see it.
 
 **Worth doing soon:**

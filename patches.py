@@ -28,14 +28,37 @@ PATCHES = [
      'raw HTML was being displayed as visible text'),
 
     # --- careers page --------------------------------------------------------
-    # The live text reads "Crew Foreman: $50,(865) 280-4642,000 /yr" — a
-    # find/replace accident dropped a phone number into the salary. The real
-    # range is unknown, so the corrupted figure is removed rather than guessed.
+    # The live text read "Crew Foreman: $50,(865) 280-4642,000 /yr" — a
+    # find/replace accident dropped a phone number into the salary.
+    # Correct figure confirmed by the owner 2026-08-11.
     ('apply', 'Crew Foreman: $50,(865) 280-4642,000 /yr',
-     'Crew Foreman',
-     'TODO: salary was corrupted by a phone-number find/replace on the live '
-     'site ("$50,(865) 280-4642,000 /yr"). Figure removed rather than guessed '
-     '— send the real range and it goes back in.'),
+     'Crew Foreman: $60,000/yr',
+     'salary corrupted on the live site; correct figure supplied by the owner'),
+
+    # --- tree service discontinued (owner instruction, 2026-08-11) -----------
+    # Mountain Landscapers no longer offers tree removal or tree care. The
+    # /tree-removal-and-service page is gone (301 to home in vercel.json) and
+    # every claim to tree work is removed here. References to planting trees
+    # as part of garden design are left alone — that is still work they do.
+    ('*', 'Tree and shrub care', 'Shrub care', 'no longer offers tree care'),
+    ('shrub-care', 'When it comes to tree and shrub care,',
+     'When it comes to shrub care,', 'no longer offers tree care'),
+    ('shrub-care', 'Expert Arborists: Cultivating Health from the Roots',
+     'Expert Plant Care: Cultivating Health from the Roots',
+     'arborist framing implies tree work they no longer offer'),
+    ('shrub-care',
+     'we take pride in our team of certified arborists who possess a wealth of experience in nurturing trees and shrubs',
+     'we take pride in our team of shrub care specialists who possess a wealth of experience in nurturing shrubs and ornamental plantings',
+     'no longer offers tree care; also drops an unverified credential claim'),
+    ('Garden-Services', 'Our garden and tree experts', 'Our garden experts',
+     'no longer offers tree care'),
+
+    # Outbound links to a Louisiana tree service — removed with the rest of the
+    # tree-service references. DROP removes the whole paragraph.
+    ('*', 'And check out our sister tree service', 'DROP',
+     'outbound link to a tree service'),
+    ('*', 'And check out our partners in Southern LA', 'DROP',
+     'outbound link to the same tree service'),
 
     # --- contact page --------------------------------------------------------
     ('contact', 'Adress', 'Address', 'spelling'),
@@ -45,19 +68,34 @@ PATCHES = [
 
 
 def apply_patches(content):
-    """Mutate the content dict in place; return a list of (slug, why) applied."""
+    """Mutate the content dict in place; return a list of (slug, why) applied.
+
+    A replacement of 'DROP' deletes the whole block (or list item) rather than
+    editing its text.
+    """
     applied = []
     for slug, find, repl, why in PATCHES:
-        targets = content.keys() if slug == '*' else ([slug] if slug in content else [])
+        targets = list(content.keys()) if slug == '*' else ([slug] if slug in content else [])
         for s in targets:
             for row in content[s]:
-                for b in row:
+                for b in list(row):
                     if 'html' in b and find in b['html']:
-                        b['html'] = b['html'].replace(find, repl)
+                        if repl == 'DROP':
+                            row.remove(b)
+                        else:
+                            b['html'] = b['html'].replace(find, repl)
                         applied.append((s, why))
                     if 'items' in b:
-                        for i, it in enumerate(b['items']):
-                            if find in it:
-                                b['items'][i] = it.replace(find, repl)
+                        if repl == 'DROP':
+                            kept = [it for it in b['items'] if find not in it]
+                            if len(kept) != len(b['items']):
                                 applied.append((s, why))
+                                b['items'] = kept
+                                if not kept:
+                                    row.remove(b)
+                        else:
+                            for i, it in enumerate(b['items']):
+                                if find in it:
+                                    b['items'][i] = it.replace(find, repl)
+                                    applied.append((s, why))
     return applied
