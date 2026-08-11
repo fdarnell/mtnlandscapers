@@ -236,7 +236,7 @@ def form_card(heading='Got Questions?', compact=False):
     Core Web Vitals stay clean and leads still land in Coraline.
     """
     f = CFG['coralineForm']
-    return f'''<div class="formcard">
+    return f'''<div class="formcard" id="contact-form">
 <span class="mailicon">{ICONS['mail']}</span>
 <h2>{esc(heading)}</h2>
 <div class="coraline-form"
@@ -254,6 +254,26 @@ def form_card(heading='Got Questions?', compact=False):
 </div>
 </div>
 <p class="legal"><a href="/privacy-policy">Privacy Policy</a> | <a href="/tos">Terms of Service</a></p>
+</div>'''
+
+
+def cta_card(heading='Get a Free Quote', line=None):
+    """Conversion card for pages that don't carry the form.
+
+    The Coraline form lives only on /contact — every other page points here
+    instead, so there's still a one-tap path to calling or requesting a quote.
+    """
+    line = line or ('Tell us about your project and we&rsquo;ll get right back to you. '
+                    'Call us directly, or send it through in about a minute.')
+    return f'''<div class="formcard ctacard">
+<span class="mailicon">{ICONS['mail']}</span>
+<h2>{esc(heading)}</h2>
+<p>{line}</p>
+<p class="ctacard-actions">
+<a class="btn btn-green" href="{TEL}">Call {PHONE}</a>
+<a class="btn" href="/contact">Request a Quote</a>
+</p>
+<p class="formnote">Mon&ndash;Fri 9:00 am&ndash;5:00 pm &middot; Saturday by appointment</p>
 </div>'''
 
 
@@ -533,7 +553,7 @@ def render_page(page):
             body_parts.append(
                 f'<section class="section"><div class="wrap"><div class="intro">'
                 f'<div class="intro-copy">{render_blocks(copy)}</div>'
-                f'<div>{form_card()}</div>'
+                f'<div>{cta_card("Got Questions?")}</div>'
                 f'</div></div></section>')
             continue
         html_row = render_row(row, i, tint)
@@ -555,7 +575,7 @@ def render_page(page):
             f'<p>Tell us about your project and we&rsquo;ll get back to you fast. '
             f'Prefer to talk it through? Call <a href="{TEL}">{PHONE}</a> and you&rsquo;ll reach our team directly.</p>'
             f'<p>We serve {", ".join(CFG["serviceArea"][:-1])} and {CFG["serviceArea"][-1]}.</p></div>'
-            f'<div>{form_card("Request Your Quote")}</div>'
+            f'<div>{cta_card("Request Your Quote")}</div>'
             f'</div></div></section>')
 
     if page.get('kind') == 'contact':

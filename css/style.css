@@ -228,6 +228,14 @@ ul.checks li::before {
 .formcard button:hover { background: var(--green-btn-hover); }
 .formcard .legal { text-align: center; font-size: .8rem; margin: 14px 0 0; }
 
+/* CTA card — stands in for the form on every page except /contact */
+.ctacard { text-align: center; }
+.ctacard p { color: var(--ink-soft); font-size: .95rem; }
+.ctacard-actions {
+  display: flex; flex-direction: column; gap: 12px; margin: 22px 0 16px;
+}
+.ctacard-actions .btn { width: 100%; }
+
 /* Coraline form: placeholder shown until the iframe is injected */
 .coraline-form { min-height: 260px; }
 .coraline-form iframe { display: block; width: 100%; border: 0; }
