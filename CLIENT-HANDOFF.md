@@ -139,8 +139,14 @@ is worth it, and the signed service agreement matters more than the website ToS.
 
 ## Screenshots
 
-Desktop and mobile captures of the built pages are in `screenshots/`:
-home, retaining walls, Sevierville, lawn care, contact, blog, privacy policy.
+Desktop and mobile captures of the built pages are in `screenshots/`: home,
+retaining walls, Sevierville, irrigation, lawn care, contact, blog, privacy
+policy.
+
+Layout was also checked in a real browser at 320, 375, 768, 1024, 1440 and
+1920 px. No page scrolls sideways at any width, the mobile menu and its
+dropdowns open and close correctly, and the sticky call bar sits at the bottom
+of the screen on phones.
 
 ---
 
