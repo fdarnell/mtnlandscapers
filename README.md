@@ -75,15 +75,22 @@ git push -u origin edits
 ```
 
 Pushing the branch gives you a Vercel preview URL — a private copy of the site
-with the change applied. Send it to the client for approval. Merging that
-branch into `main` publishes it.
+with the change applied. Merging that branch into `main` publishes it.
+
+**Heads up:** this project has Vercel Deployment Protection enabled, so preview
+URLs require a Vercel login. You can review them; a client can't, unless you
+turn protection off for preview deployments or enable a protection bypass.
 
 ## Publishing
 
-The site is static files. On Vercel: **New Project → import this repo →
-Framework Preset: Other → Deploy.** No settings to change. `vercel.json`
-already sets clean URLs, security headers, and long-lived caching for images
-and fonts.
+Already connected: pushing to `main` deploys to
+<https://mtnlandscapers.vercel.app> (project `salt-services/mtnlandscapers`).
+`vercel.json` carries the build settings, clean URLs, security headers, the
+301 for the retired tree-service URL, and long-lived caching for images and
+fonts. Builds take about 4 seconds.
+
+The custom domain is not attached yet — mtnlandscapers.com still serves the old
+Duda site.
 
 ## Two things to know before editing
 
@@ -99,12 +106,18 @@ was removed when that service was discontinued; it 301s to the home page via
 `vercel.json`. If another page is ever retired, add the redirect at the same
 time — a bare 404 throws away whatever authority the page had.
 
-**The contact form is a lazy-loaded Coraline embed.** Its IDs live in
-`site.config.json` under `coralineForm`; the loader is at the bottom of
-`js/main.js`. The iframe is injected only when the visitor scrolls near it or
+**The contact form is a lazy-loaded Coraline embed, on `/contact` only.** Its
+IDs live in `site.config.json` under `coralineForm`; the loader is at the bottom
+of `js/main.js`. The iframe is injected only when the visitor scrolls near it or
 taps the button, which keeps a 1,695px third-party iframe out of the initial
 page load. If the client's form ID ever changes, edit `site.config.json` and
-re-run `build.py` — nothing else needs touching.
+re-run `build.py` — nothing else needs touching. Every other page shows
+`cta_card()` from `build.py` instead: call button plus a link to `/contact`.
+
+**Build settings are pinned in `vercel.json`** (`framework: null`, empty build
+and install commands, output directory `.`) because the Vercel project was
+originally set up for a Next.js app. Leave those keys in place or the
+deployment will try to run `next build` again and fail.
 
 ## Before go-live
 

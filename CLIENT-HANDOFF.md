@@ -3,6 +3,12 @@
 **What this is:** mtnlandscapers.com rebuilt from scratch as fast, plain HTML,
 matching the current design and keeping everything that makes it rank today.
 
+**Live preview:** <https://mtnlandscapers.vercel.app>
+
+The real domain still points at the old Duda site — nothing has changed for
+customers yet. The link above is the rebuild, deployed and public, ready to
+look over before the domain is switched.
+
 ---
 
 ## The short version
@@ -105,12 +111,15 @@ Say the word if you want any of those gone too.
 
 ### Contact form
 
-The Coraline form is embedded on the contact page, the home page and every
-service and city page — 17 pages in all. It is **lazy-loaded**: the raw embed
-is a 1,695-pixel iframe plus an external script, which would be by far the
-heaviest thing on the page. Instead each page shows a styled placeholder and
+The Coraline form lives on **the contact page only**. It is **lazy-loaded**:
+the raw embed is a 1,695-pixel iframe plus an external script, which would be
+by far the heaviest thing on the page. The page shows a styled placeholder and
 swaps in the real form when the visitor scrolls near it or taps the button, so
 the speed gains from this rebuild survive. Leads land in Coraline either way.
+
+Every other page gets a **CTA card** in the same spot instead — a call button,
+a "Request a Quote" link through to the contact page, and the business hours.
+The conversion path is intact everywhere; the form itself just isn't repeated.
 
 ### Legal pages rewritten
 
@@ -179,7 +188,9 @@ is worth it, and the signed service agreement matters more than the website ToS.
 
 **At launch:**
 
-2. Deploy to Vercel and point mtnlandscapers.com at it.
+2. Point mtnlandscapers.com at Vercel. The project is already deployed and
+   live at <https://mtnlandscapers.vercel.app> — adding the domain in the
+   Vercel dashboard and updating DNS is all that's left.
 3. Paste the Google Search Console verification tag — there's a marked slot in
    `build.py`'s page template.
 4. Submit `sitemap.xml` in Search Console and Bing Webmaster Tools.
@@ -222,3 +233,33 @@ generated, so edit `content.json` (words), `pages.py` (titles) or
 
 Changes go on a branch, which gives a preview link to approve before anything
 touches the live site.
+
+
+---
+
+## Vercel notes
+
+The project (`salt-services/mtnlandscapers`) was still configured for the
+Next.js app that used to live in this repo, so every push after the rebuild
+ran `next build` and failed with *"Couldn't find any `pages` or `app`
+directory"*. It was restoring the old build cache each time, which is why it
+kept detecting Next.js even after the files were gone.
+
+Fixed in `vercel.json` rather than in the dashboard, so the setting travels
+with the code and can't drift:
+
+```json
+"framework": null,
+"buildCommand": "",
+"installCommand": "",
+"outputDirectory": "."
+```
+
+Builds now take about 4 seconds — there's nothing to compile.
+
+**One thing to know about preview links:** the project has Vercel's Deployment
+Protection turned on, so per-deployment and branch URLs require a Vercel login.
+The production alias (`mtnlandscapers.vercel.app`) is public, but a branch
+preview isn't — so the "push a branch, send the client the preview link"
+workflow in `README.md` won't work for a client until Deployment Protection is
+switched off for preview deployments, or a protection bypass is enabled.
