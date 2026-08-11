@@ -46,9 +46,15 @@
   "partners": {
     "middleTennessee": "https://www.franklinlandscapingsolutions.com/"
   },
-  "formEndpoint": "TODO_CORALINE_FORM",
+  "coralineForm": {
+    "iframeSrc": "https://app.saltservicesusa.mtnlandscapers.com/widget/form/0Y0hIjIvl29lIh6fRn6r",
+    "embedJs": "https://app.saltservicesusa.mtnlandscapers.com/js/form_embed.js",
+    "formId": "0Y0hIjIvl29lIh6fRn6r",
+    "formName": "Website Contact Form",
+    "formHeight": 1695
+  },
   "notes": {
-    "addressPrivacy": "Owner confirmed 2026-08-11: 109 Bruce Street is not a public office. It must stay out of all visible page text and appear only in the JSON-LD, so structured data matches the Google Business Profile. Keep the GBP listing address-hidden (service-area business) to match.",
+    "addressPrivacy": "Owner confirmed 2026-08-11: 109 Bruce Street stays out of all visible page text and appears only in the JSON-LD, so the machine-readable NAP matches the Google Business Profile. The GBP keeps its street address — do NOT recommend converting it to a service-area business.",
     "secondPhone": "Owner confirmed 2026-08-11: (865) 280-4642 is the only number. The old (865) 518-8533 references were leftovers and have been removed.",
     "treeService": "Owner confirmed 2026-08-11: tree removal/tree care is no longer offered. Page deleted, 301 to home in vercel.json, all claims removed via patches.py."
   }

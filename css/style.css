@@ -227,6 +227,21 @@ ul.checks li::before {
 }
 .formcard button:hover { background: var(--green-btn-hover); }
 .formcard .legal { text-align: center; font-size: .8rem; margin: 14px 0 0; }
+
+/* Coraline form: placeholder shown until the iframe is injected */
+.coraline-form { min-height: 260px; }
+.coraline-form iframe { display: block; width: 100%; border: 0; }
+.coraline-form__placeholder {
+  border: 1px dashed #c2c2c2; border-radius: var(--radius);
+  padding: 30px 22px; text-align: center; background: var(--bg-tint);
+}
+.coraline-form__placeholder p { margin: 0 0 16px; color: var(--ink-soft); font-size: .95rem; }
+.coraline-form__load-btn {
+  background: var(--green-btn); color: #fff; border: 0; border-radius: var(--radius);
+  padding: 13px 26px; font-size: 1rem; font-weight: 600;
+  font-family: var(--font); cursor: pointer;
+}
+.coraline-form__load-btn:hover { background: var(--green-btn-hover); }
 .formnote { font-size: .85rem; color: var(--ink-soft); text-align: center; }
 
 /* ---------- FAQ ---------- */

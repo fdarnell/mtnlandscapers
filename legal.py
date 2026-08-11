@@ -45,9 +45,14 @@ PRIVACY = [[
     _h2('Information collected automatically'),
     _p('Our web host records standard server logs &mdash; your IP address, browser type, the page you '
        'requested, and the time. These logs exist for security and troubleshooting.'),
-    _p('This site sets <strong>no cookies</strong>, runs no advertising or tracking pixels, and loads '
-       'no third-party analytics. Our fonts and images are served from our own domain, so no outside '
-       'company receives your IP address just because you loaded a page here.'),
+    _p('The pages themselves run <strong>no advertising pixels, no tracking scripts and no '
+       'third-party analytics</strong>, and our fonts and images are served from our own domain.'),
+    _p('The one exception is our contact form, which is provided by our customer relationship system '
+       '(Coraline, built on HighLevel). The form loads inside a frame from '
+       '<em>app.saltservicesusa.mtnlandscapers.com</em> when you scroll down to it or open it, and at '
+       'that point that system receives your IP address and may set its own cookies so the form works '
+       'and submissions are not duplicated. If you never reach the form, it never loads. You can '
+       'always skip it and call or email us instead.'),
 
     _h2('SMS and text messaging'),
     _p('If you give us your mobile number and check the consent box on our form, we may text you about '
@@ -61,9 +66,10 @@ PRIVACY = [[
     _h2('How we share information'),
     _p('We do not sell your personal information, and we do not rent or trade it. We share it only with:'),
     _ul([
-        'The companies that run our software &mdash; our customer relationship manager (which receives '
-        'form submissions and sends our texts and emails) and our web host. They process this '
-        'information on our behalf and are not permitted to use it for their own marketing.',
+        'The companies that run our software &mdash; Coraline, our customer relationship system '
+        '(which receives form submissions and sends our texts and emails), and our web host. They '
+        'process this information on our behalf and are not permitted to use it for their own '
+        'marketing.',
         'Our own crew and office staff, so we can quote, schedule and complete your work.',
         'Anyone we are legally required to share it with &mdash; a court order, a subpoena, or a law '
         'enforcement request we are obligated to honor.',

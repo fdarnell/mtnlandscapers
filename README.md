@@ -87,22 +87,30 @@ and fonts.
 
 ## Two things to know before editing
 
-**The street address is deliberately schema-only.** There is no public office,
-so `109 Bruce Street` lives in `site.config.json` as `address.streetPrivate`
-and is written *only* into the JSON-LD, so the site's NAP matches the Google
-Business Profile. The visible address everywhere is "Sevierville, TN 37862".
-Don't print `streetPrivate` in a template.
+**The street address is deliberately schema-only.** `109 Bruce Street` lives in
+`site.config.json` as `address.streetPrivate` and is written *only* into the
+JSON-LD, so the machine-readable NAP matches the Google Business Profile while
+no street address appears on the page. The visible address everywhere is
+"Sevierville, TN 37862". Don't print `streetPrivate` in a template, and don't
+remove it from the schema — the GBP listing depends on that match.
 
 **Retired URLs need a redirect, not a deletion.** `/tree-removal-and-service`
 was removed when that service was discontinued; it 301s to the home page via
 `vercel.json`. If another page is ever retired, add the redirect at the same
 time — a bare 404 throws away whatever authority the page had.
 
+**The contact form is a lazy-loaded Coraline embed.** Its IDs live in
+`site.config.json` under `coralineForm`; the loader is at the bottom of
+`js/main.js`. The iframe is injected only when the visitor scrolls near it or
+taps the button, which keeps a 1,695px third-party iframe out of the initial
+page load. If the client's form ID ever changes, edit `site.config.json` and
+re-run `build.py` — nothing else needs touching.
+
 ## Before go-live
 
 See `CLIENT-HANDOFF.md` for the full checklist. The blocking item:
 
-1. Wire the contact form to Coraline (set `formEndpoint` in `site.config.json`)
+1. Submit a test lead through the form and confirm it arrives in Coraline
 
 Then: point the domain at Vercel, add the Search Console verification tag, and
 submit `sitemap.xml` in Google Search Console.

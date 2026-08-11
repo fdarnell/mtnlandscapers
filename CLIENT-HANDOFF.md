@@ -103,6 +103,15 @@ Say the word if you want any of those gone too.
   real headings and landmarks, alt text on every image, reduced-motion support,
   no horizontal scrolling from 320 px up.
 
+### Contact form
+
+The Coraline form is embedded on the contact page, the home page and every
+service and city page — 17 pages in all. It is **lazy-loaded**: the raw embed
+is a 1,695-pixel iframe plus an external script, which would be by far the
+heaviest thing on the page. Instead each page shows a styled placeholder and
+swaps in the real form when the visitor scrolls near it or taps the button, so
+the speed gains from this rebuild survive. Leads land in Coraline either way.
+
 ### Legal pages rewritten
 
 The old privacy policy and terms were generic boilerplate. Two real problems:
@@ -133,9 +142,17 @@ is worth it, and the signed service agreement matters more than the website ToS.
 
 **Blocking:**
 
-1. **Wire up the contact form.** It currently posts nowhere. Send me the
-   client's Coraline form embed code or inbound webhook URL and I'll connect it,
-   then submit a test lead and confirm it lands in their account.
+1. **Submit one test lead.** The Coraline form is wired in and verified —
+   the iframe injects correctly, the embed script loads, and the form serves
+   from `app.saltservicesusa.mtnlandscapers.com` with Mountain Landscapers'
+   own SMS consent language. What I have *not* done is submit a real
+   submission into the client's CRM, since that pushes data into their live
+   account. Send one through on the preview and confirm it lands in Coraline,
+   or tell me to and I'll do it.
+
+   Also confirm in Coraline where the form redirects after submit — the site
+   has `/thank-you` and `/thankyousf` pages ready, but the redirect is set on
+   the HighLevel side, not here.
 
 **Settled — no action needed:**
 
@@ -148,10 +165,17 @@ is worth it, and the signed service agreement matters more than the website ToS.
   page, so Google can match the site to the Google Business Profile. Verified:
   0 visible occurrences, present in the schema on all 28 pages.
 
-  One related thing worth doing: if the Google Business Profile currently shows
-  the street address publicly, set it to a **service-area business** and hide
-  the address there too. The site and the profile should tell Google the same
-  story.
+  The Google Business Profile keeps its street address at 109 Bruce Street, and
+  the site's structured data now matches it character for character — that
+  match is what Google actually cross-checks, and it's the part that helps the
+  map pack.
+
+  One thing to know so it never bites you: Google expects a listing with a
+  displayed address to be a real location that's staffed during the hours you
+  post. If 109 Bruce Street is where the business actually operates, that's
+  satisfied and there's nothing to do. Suspensions in this category almost
+  always come from a competitor filing a redressal complaint, and the fix is
+  simply being able to show it's a genuine place of business.
 
 **At launch:**
 

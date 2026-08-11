@@ -54,6 +54,68 @@
     }
   });
 
+  /* ---- Coraline form: inject the iframe only when it's actually needed ---- */
+  var mounts = document.querySelectorAll('.coraline-form');
+  if (mounts.length) {
+    var embedJsLoaded = false;
+
+    var loadForm = function (mount) {
+      if (mount.dataset.loaded) return;
+      mount.dataset.loaded = 'true';
+
+      var formId = mount.dataset.formId;
+      var height = parseInt(mount.dataset.formHeight, 10) || 900;
+
+      var iframe = document.createElement('iframe');
+      iframe.src = mount.dataset.iframeSrc;
+      iframe.id = 'inline-' + formId;
+      iframe.title = mount.dataset.formName || 'Contact form';
+      iframe.style.cssText =
+        'width:100%;border:none;border-radius:0;min-height:' + height + 'px';
+      iframe.setAttribute('data-layout', "{'id':'INLINE'}");
+      iframe.setAttribute('data-trigger-type', 'alwaysShow');
+      iframe.setAttribute('data-trigger-value', '');
+      iframe.setAttribute('data-activation-type', 'alwaysActivated');
+      iframe.setAttribute('data-activation-value', '');
+      iframe.setAttribute('data-deactivation-type', 'neverDeactivate');
+      iframe.setAttribute('data-deactivation-value', '');
+      iframe.setAttribute('data-form-name', mount.dataset.formName || '');
+      iframe.setAttribute('data-height', String(height));
+      iframe.setAttribute('data-layout-iframe-id', 'inline-' + formId);
+      iframe.setAttribute('data-form-id', formId);
+
+      mount.innerHTML = '';
+      mount.appendChild(iframe);
+
+      if (!embedJsLoaded) {
+        embedJsLoaded = true;
+        var s = document.createElement('script');
+        s.src = mount.dataset.embedJs;
+        s.defer = true;
+        document.body.appendChild(s);
+      }
+    };
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            loadForm(entry.target);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '600px' });
+      Array.prototype.forEach.call(mounts, function (m) { io.observe(m); });
+    } else {
+      Array.prototype.forEach.call(mounts, loadForm);
+    }
+
+    Array.prototype.forEach.call(mounts, function (m) {
+      var btn = m.querySelector('.coraline-form__load-btn');
+      if (btn) btn.addEventListener('click', function () { loadForm(m); });
+    });
+  }
+
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     Array.prototype.forEach.call(document.querySelectorAll('.mainnav li.open'), function (o) {

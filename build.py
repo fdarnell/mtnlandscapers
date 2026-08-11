@@ -228,25 +228,32 @@ def footer():
 # contact form (native HTML; endpoint set in site.config.json)
 # --------------------------------------------------------------------------
 def form_card(heading='Got Questions?', compact=False):
-    action = CFG['formEndpoint']
-    todo = '' if action.startswith('http') else '\n<!-- TODO: set "formEndpoint" in site.config.json to the client\'s Coraline form/webhook URL, then re-run build.py -->'
-    extra = '' if compact else f'''<div class="field">
-<label for="f-msg">Project Description</label>
-<textarea id="f-msg" name="project"></textarea>
-</div>'''
-    return f'''<div class="formcard">{todo}
+    """The client's Coraline (HighLevel) form, lazy-loaded.
+
+    The raw embed is a ~1700px iframe plus an external script — eager-loading it
+    would be the heaviest thing on the page. This renders a styled placeholder
+    and swaps in the real form when the visitor scrolls near it or taps it, so
+    Core Web Vitals stay clean and leads still land in Coraline.
+    """
+    f = CFG['coralineForm']
+    return f'''<div class="formcard">
 <span class="mailicon">{ICONS['mail']}</span>
 <h2>{esc(heading)}</h2>
-<form action="{esc(action)}" method="post">
-<div class="field"><label for="f-name">Full Name</label><input id="f-name" name="name" type="text" autocomplete="name"></div>
-<div class="field"><label for="f-phone">Phone *</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></div>
-<div class="field"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
-{extra}
-<label class="consent"><input type="checkbox" name="sms_consent" value="yes">
-<span>I Consent to Receive SMS Notifications, Alerts &amp; Occasional Marketing Communication from Mountain Landscapers, LLC. Message frequency varies. Message &amp; data rates may apply. Text HELP to {esc(CFG['smsHelpNumber'])} for assistance. You can reply STOP to unsubscribe at any time.</span></label>
-<button type="submit">Submit</button>
+<div class="coraline-form"
+     data-iframe-src="{esc(f['iframeSrc'])}"
+     data-embed-js="{esc(f['embedJs'])}"
+     data-form-id="{esc(f['formId'])}"
+     data-form-name="{esc(f['formName'])}"
+     data-form-height="{f['formHeight']}">
+<div class="coraline-form__placeholder">
+<p>Tell us about your project and we&rsquo;ll get right back to you.</p>
+<button type="button" class="coraline-form__load-btn">Open the contact form</button>
+<noscript><p>Our contact form needs JavaScript. You can also call
+<a href="{TEL}">{PHONE}</a> or email
+<a href="mailto:{esc(CFG['email'])}">{esc(CFG['email'])}</a>.</p></noscript>
+</div>
+</div>
 <p class="legal"><a href="/privacy-policy">Privacy Policy</a> | <a href="/tos">Terms of Service</a></p>
-</form>
 </div>'''
 
 
