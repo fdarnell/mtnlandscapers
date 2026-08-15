@@ -219,6 +219,17 @@ li { margin-bottom: .55em; }
 .section.tint { background: var(--cream); }
 .section.green { background: var(--forest); color: #fff; }
 .section.green h2, .section.green h3, .section.green p { color: #fff; }
+
+/* full-bleed photo band: white text over a darkened, parallax-scrolling photo */
+.section.photo {
+  background-size: cover; background-position: center; color: #fff;
+}
+.section.photo h1, .section.photo h2, .section.photo h3, .section.photo h4,
+.section.photo p, .section.photo li { color: #fff; }
+.section.photo a { color: #fff; text-decoration: underline; }
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+  .section.photo { background-attachment: fixed; }
+}
 .section > .wrap > *:last-child { margin-bottom: 0; }
 .section-title { text-align: center; }
 .section-title::after {

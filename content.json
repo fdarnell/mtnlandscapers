@@ -66,10 +66,6 @@
     ],
     [
       {
-        "t": "bg",
-        "src": "hardscapegarden"
-      },
-      {
         "t": "h2",
         "html": "When It's Time to Design and Plant Your Next Garden Idea, You Know Who to Call, Sevierville."
       }
@@ -89,6 +85,10 @@
       }
     ],
     [
+      {
+        "t": "colbg",
+        "src": "hardscapegarden"
+      },
       {
         "t": "h3",
         "html": "Sustainable Landscaping Solutions"
@@ -587,15 +587,15 @@
     ],
     [
       {
-        "t": "bg",
-        "src": "naturalgasfirepit-ba00c3da"
-      },
-      {
         "t": "h2",
         "html": "If You Need a Fire Pit Built in the Sevier County Area, We Would Love to Hear From You!"
       }
     ],
     [
+      {
+        "t": "bg",
+        "src": "naturalgasfirepit-ba00c3da"
+      },
       {
         "t": "h3",
         "html": "Why Choose Mountain Landscapers for your next Fire Pit Design and Installation? Check Out Our Thoughts Below:"
@@ -991,10 +991,6 @@
     ],
     [
       {
-        "t": "bg",
-        "src": "adobestock_569239209-d37573a4"
-      },
-      {
         "t": "h2",
         "html": "When You Need Professional Hardscape Services, You Know Who to Call, Sevierville."
       }
@@ -1100,6 +1096,10 @@
       }
     ],
     [
+      {
+        "t": "bg",
+        "src": "adobestock_569239209-d37573a4"
+      },
       {
         "t": "h2",
         "html": "Why You Should Choose Us for Your Next Hardscaping Project"
@@ -1509,19 +1509,11 @@
     ],
     [
       {
-        "t": "bg",
-        "src": "lawncare-collage"
-      },
-      {
         "t": "h2",
         "html": "When You Need Professional Irrigation Services, You Know Who to Call, Sevierville."
       }
     ],
     [
-      {
-        "t": "colbg",
-        "src": "lawncare-collage-10"
-      },
       {
         "t": "h2",
         "html": "Drip Irrigation: The Best Care for Gardens and Plant Beds"
@@ -1546,10 +1538,6 @@
       }
     ],
     [
-      {
-        "t": "bg",
-        "src": "lawncare-collage-3"
-      },
       {
         "t": "h3",
         "html": "Irrigation Repair &amp; Maintenance: Fast Fixes You Can Count On"
@@ -1579,6 +1567,10 @@
       }
     ],
     [
+      {
+        "t": "bg",
+        "src": "lawncare-collage"
+      },
       {
         "t": "h2",
         "html": "Why Choose Mountain Landscapers for Irrigation Services?"
@@ -1739,17 +1731,13 @@
     ],
     [
       {
-        "t": "bg",
-        "src": "lawncare-collage-14"
-      },
-      {
         "t": "h2",
         "html": "When You Need Professional Irrigation Services, You Know Who to Call, Sevierville."
       }
     ],
     [
       {
-        "t": "bg",
+        "t": "colbg",
         "src": "lawncare-collage-18"
       },
       {
@@ -1781,7 +1769,7 @@
     ],
     [
       {
-        "t": "bg",
+        "t": "colbg",
         "src": "lawncare-collage-2815-29"
       },
       {
@@ -1813,6 +1801,10 @@
       }
     ],
     [
+      {
+        "t": "colbg",
+        "src": "lawncare-collage-14"
+      },
       {
         "t": "h2",
         "html": "Why Choose Mountain Landscapers for Lawn Care?"
@@ -2307,10 +2299,6 @@
     ],
     [
       {
-        "t": "bg",
-        "src": "adobestock_76288118"
-      },
-      {
         "t": "h2",
         "html": "When It's Time to Design and Install Your Next Outdoor Lighting Idea, You Know Who to Call, Sevierville."
       }
@@ -2342,6 +2330,10 @@
       }
     ],
     [
+      {
+        "t": "bg",
+        "src": "adobestock_76288118"
+      },
       {
         "t": "h2",
         "html": "Why You Should Choose Us for Your Next Water Feature Landscape Design Project"
@@ -2447,10 +2439,6 @@
     ],
     [
       {
-        "t": "bg",
-        "src": "adobestock_381771553-8f420b71-cac47f88-0c3482f6"
-      },
-      {
         "t": "h2",
         "html": "When You Need Professional Pressure Washing Services, You Know Who to Call, Sevierville."
       }
@@ -2520,6 +2508,10 @@
       }
     ],
     [
+      {
+        "t": "bg",
+        "src": "adobestock_381771553-8f420b71-cac47f88-0c3482f6"
+      },
       {
         "t": "h2",
         "html": "Why You Should Choose Us for Your Next Pressure Washing Project"
@@ -3017,10 +3009,6 @@
     ],
     [
       {
-        "t": "bg",
-        "src": "20240715-img_0857"
-      },
-      {
         "t": "h2",
         "html": "When You Need Professional Septic Tank Installation, You Know Who to Call, Sevierville."
       },
@@ -3058,6 +3046,10 @@
       }
     ],
     [
+      {
+        "t": "colbg",
+        "src": "20240715-img_0857"
+      },
       {
         "t": "h3",
         "html": "4. Testing and Inspection:"
@@ -4270,10 +4262,6 @@
     ],
     [
       {
-        "t": "bg",
-        "src": "waterfeatures_4"
-      },
-      {
         "t": "h2",
         "html": "When It's Time to Design and Install Your Next Water Feature Idea, You Know Who to Call, Sevierville."
       }
@@ -4362,6 +4350,10 @@
       }
     ],
     [
+      {
+        "t": "bg",
+        "src": "waterfeatures_4"
+      },
       {
         "t": "h2",
         "html": "Why You Should Choose Us for Your Next Water Feature Landscape Design Project"

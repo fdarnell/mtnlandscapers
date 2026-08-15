@@ -423,11 +423,11 @@ def render_row(row, idx, tint_toggle):
         return (f'<section class="section tint"><div class="wrap">{pre_html}'
                 f'<div class="cards">{"".join(cards)}</div>{render_blocks(post)}</div></section>')
 
-    # full-bleed section with a background photo behind the copy
+    # full-bleed section with a parallax photo behind the copy
     if bg and body:
-        return (f'<section class="section" style="background-image:linear-gradient(rgba(19,32,24,.72),rgba(19,32,24,.72)),'
-                f'url({img_src(bg["src"], small=False)});background-size:cover;background-position:center;color:#fff">'
-                f'<div class="wrap" style="color:#fff">{render_blocks(body)}</div></section>')
+        return (f'<section class="section photo" style="background-image:linear-gradient(rgba(19,32,24,.72),rgba(19,32,24,.72)),'
+                f'url({img_src(bg["src"], small=False)})">'
+                f'<div class="wrap">{render_blocks(body)}</div></section>')
 
     if not body:
         return ''
