@@ -354,6 +354,12 @@ ul.checks li::before {
 }
 .ctacard-actions .btn { width: 100%; }
 
+/* contact page: centered form + booking calendar */
+.contact-stack { max-width: 820px; text-align: center; }
+.contact-stack .formcard { text-align: left; margin: 26px auto 0; max-width: 760px; }
+.contact-stack .calcard { max-width: 820px; }
+.contact-stack .formcard h2, .contact-stack .formcard h3 { text-align: center; }
+
 /* Coraline form: placeholder shown until the iframe is injected */
 .coraline-form { min-height: 260px; }
 .coraline-form iframe { display: block; width: 100%; border: 0; }

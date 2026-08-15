@@ -205,7 +205,7 @@ def cta_band():
 </div>
 <div class="ctabtns">
 <a class="btn btn-ghost" href="{TEL}">Click to Call</a>
-<a class="btn btn-ghost" href="/contact">Book Appointment Online</a>
+<a class="btn btn-ghost" href="/contact#book">Book Appointment Online</a>
 </div>
 </div>
 </section>'''
@@ -717,14 +717,32 @@ def render_page(page):
             f'</div></div></section>')
 
     if page.get('kind') == 'contact':
+        cal = CFG['coralineCalendar']
         body_parts.append(
-            f'<section class="section"><div class="wrap"><div class="intro">'
-            f'<div class="intro-copy"><h2>Send Us a Message</h2>'
+            f'<section class="section"><div class="wrap contact-stack">'
+            f'<h2>Send Us a Message</h2>'
             f'<p>Fill out the form and someone from our team will reach out. '
             f'For anything urgent, call <a href="{TEL}">{PHONE}</a>.</p>'
             f'<p><strong>Hours:</strong> ' + '; '.join(f'{h["label"]} {h["value"]}' for h in CFG['hours']) + '</p>'
-            f'</div><div>{form_card("Contact Us")}</div>'
-            f'</div></div></section>')
+            f'{form_card("Contact Us")}'
+            f'</div></section>'
+            f'<section class="section tint"><div class="wrap contact-stack" id="book">'
+            f'<h2>Book Your Appointment Online</h2>'
+            f'<p>Pick a day and time that works for you and it goes straight on our calendar.</p>'
+            f'<div class="formcard calcard">'
+            f'<div class="coraline-form"'
+            f' data-iframe-src="{esc(cal["iframeSrc"])}"'
+            f' data-embed-js="{esc(cal["embedJs"])}"'
+            f' data-form-id="{esc(cal["calendarId"])}"'
+            f' data-form-name="{esc(cal["name"])}"'
+            f' data-form-height="{cal["height"]}">'
+            f'<div class="coraline-form__placeholder">'
+            f'<p>See available times with one of our design specialists.</p>'
+            f'<button type="button" class="coraline-form__load-btn">Open the calendar</button>'
+            f'<noscript><p>The booking calendar needs JavaScript. You can also call '
+            f'<a href="{TEL}">{PHONE}</a> to schedule.</p></noscript>'
+            f'</div></div></div>'
+            f'</div></section>')
 
     hero_cls = 'hero' if page.get('kind') in ('home', 'service', 'city') else 'hero compact'
     ld = jsonld_for(page, trail)
