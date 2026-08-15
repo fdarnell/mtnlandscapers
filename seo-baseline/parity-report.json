@@ -1,0 +1,393 @@
+{
+  "baseline": "seo-baseline/baseline.json",
+  "mode": "local",
+  "fails": 10,
+  "warns": 28,
+  "traffic_at_risk": null,
+  "pages": [
+    {
+      "path": "/water-features",
+      "target_path": "/water-features",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 27% (1661 -> 1213)"
+        }
+      ]
+    },
+    {
+      "path": "/retaining-walls",
+      "target_path": "/retaining-walls",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "h1",
+          "detail": "Changed: 'Retaining Wall Design and Installation\ufeff' -> 'Retaining Wall Design and Installation'"
+        },
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 28% (1578 -> 1133)"
+        }
+      ]
+    },
+    {
+      "path": "/",
+      "target_path": "/",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 24% (2117 -> 1607)"
+        }
+      ]
+    },
+    {
+      "path": "/outdoor-lighting-design",
+      "target_path": "/outdoor-lighting-design",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 31% (1432 -> 988)"
+        }
+      ]
+    },
+    {
+      "path": "/thank-you",
+      "target_path": "/thank-you",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "FAIL",
+          "check": "content_depth",
+          "detail": "Word count fell 64% (815 -> 290). Thin rebuilds lose rankings."
+        }
+      ]
+    },
+    {
+      "path": "/shrub-care",
+      "target_path": "/shrub-care",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 37% (1213 -> 768)"
+        }
+      ]
+    },
+    {
+      "path": "/pressure-washing",
+      "target_path": "/pressure-washing",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 30% (1496 -> 1049)"
+        }
+      ]
+    },
+    {
+      "path": "/gatlinburg",
+      "target_path": "/gatlinburg",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "title",
+          "detail": "Changed: 'Landscape Design and Install Sevier Co.| Mountain Landscapers' -> 'Landscaping in Gatlinburg, TN | Mountain Landscapers'"
+        },
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 22% (2103 -> 1642)"
+        }
+      ]
+    },
+    {
+      "path": "/leaf-removal",
+      "target_path": "/leaf-removal",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "FAIL",
+          "check": "content_depth",
+          "detail": "Word count fell 41% (1087 -> 642). Thin rebuilds lose rankings."
+        }
+      ]
+    },
+    {
+      "path": "/hardscapes",
+      "target_path": "/hardscapes",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 31% (1454 -> 998)"
+        }
+      ]
+    },
+    {
+      "path": "/sevierville",
+      "target_path": "/sevierville",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "title",
+          "detail": "Changed: 'Landscape Design and Install Sevier Co.| Mountain Landscapers' -> 'Landscaping in Sevierville, TN | Mountain Landscapers'"
+        },
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 22% (2113 -> 1654)"
+        }
+      ]
+    },
+    {
+      "path": "/apply",
+      "target_path": "/apply",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "title",
+          "detail": "Changed: 'Mountain Landscapers of Sevierville! | (865) 280-4642' -> 'Landscaping Jobs in Sevierville, TN | Mountain Landscapers'"
+        },
+        {
+          "level": "FAIL",
+          "check": "content_depth",
+          "detail": "Word count fell 50% (1058 -> 533). Thin rebuilds lose rankings."
+        }
+      ]
+    },
+    {
+      "path": "/tree-removal-and-service",
+      "target_path": "/",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "NOTE",
+          "check": "url_parity",
+          "detail": "/tree-removal-and-service -> /: confirm a 301 redirect is configured (vercel.json / hosting config) \u2014 local file check cannot verify it"
+        },
+        {
+          "level": "WARN",
+          "check": "title",
+          "detail": "Changed: 'Exquisite Garden Design Services | Mountain Landscapers' -> 'Landscape Design and Install Sevier Co.| Mountain Landscapers'"
+        },
+        {
+          "level": "WARN",
+          "check": "h1",
+          "detail": "Changed: 'Tree Removal and Tree Service' -> 'Landscape Design and Installation Sevierville, TN (865) 280-4642'"
+        }
+      ]
+    },
+    {
+      "path": "/accessibility",
+      "target_path": "/accessibility",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "title",
+          "detail": "Changed: 'Mountain Landscapers of Sevierville! | (865) 280-4642' -> 'Accessibility Statement | Mountain Landscapers'"
+        },
+        {
+          "level": "WARN",
+          "check": "h1",
+          "detail": "Changed: 'Mountain Landscapers Accessibility Statement' -> 'Accessibility Statement'"
+        },
+        {
+          "level": "FAIL",
+          "check": "content_depth",
+          "detail": "Word count fell 49% (1055 -> 533). Thin rebuilds lose rankings."
+        }
+      ]
+    },
+    {
+      "path": "/seymour",
+      "target_path": "/seymour",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "title",
+          "detail": "Changed: 'Landscape Design and Install Sevier Co.| Mountain Landscapers' -> 'Landscaping in Seymour, TN | Mountain Landscapers'"
+        },
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 20% (2267 -> 1808)"
+        }
+      ]
+    },
+    {
+      "path": "/septic-tank-installation",
+      "target_path": "/septic-tank-installation",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 37% (1218 -> 771)"
+        }
+      ]
+    },
+    {
+      "path": "/fire-pits",
+      "target_path": "/fire-pits",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 25% (1761 -> 1316)"
+        }
+      ]
+    },
+    {
+      "path": "/garden-services",
+      "target_path": "/garden-services",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "h1",
+          "detail": "Changed: 'Garden Design and Installation\ufeff' -> 'Garden Design and Installation'"
+        },
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 29% (1527 -> 1079)"
+        }
+      ]
+    },
+    {
+      "path": "/our-blog",
+      "target_path": "/our-blog",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "title",
+          "detail": "Changed: 'Mountain Landscapers of Sevierville! | (865) 280-4642' -> 'East Tennessee Landscaping Blog | Mountain Landscapers'"
+        },
+        {
+          "level": "FAIL",
+          "check": "content_depth",
+          "detail": "Word count fell 83% (1404 -> 235). Thin rebuilds lose rankings."
+        }
+      ]
+    },
+    {
+      "path": "/contact",
+      "target_path": "/contact",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "FAIL",
+          "check": "content_depth",
+          "detail": "Word count fell 61% (762 -> 294). Thin rebuilds lose rankings."
+        }
+      ]
+    },
+    {
+      "path": "/lawn-care",
+      "target_path": "/lawn-care",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 26% (1396 -> 1035)"
+        }
+      ]
+    },
+    {
+      "path": "/irrigation-services",
+      "target_path": "/irrigation-services",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 25% (1362 -> 1019)"
+        }
+      ]
+    },
+    {
+      "path": "/thankyousf",
+      "target_path": "/thankyousf",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "title",
+          "detail": "Changed: 'Mountain Landscapers of Sevierville! | (865) 280-4642' -> 'Thank You | Mountain Landscapers'"
+        },
+        {
+          "level": "FAIL",
+          "check": "content_depth",
+          "detail": "Word count fell 73% (724 -> 193). Thin rebuilds lose rankings."
+        }
+      ]
+    },
+    {
+      "path": "/mastering-the-art-of-leaf-removal-practical-tips-for-a-tidy-yard",
+      "target_path": "/mastering-the-art-of-leaf-removal-practical-tips-for-a-tidy-yard",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 22% (981 -> 763)"
+        }
+      ]
+    },
+    {
+      "path": "/elevate-your-winter-landscape-great-landscaping-ideas-for-the-season",
+      "target_path": "/elevate-your-winter-landscape-great-landscaping-ideas-for-the-season",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "FAIL",
+          "check": "content_depth",
+          "detail": "Word count fell 61% (1909 -> 739). Thin rebuilds lose rankings."
+        }
+      ]
+    },
+    {
+      "path": "/simple-tips-for-preparing-your-landscaping-for-winter",
+      "target_path": "/simple-tips-for-preparing-your-landscaping-for-winter",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "FAIL",
+          "check": "content_depth",
+          "detail": "Word count fell 63% (1836 -> 671). Thin rebuilds lose rankings."
+        }
+      ]
+    },
+    {
+      "path": "/seasonal-landscaping-tips-thriving-in-sevierville-s-climate",
+      "target_path": "/seasonal-landscaping-tips-thriving-in-sevierville-s-climate",
+      "clicks": 0,
+      "issues": [
+        {
+          "level": "FAIL",
+          "check": "content_depth",
+          "detail": "Word count fell 65% (1787 -> 621). Thin rebuilds lose rankings."
+        }
+      ]
+    }
+  ]
+}

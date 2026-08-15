@@ -60,6 +60,16 @@ PATCHES = [
     ('*', 'And check out our partners in Southern LA', 'DROP',
      'outbound link to the same tree service'),
 
+    # --- careers page: Interest Form (fixed directly in content.json) --------
+    # The original capture recorded the Duda form widget's hidden confirmation
+    # message ("Thank you for submitting an interest form!") as page copy but
+    # could not capture the form fields themselves, leaving a section that told
+    # applicants to fill out a form that did not exist. Fixed 2026-08-15 in
+    # content.json (structural change, outside this find/replace mechanism):
+    # the live form's questions are restored as visible copy and applicants are
+    # pointed to the contact page / phone until a real application form is
+    # wired (candidate for a second Coraline form — owner's call).
+
     # --- contact page --------------------------------------------------------
     ('contact', 'Adress', 'Address', 'spelling'),
     ('pressure-washing', 'PressureWashing Service', 'Pressure Washing Service',
