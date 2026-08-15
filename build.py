@@ -30,7 +30,7 @@ NAME = CFG['name']
 ADDR = CFG['address']
 
 BUILD_YEAR = 2026
-LASTMOD = '2026-08-11'
+LASTMOD = '2026-08-15'
 
 FEATURED_POST = {
     'title': 'Mastering the Art of Leaf Removal: Practical Tips for a Tidy Yard',

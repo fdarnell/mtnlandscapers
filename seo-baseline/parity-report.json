@@ -2,7 +2,7 @@
   "baseline": "seo-baseline/baseline.json",
   "mode": "local",
   "fails": 10,
-  "warns": 28,
+  "warns": 27,
   "traffic_at_risk": null,
   "pages": [
     {
@@ -42,7 +42,7 @@
         {
           "level": "WARN",
           "check": "content_depth",
-          "detail": "Word count fell 24% (2117 -> 1607)"
+          "detail": "Word count fell 24% (2117 -> 1609)"
         }
       ]
     },
@@ -90,7 +90,7 @@
         {
           "level": "WARN",
           "check": "content_depth",
-          "detail": "Word count fell 30% (1496 -> 1049)"
+          "detail": "Word count fell 30% (1496 -> 1050)"
         }
       ]
     },
@@ -107,7 +107,7 @@
         {
           "level": "WARN",
           "check": "content_depth",
-          "detail": "Word count fell 22% (2103 -> 1642)"
+          "detail": "Word count fell 20% (2103 -> 1681)"
         }
       ]
     },
@@ -131,7 +131,7 @@
         {
           "level": "WARN",
           "check": "content_depth",
-          "detail": "Word count fell 31% (1454 -> 998)"
+          "detail": "Word count fell 31% (1454 -> 1006)"
         }
       ]
     },
@@ -148,7 +148,7 @@
         {
           "level": "WARN",
           "check": "content_depth",
-          "detail": "Word count fell 22% (2113 -> 1654)"
+          "detail": "Word count fell 20% (2113 -> 1691)"
         }
       ]
     },
@@ -226,7 +226,7 @@
         {
           "level": "WARN",
           "check": "content_depth",
-          "detail": "Word count fell 20% (2267 -> 1808)"
+          "detail": "Word count fell 19% (2267 -> 1845)"
         }
       ]
     },
@@ -250,7 +250,7 @@
         {
           "level": "WARN",
           "check": "content_depth",
-          "detail": "Word count fell 25% (1761 -> 1316)"
+          "detail": "Word count fell 25% (1761 -> 1317)"
         }
       ]
     },
@@ -284,7 +284,7 @@
         {
           "level": "FAIL",
           "check": "content_depth",
-          "detail": "Word count fell 83% (1404 -> 235). Thin rebuilds lose rankings."
+          "detail": "Word count fell 77% (1404 -> 328). Thin rebuilds lose rankings."
         }
       ]
     },
@@ -296,7 +296,7 @@
         {
           "level": "FAIL",
           "check": "content_depth",
-          "detail": "Word count fell 61% (762 -> 294). Thin rebuilds lose rankings."
+          "detail": "Word count fell 62% (762 -> 287). Thin rebuilds lose rankings."
         }
       ]
     },
@@ -345,13 +345,7 @@
       "path": "/mastering-the-art-of-leaf-removal-practical-tips-for-a-tidy-yard",
       "target_path": "/mastering-the-art-of-leaf-removal-practical-tips-for-a-tidy-yard",
       "clicks": 0,
-      "issues": [
-        {
-          "level": "WARN",
-          "check": "content_depth",
-          "detail": "Word count fell 22% (981 -> 763)"
-        }
-      ]
+      "issues": []
     },
     {
       "path": "/elevate-your-winter-landscape-great-landscaping-ideas-for-the-season",
@@ -361,7 +355,7 @@
         {
           "level": "FAIL",
           "check": "content_depth",
-          "detail": "Word count fell 61% (1909 -> 739). Thin rebuilds lose rankings."
+          "detail": "Word count fell 57% (1909 -> 813). Thin rebuilds lose rankings."
         }
       ]
     },
@@ -373,7 +367,7 @@
         {
           "level": "FAIL",
           "check": "content_depth",
-          "detail": "Word count fell 63% (1836 -> 671). Thin rebuilds lose rankings."
+          "detail": "Word count fell 60% (1836 -> 743). Thin rebuilds lose rankings."
         }
       ]
     },
@@ -385,7 +379,7 @@
         {
           "level": "FAIL",
           "check": "content_depth",
-          "detail": "Word count fell 65% (1787 -> 621). Thin rebuilds lose rankings."
+          "detail": "Word count fell 61% (1787 -> 698). Thin rebuilds lose rankings."
         }
       ]
     }
