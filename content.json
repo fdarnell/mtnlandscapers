@@ -316,40 +316,6 @@
       {
         "t": "h1",
         "html": "Contact Us Below!"
-      },
-      {
-        "t": "p",
-        "html": "Use the contact form below and someone will reach out."
-      },
-      {
-        "t": "p",
-        "html": "<strong>OR</strong>"
-      },
-      {
-        "t": "p",
-        "html": "Use the calendar to book an appointment on your own!"
-      }
-    ],
-    [
-      {
-        "t": "h4",
-        "html": "Call Us"
-      },
-      {
-        "t": "p",
-        "html": "We would love to answer your questions immediately."
-      },
-      {
-        "t": "p",
-        "html": "Give us a call!"
-      },
-      {
-        "t": "h4",
-        "html": "Adress"
-      },
-      {
-        "t": "p",
-        "html": "Sevierville, TN 37862"
       }
     ]
   ],

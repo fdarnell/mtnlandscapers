@@ -721,7 +721,7 @@ def render_page(page):
         body_parts.append(
             f'<section class="section"><div class="wrap contact-stack">'
             f'<h2>Send Us a Message</h2>'
-            f'<p>Fill out the form and someone from our team will reach out. '
+            f'<p>Fill out the form and someone from our team will reach out.<br>'
             f'For anything urgent, call <a href="{TEL}">{PHONE}</a>.</p>'
             f'<p><strong>Hours:</strong> ' + '; '.join(f'{h["label"]} {h["value"]}' for h in CFG['hours']) + '</p>'
             f'{form_card("Contact Us")}'

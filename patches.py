@@ -76,6 +76,10 @@ PATCHES = [
     ('*', '1 (current)', 'DROP', 'Duda blog pager artifact captured as list text'),
 
     # --- contact page --------------------------------------------------------
+    # Owner instruction 2026-08-15: the captured "use the form / OR / use the
+    # calendar" intro and the "Call Us / Address" block were removed directly
+    # in content.json — the redesigned page carries that information in the
+    # centered form + calendar sections themselves.
     ('contact', 'Adress', 'Address', 'spelling'),
     ('pressure-washing', 'PressureWashing Service', 'Pressure Washing Service',
      'missing space in an h3 on the live site'),
