@@ -121,6 +121,12 @@ ICONS = {
 }
 
 
+# The live home hero is a rotating Duda gallery. Its two lawn-care collage
+# slides are natively 646px/440px wide — unusable at hero size — so the
+# rotation keeps the three full-resolution slides only.
+HERO_SLIDES = ['construction-worker-hero', 'untitled-design-55', '20240816-movingseptic']
+
+
 # decorative ridge-line divider at the base of every hero — the redesign's
 # signature touch; purely visual, aria-hidden
 RIDGE = ('<svg class="ridge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">'
@@ -687,6 +693,7 @@ def render_page(page):
 {header(path_for(slug))}
 <main id="main">
 <section class="{hero_cls}" style="background-image:url({img_src(hero_img, small=False)})">
+{f'<div class="hero-slides" aria-hidden="true" data-slides="{",".join(img_src(s, small=False) for s in HERO_SLIDES)}"></div>' if page.get('kind') == 'home' else ''}
 <div class="wrap"><h1>{hero_h1}</h1></div>
 {RIDGE}
 </section>

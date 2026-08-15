@@ -54,6 +54,32 @@
     }
   });
 
+  /* ---- home hero: rotating photo crossfade (progressive enhancement) ----
+     The section's inline background is slide 1, so with JS off (or reduced
+     motion) the hero is simply a static photo. Extra slides load after the
+     page has finished loading so they never compete with the LCP. */
+  var slidesMount = document.querySelector('.hero-slides');
+  if (slidesMount && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    window.addEventListener('load', function () {
+      var srcs = slidesMount.getAttribute('data-slides').split(',');
+      if (srcs.length < 2) return;
+      var layers = srcs.map(function (src) {
+        var d = document.createElement('div');
+        d.className = 'hero-slide';
+        d.style.backgroundImage = 'url(' + src + ')';
+        slidesMount.appendChild(d);
+        return d;
+      });
+      var current = 0;
+      layers[0].classList.add('on');
+      setInterval(function () {
+        layers[current].classList.remove('on');
+        current = (current + 1) % layers.length;
+        layers[current].classList.add('on');
+      }, 5500);
+    });
+  }
+
   /* ---- Coraline form: inject the iframe only when it's actually needed ---- */
   var mounts = document.querySelectorAll('.coraline-form');
   if (mounts.length) {

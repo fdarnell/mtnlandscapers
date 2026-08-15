@@ -198,6 +198,16 @@ li { margin-bottom: .55em; }
 .hero h1 a { color: #fff; text-decoration: underline; text-underline-offset: 5px; }
 .hero.compact { min-height: 300px; padding: 72px 0 110px; }
 
+/* rotating home-hero photos: layers crossfade under the overlay */
+.hero-slides { position: absolute; inset: 0; }
+.hero-slide {
+  position: absolute; inset: 0; opacity: 0;
+  background: center/cover no-repeat;
+  transition: opacity 1.4s ease-in-out;
+}
+.hero-slide.on { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .hero-slide { transition: none; } }
+
 /* ridge-line divider — the site's signature touch */
 .ridge {
   position: absolute; left: 0; right: 0; bottom: -1px; z-index: 3;
