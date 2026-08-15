@@ -15,6 +15,8 @@ from patches import apply_patches  # noqa: E402
 
 CFG = json.load(open(os.path.join(ROOT, 'site.config.json')))
 CONTENT = json.load(open(os.path.join(ROOT, 'content.json')))
+# per-page hero images captured from the live site (first background of each page)
+HEROES = json.load(open(os.path.join(ROOT, 'heroes.json')))
 APPLIED = apply_patches(CONTENT)
 
 # purpose-written legal pages replace the boilerplate that was on the Duda site
@@ -58,6 +60,37 @@ def img_src(base, small=True):
     if small and f'{base}-800.webp' in _HAVE_IMG:
         return f'/img/{base}-800.webp'
     return f'/img/{base}.webp'
+
+
+_DIMS = {}
+
+
+def img_dims(base):
+    """Pixel size of the full image, for width/height attributes (CLS) and srcset."""
+    if base not in _DIMS:
+        try:
+            from PIL import Image
+            _DIMS[base] = Image.open(os.path.join(IMG_DIR, f'{base}.webp')).size
+        except Exception:
+            _DIMS[base] = None
+    return _DIMS[base]
+
+
+def img_tag(base, alt, sizes='(max-width: 1224px) 100vw, 1180px', lazy=True):
+    """Responsive <img>: 800px file for 1x, the full file for retina/large slots."""
+    full = f'/img/{base}.webp'
+    small = img_src(base)
+    dims = img_dims(base)
+    attrs = [f'src="{small}"']
+    if small != full and dims and dims[0] > 800:
+        attrs.append(f'srcset="{small} 800w, {full} {dims[0]}w"')
+        attrs.append(f'sizes="{sizes}"')
+    if dims:
+        attrs.append(f'width="{dims[0]}" height="{dims[1]}"')
+    if lazy:
+        attrs.append('loading="lazy"')
+    attrs.append(f'alt="{esc(alt or "")}"')
+    return f'<img {" ".join(attrs)}>'
 
 
 def url_for(slug):
@@ -295,7 +328,7 @@ def render_blocks(blocks):
         if t in ('bg', 'colbg'):
             continue
         if t == 'img':
-            out.append(f'<img src="{img_src(b["src"])}" loading="lazy" alt="{esc(b.get("alt") or "")}">')
+            out.append(img_tag(b['src'], b.get('alt') or ''))
         elif t in ('ul', 'ol'):
             items = ''.join(f'<li>{i}</li>' for i in b['items'])
             out.append(f'<{t}>{items}</{t}>')
@@ -339,8 +372,9 @@ def render_row(row, idx, tint_toggle):
                     cap = seq[i - 1]['html']
                     used.add(i - 1)
                 figs.append(
-                    f'<figure><img src="{img_src(b["src"])}" loading="lazy" '
-                    f'alt="{esc(b.get("alt") or re.sub("<[^>]+>", "", cap))}">'
+                    '<figure>'
+                    + img_tag(b['src'], b.get('alt') or re.sub('<[^>]+>', '', cap),
+                              sizes='(max-width: 900px) 100vw, 380px')
                     + (f'<figcaption>{cap}</figcaption>' if cap else '') + '</figure>')
             i += 1
         if len(figs) == 3:
@@ -356,16 +390,37 @@ def render_row(row, idx, tint_toggle):
     if colbg:
         media_first = row.index(colbg) < min((row.index(b) for b in body), default=99)
         alt = re.sub('<[^>]+>', '', body[0]['html']) if body and body[0]['t'].startswith('h') else 'Mountain Landscapers project'
-        media = (f'<div class="zig-media"><img src="{img_src(colbg["src"])}" loading="lazy" '
-                 f'alt="{esc(alt)}"></div>')
+        media = ('<div class="zig-media">'
+                 + img_tag(colbg['src'], alt, sizes='(max-width: 900px) 100vw, 50vw')
+                 + '</div>')
         text = f'<div class="zig-text">{render_blocks(body)}</div>'
         inner = media + text if media_first else text + media
         return f'<section class="zig{" tint" if not media_first else ""}">{inner}</section>'
 
+    # blog-card row: repeated image + heading-link pairs become post cards,
+    # with surrounding blocks kept in their captured order
+    if bg and len(imgs) >= 2 and sum(1 for b in body if b['t'] == 'h3') >= 2:
+        seq = [b for b in row if b['t'] != 'bg']
+        first_img = next(i for i, b in enumerate(seq) if b['t'] == 'img')
+        pre, cards, post, pending_img = seq[:first_img], [], [], None
+        for b in seq[first_img:]:
+            if b['t'] == 'img':
+                pending_img = b
+            elif b['t'] == 'h3' and pending_img is not None:
+                im = img_tag(pending_img['src'], re.sub('<[^>]+>', '', b['html']),
+                             sizes='(max-width: 900px) 100vw, 373px')
+                cards.append(f'<div class="card">{im}<h3>{b["html"]}</h3></div>')
+                pending_img = None
+            else:
+                post.append(b)
+        pre_html = f'<div class="section-title">{render_blocks(pre)}</div>' if pre else ''
+        return (f'<section class="section tint"><div class="wrap">{pre_html}'
+                f'<div class="cards">{"".join(cards)}</div>{render_blocks(post)}</div></section>')
+
     # full-bleed section with a background photo behind the copy
     if bg and body:
-        return (f'<section class="section" style="background-image:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),'
-                f'url({img_src(bg["src"])});background-size:cover;background-position:center;color:#fff">'
+        return (f'<section class="section" style="background-image:linear-gradient(rgba(19,32,24,.72),rgba(19,32,24,.72)),'
+                f'url({img_src(bg["src"], small=False)});background-size:cover;background-position:center;color:#fff">'
                 f'<div class="wrap" style="color:#fff">{render_blocks(body)}</div></section>')
 
     if not body:
@@ -518,7 +573,7 @@ def render_page(page):
     rows = CONTENT.get(page['src'], [])
     trail = build_trail(page)
     canonical = url_for(slug)
-    hero_img = page.get('hero', HERO_DEFAULT)
+    hero_img = page.get('hero') or HEROES.get(page['src']) or HERO_DEFAULT
 
     # first row that is just an h1 (+bg) becomes the hero
     hero_h1 = None
@@ -622,7 +677,7 @@ def render_page(page):
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-600.woff2" crossorigin>
-<link rel="preload" as="image" href="{img_src(hero_img)}" fetchpriority="high">
+<link rel="preload" as="image" href="{img_src(hero_img, small=False)}" fetchpriority="high">
 <link rel="stylesheet" href="/css/style.css?v={CSS_V}">
 <script type="application/ld+json">{ld}</script>
 </head>
@@ -631,7 +686,7 @@ def render_page(page):
 {topbar()}
 {header(path_for(slug))}
 <main id="main">
-<section class="{hero_cls}" style="background-image:url({img_src(hero_img)})">
+<section class="{hero_cls}" style="background-image:url({img_src(hero_img, small=False)})">
 <div class="wrap"><h1>{hero_h1}</h1></div>
 {RIDGE}
 </section>

@@ -225,7 +225,7 @@ li { margin-bottom: .55em; }
 .zig .zig-media { padding: 54px 0 54px 54px; height: 100%; display: flex; align-items: center; }
 .zig:nth-child(even) .zig-media { padding: 54px 54px 54px 0; }
 .zig img {
-  width: 100%; height: auto; min-height: 0; aspect-ratio: 4 / 3; object-fit: cover;
+  width: 100%; height: auto; min-height: 0; max-height: 560px; object-fit: cover;
   border-radius: var(--radius); box-shadow: var(--shadow-lg);
 }
 .zig .zig-text { padding: 62px 64px; }
@@ -244,6 +244,9 @@ li { margin-bottom: .55em; }
 .card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .card p,
 .section.green .card p { text-align: center; font-weight: 600; margin: 16px 12px 10px; font-size: .95rem; color: var(--ink); }
+.card h3 { font-family: var(--font); font-size: 1rem; margin: 14px 14px 12px; text-align: center; line-height: 1.4; }
+.card h3 a { color: var(--ink); text-decoration: none; }
+.card h3 a:hover { color: var(--leaf); text-decoration: underline; }
 
 /* checkmark bullet list */
 ul.checks { list-style: none; padding-left: 0; }
