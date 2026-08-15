@@ -88,6 +88,14 @@ ICONS = {
 }
 
 
+# decorative ridge-line divider at the base of every hero — the redesign's
+# signature touch; purely visual, aria-hidden
+RIDGE = ('<svg class="ridge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">'
+         '<path d="M0 56 260 26 520 62 780 18 1040 54 1290 34 1440 50 V90 H0 Z" fill="rgba(247,245,239,.4)"/>'
+         '<path d="M0 70 260 42 520 74 780 34 1040 66 1290 50 1440 62 V90 H0 Z" fill="#fff"/>'
+         '</svg>')
+
+
 # --------------------------------------------------------------------------
 # chrome
 # --------------------------------------------------------------------------
@@ -613,7 +621,7 @@ def render_page(page):
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-700.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-600.woff2" crossorigin>
 <link rel="preload" as="image" href="{img_src(hero_img)}" fetchpriority="high">
 <link rel="stylesheet" href="/css/style.css?v={CSS_V}">
 <script type="application/ld+json">{ld}</script>
@@ -625,6 +633,7 @@ def render_page(page):
 <main id="main">
 <section class="{hero_cls}" style="background-image:url({img_src(hero_img)})">
 <div class="wrap"><h1>{hero_h1}</h1></div>
+{RIDGE}
 </section>
 {crumbs_html(trail)}
 {chr(10).join(body_parts)}
@@ -722,6 +731,7 @@ def write_404():
 <main id="main">
 <section class="hero compact" style="background-image:url({img_src(HERO_DEFAULT)})">
 <div class="wrap"><h1>We couldn&rsquo;t find that page</h1></div>
+{RIDGE}
 </section>
 <section class="section"><div class="wrap" style="text-align:center;max-width:680px">
 <p>The page you were looking for has moved or no longer exists. Try one of our service pages below, or just give us a call &mdash; we&rsquo;re happy to point you in the right direction.</p>
