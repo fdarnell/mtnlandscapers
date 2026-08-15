@@ -155,21 +155,21 @@ PAGES = [
         'src': 'seasonal-landscaping-tips-thriving-in-sevierville-s-climate',
         'title': "Seasonal Landscaping Tips: Thriving in Sevierville's Climate",
         'desc': "Season-by-season landscaping tips for Sevierville's climate — what to plant, prune, mulch and prep so your yard thrives all year in East Tennessee.",
-        'kind': 'post', 'date': '2023-11-26', 'hero': '20211126-adobestock_472692516',
+        'kind': 'post', 'date': '2023-11-26', 'hero': 'adobestock_597817140',
     },
     {
         'slug': 'elevate-your-winter-landscape-great-landscaping-ideas-for-the-season',
         'src': 'elevate-your-winter-landscape-great-landscaping-ideas-for-the-season',
         'title': 'Elevate Your Winter Landscape: Great Landscaping Ideas for the Season',
         'desc': 'Winter landscaping ideas for East Tennessee yards: evergreen structure, hardscapes, outdoor lighting and fire pits that carry a property through the cold.',
-        'kind': 'post', 'date': '2023-12-11', 'hero': 'adobestock_315451265',
+        'kind': 'post', 'date': '2023-12-11', 'hero': '20211126-adobestock_472692516',
     },
     {
         'slug': 'simple-tips-for-preparing-your-landscaping-for-winter',
         'src': 'simple-tips-for-preparing-your-landscaping-for-winter',
         'title': '8 short Tips for Preparing Your Property for Winter!',
         'desc': 'Eight short, practical tips for getting your Sevierville property ready for winter — leaves, irrigation, pruning, mulch and protecting your hardscapes.',
-        'kind': 'post', 'date': '2023-11-13', 'hero': 'adobestock_597817140',
+        'kind': 'post', 'date': '2023-11-13', 'hero': 'adobestock_315451265',
     },
 
     # ---------------- utility pages ----------------

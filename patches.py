@@ -70,6 +70,11 @@ PATCHES = [
     # pointed to the contact page / phone until a real application form is
     # wired (candidate for a second Coraline form — owner's call).
 
+    # --- blog pages ----------------------------------------------------------
+    # Duda's blog pager rendered its state ("1 (current)") as text and the
+    # capture recorded it as a list item — navigation chrome, not page copy
+    ('*', '1 (current)', 'DROP', 'Duda blog pager artifact captured as list text'),
+
     # --- contact page --------------------------------------------------------
     ('contact', 'Adress', 'Address', 'spelling'),
     ('pressure-washing', 'PressureWashing Service', 'Pressure Washing Service',

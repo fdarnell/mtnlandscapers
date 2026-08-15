@@ -353,8 +353,45 @@ def is_caption(b):
     return b['t'] == 'p' and len(re.sub('<[^>]+>', '', b.get('html', ''))) < 60
 
 
-def render_row(row, idx, tint_toggle):
+def render_flow(row, sizes='(max-width: 1224px) 100vw, 1180px'):
+    """Render a row's blocks in captured order, images included — a single
+    image renders inline, consecutive images become a two-up grid."""
+    parts, run = [], []
+
+    def flush():
+        if len(run) == 1:
+            b = run[0]
+            parts.append(img_tag(b['src'], b.get('alt') or '', sizes=sizes))
+        elif run:
+            figs = ''.join(f'<figure>{img_tag(b["src"], b.get("alt") or "", sizes="(max-width: 700px) 100vw, 565px")}</figure>' for b in run)
+            parts.append(f'<div class="grid2">{figs}</div>')
+        run.clear()
+
+    for b in row:
+        if b['t'] in ('bg', 'colbg'):
+            continue
+        if b['t'] == 'img':
+            run.append(b)
+            continue
+        flush()
+        parts.append(render_blocks([b]))
+    flush()
+    return '\n'.join(parts)
+
+
+def render_row(row, idx, tint_toggle, kind=None):
     """Turn one extracted row into a laid-out section."""
+    # the Duda booking widget's heading was captured as a bare h3 — give it
+    # the CTA treatment instead of an orphaned heading
+    if len(row) == 1 and row[0]['t'] == 'h3' and \
+            re.sub('<[^>]+>', '', row[0]['html']).strip() == 'Book a Service Today':
+        return (f'<section class="section tint"><div class="wrap">'
+                f'<div class="formcard ctacard" style="max-width:520px;margin:0 auto">'
+                f'<h3>{row[0]["html"]}</h3>'
+                f'<p class="ctacard-actions"><a class="btn btn-green" href="{TEL}">Call {PHONE}</a> '
+                f'<a class="btn" href="/contact">Request a Quote</a></p>'
+                f'</div></div></section>')
+
     imgs = [b for b in row if b['t'] == 'img']
     colbg = next((b for b in row if b['t'] == 'colbg'), None)
     bg = next((b for b in row if b['t'] == 'bg'), None)
@@ -415,7 +452,19 @@ def render_row(row, idx, tint_toggle):
             elif b['t'] == 'h3' and pending_img is not None:
                 im = img_tag(pending_img['src'], re.sub('<[^>]+>', '', b['html']),
                              sizes='(max-width: 900px) 100vw, 373px')
-                cards.append(f'<div class="card">{im}<h3>{b["html"]}</h3></div>')
+                # excerpt under the title, as the live blog cards show
+                exc = ''
+                m = re.search(r'href="/([^"]+)"', b['html'])
+                if m and m.group(1) in CONTENT:
+                    for r2 in CONTENT[m.group(1)]:
+                        ps = [x for x in r2 if x['t'] == 'p']
+                        if ps:
+                            t = re.sub(r'<[^>]+>', '', ps[0]['html']).replace('﻿', '').strip()
+                            if len(t) > 150:
+                                t = t[:150].rsplit(' ', 1)[0] + '&hellip;'
+                            exc = f'<p class="excerpt">{esc(t).replace("&amp;hellip;", "&hellip;")}</p>'
+                            break
+                cards.append(f'<div class="card">{im}<h3>{b["html"]}</h3>{exc}</div>')
                 pending_img = None
             else:
                 post.append(b)
@@ -423,19 +472,26 @@ def render_row(row, idx, tint_toggle):
         return (f'<section class="section tint"><div class="wrap">{pre_html}'
                 f'<div class="cards">{"".join(cards)}</div>{render_blocks(post)}</div></section>')
 
+    # long list/article content over a photo: live shows it in a white panel
+    # on the photo, not white-on-dark text
+    if bg and body and (kind == 'post' or any(b['t'] == 'ol' for b in body)):
+        return (f'<section class="section photo panel" style="background-image:linear-gradient(rgba(19,32,24,.45),rgba(19,32,24,.45)),'
+                f'url({img_src(bg["src"], small=False)})">'
+                f'<div class="wrap"><div class="panel-card">{render_flow(row)}</div></div></section>')
+
     # full-bleed section with a parallax photo behind the copy
     if bg and body:
         return (f'<section class="section photo" style="background-image:linear-gradient(rgba(19,32,24,.72),rgba(19,32,24,.72)),'
                 f'url({img_src(bg["src"], small=False)})">'
-                f'<div class="wrap">{render_blocks(body)}</div></section>')
+                f'<div class="wrap">{render_flow(row)}</div></section>')
 
     if not body:
         return ''
 
     # plain text section; centre single-heading rows the way the live site does
-    only_heading = len(body) == 1 and body[0]['t'].startswith('h')
+    only_heading = len(body) == 1 and body[0]['t'].startswith('h') and not imgs
     cls = 'section' + (' tint' if tint_toggle else '')
-    inner = render_blocks(body)
+    inner = render_flow(row) if imgs else render_blocks(body)
     if only_heading:
         return f'<section class="{cls}"><div class="wrap"><div class="section-title">{inner}</div></div></section>'
     return f'<section class="{cls}"><div class="wrap">{inner}</div></section>'
@@ -614,8 +670,9 @@ def render_page(page):
     body_parts = []
     tint = False
     for i, row in enumerate(rows[start:]):
-        # home page: pair the intro copy with the quote form, as the live site does
-        if page.get('kind') == 'home' and i == 0:
+        # home + city pages: pair the intro copy with the quote card, as the
+        # live site pairs it with its "Got Questions?" form
+        if page.get('kind') in ('home', 'city') and i == 0:
             # "Got Questions?" is the form card's own heading — don't repeat it in the copy
             copy = [b for b in row if b['t'] not in ('img', 'bg', 'colbg')
                     and re.sub('<[^>]+>', '', b.get('html', '')).strip().rstrip('?').lower() != 'got questions']
@@ -625,13 +682,25 @@ def render_page(page):
                 f'<div>{cta_card("Got Questions?")}</div>'
                 f'</div></div></section>')
             continue
-        html_row = render_row(row, i, tint)
+        html_row = render_row(row, i, tint, kind=page.get('kind'))
         if html_row:
             body_parts.append(html_row)
             if 'class="section tint"' in html_row:
                 tint = False
             elif '<section class="section"' in html_row:
                 tint = not tint
+
+    # social share row at the end of blog posts, as on the live articles
+    if page.get('kind') == 'post':
+        import urllib.parse as _up
+        enc = _up.quote(canonical, safe='')
+        body_parts.append(
+            f'<section class="share-row" aria-label="Share this article"><div class="wrap">'
+            f'<a href="https://www.facebook.com/sharer/sharer.php?u={enc}" target="_blank" rel="noopener" aria-label="Share on Facebook">{ICONS["facebook"]}</a>'
+            f'<a href="https://twitter.com/intent/tweet?url={enc}" target="_blank" rel="noopener" aria-label="Share on X">{ICONS["x"]}</a>'
+            f'<a href="https://www.linkedin.com/sharing/share-offsite/?url={enc}" target="_blank" rel="noopener" aria-label="Share on LinkedIn">{ICONS["linkedin"]}</a>'
+            f'<a href="mailto:?body={enc}" aria-label="Share by email">{ICONS["mail"]}</a>'
+            f'</div></section>')
 
     if page.get('faqs'):
         body_parts.append(render_faqs(page['faqs']))

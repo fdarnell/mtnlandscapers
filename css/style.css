@@ -230,6 +230,29 @@ li { margin-bottom: .55em; }
 @media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
   .section.photo { background-attachment: fixed; }
 }
+
+/* article-in-a-panel: white card floating on the photo (blog posts) */
+.section.photo.panel .panel-card {
+  background: #fff; border-radius: var(--radius); box-shadow: var(--shadow-lg);
+  padding: clamp(26px, 5vw, 56px); max-width: 900px; margin: 0 auto;
+}
+.section.photo.panel .panel-card h1, .section.photo.panel .panel-card h2,
+.section.photo.panel .panel-card h3 { color: var(--forest); }
+.section.photo.panel .panel-card p, .section.photo.panel .panel-card li { color: var(--ink); }
+.section.photo.panel .panel-card a { color: var(--leaf); }
+
+/* inline images that flow with copy */
+.section .wrap > img { margin: 0 auto 1.3em; border-radius: var(--radius); box-shadow: var(--shadow); }
+
+/* blog share row */
+.share-row { padding: 0 0 54px; }
+.share-row .wrap { display: flex; gap: 14px; justify-content: center; }
+.share-row a {
+  width: 42px; height: 42px; border-radius: 50%; background: var(--cream-2);
+  display: flex; align-items: center; justify-content: center; transition: background .15s;
+}
+.share-row a:hover { background: var(--amber); }
+.share-row svg { width: 18px; height: 18px; fill: var(--forest); stroke: var(--forest); }
 .section > .wrap > *:last-child { margin-bottom: 0; }
 .section-title { text-align: center; }
 .section-title::after {
@@ -268,6 +291,10 @@ li { margin-bottom: .55em; }
 .card h3 { font-family: var(--font); font-size: 1rem; margin: 14px 14px 12px; text-align: center; line-height: 1.4; }
 .card h3 a { color: var(--ink); text-decoration: none; }
 .card h3 a:hover { color: var(--leaf); text-decoration: underline; }
+.card .excerpt {
+  font-size: .86rem; color: var(--ink-soft); font-weight: 400;
+  margin: 0 16px 16px; text-align: center;
+}
 
 /* checkmark bullet list */
 ul.checks { list-style: none; padding-left: 0; }

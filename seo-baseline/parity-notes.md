@@ -62,6 +62,17 @@ on the city pages, arborist/tree claims on /shrub-care and /Garden-Services.
 The Middle Tennessee landscaping partner link is kept. Also: the corrupted
 Crew Foreman salary, the second phone number, and two typos.
 
+## Later intentional text changes (2026-08-15, fidelity pass)
+
+- The Duda blog pager's state text "1 (current)" was captured as a list item
+  on the 4 blog posts — removed via `patches.py` (navigation chrome, not copy).
+- The Duda booking widget's orphaned "Book a Service Today" heading on blog
+  posts now renders as a CTA card, adding the sitewide button labels
+  "Call (865) 280-4642" / "Request a Quote" to those pages.
+- Bold formatting that the original capture dropped (~180 runs sitewide) was
+  restored from the live pages; standalone bold CTAs ("Get Instant Quote"
+  etc.) became buttons linking to /contact. Words themselves unchanged.
+
 ## Launch conditions
 
 - Re-run `verify_parity.py --live https://www.mtnlandscapers.com` after the
