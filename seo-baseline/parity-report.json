@@ -1,6 +1,6 @@
 {
   "baseline": "seo-baseline/baseline.json",
-  "mode": "local",
+  "mode": "live",
   "fails": 10,
   "warns": 27,
   "traffic_at_risk": null,
@@ -174,11 +174,6 @@
       "target_path": "/",
       "clicks": 0,
       "issues": [
-        {
-          "level": "NOTE",
-          "check": "url_parity",
-          "detail": "/tree-removal-and-service -> /: confirm a 301 redirect is configured (vercel.json / hosting config) \u2014 local file check cannot verify it"
-        },
         {
           "level": "WARN",
           "check": "title",
