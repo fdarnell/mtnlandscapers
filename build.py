@@ -789,6 +789,7 @@ def render_page(page):
 </main>
 {footer()}
 <script src="/js/main.js?v={JS_V}" defer></script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
 '''
@@ -892,6 +893,7 @@ def write_404():
 </main>
 {footer()}
 <script src="/js/main.js?v={JS_V}" defer></script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
 '''
