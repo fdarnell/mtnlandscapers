@@ -1,0 +1,300 @@
+{
+ "period": "2025-08-16..2026-08-15",
+ "pages": [
+  {
+   "path": "/",
+   "clicks": 233,
+   "impressions": 21863,
+   "position": 19.9
+  },
+  {
+   "path": "/fire-pits",
+   "clicks": 38,
+   "impressions": 7228,
+   "position": 44.8
+  },
+  {
+   "path": "/seymour",
+   "clicks": 17,
+   "impressions": 3146,
+   "position": 21.8
+  },
+  {
+   "path": "/gatlinburg",
+   "clicks": 15,
+   "impressions": 1845,
+   "position": 28.8
+  },
+  {
+   "path": "/retaining-walls",
+   "clicks": 13,
+   "impressions": 8907,
+   "position": 49.8
+  },
+  {
+   "path": "/septic-tank-installation",
+   "clicks": 13,
+   "impressions": 1896,
+   "position": 28.8
+  },
+  {
+   "path": "/leaf-removal",
+   "clicks": 10,
+   "impressions": 2922,
+   "position": 39.7
+  },
+  {
+   "path": "/sevierville",
+   "clicks": 9,
+   "impressions": 1934,
+   "position": 32.2
+  },
+  {
+   "path": "/outdoor-lighting-design",
+   "clicks": 6,
+   "impressions": 2501,
+   "position": 39.1
+  },
+  {
+   "path": "/irrigation-services",
+   "clicks": 5,
+   "impressions": 2038,
+   "position": 26.2
+  },
+  {
+   "path": "/lawn-care",
+   "clicks": 5,
+   "impressions": 2658,
+   "position": 19.6
+  },
+  {
+   "path": "/water-features",
+   "clicks": 5,
+   "impressions": 2973,
+   "position": 20.4
+  },
+  {
+   "path": "/apply",
+   "clicks": 2,
+   "impressions": 528,
+   "position": 9.6
+  },
+  {
+   "path": "/contact",
+   "clicks": 2,
+   "impressions": 694,
+   "position": 29.7
+  },
+  {
+   "path": "/shrub-care",
+   "clicks": 2,
+   "impressions": 1207,
+   "position": 13.4
+  },
+  {
+   "path": "/Garden-Services",
+   "clicks": 1,
+   "impressions": 1635,
+   "position": 16.3
+  },
+  {
+   "path": "/hardscapes",
+   "clicks": 1,
+   "impressions": 1118,
+   "position": 36.9
+  },
+  {
+   "path": "/mastering-the-art-of-leaf-removal-practical-tips-for-a-tidy-yard",
+   "clicks": 1,
+   "impressions": 311,
+   "position": 33.4
+  },
+  {
+   "path": "/simple-tips-for-preparing-your-landscaping-for-winter",
+   "clicks": 1,
+   "impressions": 126,
+   "position": 54.2
+  },
+  {
+   "path": "/accessibility",
+   "clicks": 0,
+   "impressions": 148,
+   "position": 5.0
+  },
+  {
+   "path": "/elevate-your-winter-landscape-great-landscaping-ideas-for-the-season",
+   "clicks": 0,
+   "impressions": 2519,
+   "position": 65.1
+  },
+  {
+   "path": "/our-blog",
+   "clicks": 0,
+   "impressions": 40,
+   "position": 7.8
+  },
+  {
+   "path": "/pressure-washing",
+   "clicks": 0,
+   "impressions": 840,
+   "position": 19.6
+  },
+  {
+   "path": "/seasonal-landscaping-tips-thriving-in-sevierville-s-climate",
+   "clicks": 0,
+   "impressions": 184,
+   "position": 48.1
+  },
+  {
+   "path": "/sitemap.xml",
+   "clicks": 0,
+   "impressions": 7,
+   "position": 20.1
+  },
+  {
+   "path": "/thank-you",
+   "clicks": 0,
+   "impressions": 25,
+   "position": 8.7
+  },
+  {
+   "path": "/thankyousf",
+   "clicks": 0,
+   "impressions": 19,
+   "position": 6.6
+  },
+  {
+   "path": "/tree-removal-and-service",
+   "clicks": 0,
+   "impressions": 55,
+   "position": 14.3
+  }
+ ],
+ "queries3mo": [
+  {
+   "q": "mountain landscapers",
+   "clicks": 28,
+   "position": 1.6
+  },
+  {
+   "q": "horticulturist near me",
+   "clicks": 1,
+   "position": 4
+  },
+  {
+   "q": "landscaper near me",
+   "clicks": 1,
+   "position": 4.4
+  },
+  {
+   "q": "landscapers near me",
+   "clicks": 1,
+   "position": 5.2
+  },
+  {
+   "q": "landscaping near me",
+   "clicks": 1,
+   "position": 6.5
+  },
+  {
+   "q": "mountain landscaping",
+   "clicks": 1,
+   "position": 30.7
+  },
+  {
+   "q": "above all landscaping",
+   "clicks": 0,
+   "position": 8
+  },
+  {
+   "q": "above ground septic tank near me",
+   "clicks": 0,
+   "position": 13
+  },
+  {
+   "q": "aesthetic nature",
+   "clicks": 0,
+   "position": 1
+  },
+  {
+   "q": "affordable landscapers near me",
+   "clicks": 0,
+   "position": 4
+  },
+  {
+   "q": "affordable leaf removal near me",
+   "clicks": 0,
+   "position": 41.9
+  },
+  {
+   "q": "appalachian landscapes sevierville",
+   "clicks": 0,
+   "position": 43
+  },
+  {
+   "q": "architectural lighting collierville tn",
+   "clicks": 0,
+   "position": 51
+  },
+  {
+   "q": "area landscape",
+   "clicks": 0,
+   "position": 5
+  },
+  {
+   "q": "areation sevierville",
+   "clicks": 0,
+   "position": 92
+  },
+  {
+   "q": "back yard company",
+   "clicks": 0,
+   "position": 9
+  },
+  {
+   "q": "backyard design and build",
+   "clicks": 0,
+   "position": 1
+  },
+  {
+   "q": "backyard fire pit builder",
+   "clicks": 0,
+   "position": 61
+  },
+  {
+   "q": "backyard fire pit contractors clarksville, tn",
+   "clicks": 0,
+   "position": 48
+  },
+  {
+   "q": "backyard water feature winchester tn",
+   "clicks": 0,
+   "position": 66
+  },
+  {
+   "q": "backyard water features winchester tn",
+   "clicks": 0,
+   "position": 71
+  },
+  {
+   "q": "best fire pit builder",
+   "clicks": 0,
+   "position": 74
+  },
+  {
+   "q": "best hardscape companies near me",
+   "clicks": 0,
+   "position": 5
+  },
+  {
+   "q": "best landscape companies near me",
+   "clicks": 0,
+   "position": 24
+  },
+  {
+   "q": "best landscapers",
+   "clicks": 0,
+   "position": 5
+  }
+ ]
+}

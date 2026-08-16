@@ -3,17 +3,365 @@
   "mode": "live",
   "fails": 10,
   "warns": 27,
-  "traffic_at_risk": null,
+  "traffic_at_risk": {
+    "period_total_clicks": 80,
+    "clicks_on_fail_pages": 2,
+    "clicks_on_warn_pages": 78,
+    "ranked_fails": [
+      {
+        "path": "/leaf-removal",
+        "clicks": 2,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/thank-you",
+        "clicks": 0,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/apply",
+        "clicks": 0,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/accessibility",
+        "clicks": 0,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/our-blog",
+        "clicks": 0,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/contact",
+        "clicks": 0,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/thankyousf",
+        "clicks": 0,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/elevate-your-winter-landscape-great-landscaping-ideas-for-the-season",
+        "clicks": 0,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/simple-tips-for-preparing-your-landscaping-for-winter",
+        "clicks": 0,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/seasonal-landscaping-tips-thriving-in-sevierville-s-climate",
+        "clicks": 0,
+        "issues": [
+          "content_depth"
+        ]
+      }
+    ],
+    "ranked_warns": [
+      {
+        "path": "/",
+        "clicks": 53,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/fire-pits",
+        "clicks": 9,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/seymour",
+        "clicks": 4,
+        "issues": [
+          "title",
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/water-features",
+        "clicks": 2,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/gatlinburg",
+        "clicks": 2,
+        "issues": [
+          "title",
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/septic-tank-installation",
+        "clicks": 2,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/irrigation-services",
+        "clicks": 2,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/hardscapes",
+        "clicks": 1,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/sevierville",
+        "clicks": 1,
+        "issues": [
+          "title",
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/garden-services",
+        "clicks": 1,
+        "issues": [
+          "h1",
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/lawn-care",
+        "clicks": 1,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/retaining-walls",
+        "clicks": 0,
+        "issues": [
+          "h1",
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/outdoor-lighting-design",
+        "clicks": 0,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/shrub-care",
+        "clicks": 0,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/pressure-washing",
+        "clicks": 0,
+        "issues": [
+          "content_depth"
+        ]
+      },
+      {
+        "path": "/tree-removal-and-service",
+        "clicks": 0,
+        "issues": [
+          "title",
+          "h1"
+        ]
+      }
+    ]
+  },
   "pages": [
+    {
+      "path": "/",
+      "target_path": "/",
+      "clicks": 53,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 24% (2117 -> 1609)"
+        }
+      ]
+    },
+    {
+      "path": "/fire-pits",
+      "target_path": "/fire-pits",
+      "clicks": 9,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 25% (1761 -> 1317)"
+        }
+      ]
+    },
+    {
+      "path": "/seymour",
+      "target_path": "/seymour",
+      "clicks": 4,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "title",
+          "detail": "Changed: 'Landscape Design and Install Sevier Co.| Mountain Landscapers' -> 'Landscaping in Seymour, TN | Mountain Landscapers'"
+        },
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 19% (2267 -> 1845)"
+        }
+      ]
+    },
     {
       "path": "/water-features",
       "target_path": "/water-features",
-      "clicks": 0,
+      "clicks": 2,
       "issues": [
         {
           "level": "WARN",
           "check": "content_depth",
           "detail": "Word count fell 27% (1661 -> 1213)"
+        }
+      ]
+    },
+    {
+      "path": "/gatlinburg",
+      "target_path": "/gatlinburg",
+      "clicks": 2,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "title",
+          "detail": "Changed: 'Landscape Design and Install Sevier Co.| Mountain Landscapers' -> 'Landscaping in Gatlinburg, TN | Mountain Landscapers'"
+        },
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 20% (2103 -> 1681)"
+        }
+      ]
+    },
+    {
+      "path": "/leaf-removal",
+      "target_path": "/leaf-removal",
+      "clicks": 2,
+      "issues": [
+        {
+          "level": "FAIL",
+          "check": "content_depth",
+          "detail": "Word count fell 41% (1087 -> 642). Thin rebuilds lose rankings."
+        }
+      ]
+    },
+    {
+      "path": "/septic-tank-installation",
+      "target_path": "/septic-tank-installation",
+      "clicks": 2,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 37% (1218 -> 771)"
+        }
+      ]
+    },
+    {
+      "path": "/irrigation-services",
+      "target_path": "/irrigation-services",
+      "clicks": 2,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 25% (1362 -> 1019)"
+        }
+      ]
+    },
+    {
+      "path": "/hardscapes",
+      "target_path": "/hardscapes",
+      "clicks": 1,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 31% (1454 -> 1006)"
+        }
+      ]
+    },
+    {
+      "path": "/sevierville",
+      "target_path": "/sevierville",
+      "clicks": 1,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "title",
+          "detail": "Changed: 'Landscape Design and Install Sevier Co.| Mountain Landscapers' -> 'Landscaping in Sevierville, TN | Mountain Landscapers'"
+        },
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 20% (2113 -> 1691)"
+        }
+      ]
+    },
+    {
+      "path": "/garden-services",
+      "target_path": "/garden-services",
+      "clicks": 1,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "h1",
+          "detail": "Changed: 'Garden Design and Installation\ufeff' -> 'Garden Design and Installation'"
+        },
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 29% (1527 -> 1079)"
+        }
+      ]
+    },
+    {
+      "path": "/lawn-care",
+      "target_path": "/lawn-care",
+      "clicks": 1,
+      "issues": [
+        {
+          "level": "WARN",
+          "check": "content_depth",
+          "detail": "Word count fell 26% (1396 -> 1035)"
         }
       ]
     },
@@ -31,18 +379,6 @@
           "level": "WARN",
           "check": "content_depth",
           "detail": "Word count fell 28% (1578 -> 1133)"
-        }
-      ]
-    },
-    {
-      "path": "/",
-      "target_path": "/",
-      "clicks": 0,
-      "issues": [
-        {
-          "level": "WARN",
-          "check": "content_depth",
-          "detail": "Word count fell 24% (2117 -> 1609)"
         }
       ]
     },
@@ -91,64 +427,6 @@
           "level": "WARN",
           "check": "content_depth",
           "detail": "Word count fell 30% (1496 -> 1050)"
-        }
-      ]
-    },
-    {
-      "path": "/gatlinburg",
-      "target_path": "/gatlinburg",
-      "clicks": 0,
-      "issues": [
-        {
-          "level": "WARN",
-          "check": "title",
-          "detail": "Changed: 'Landscape Design and Install Sevier Co.| Mountain Landscapers' -> 'Landscaping in Gatlinburg, TN | Mountain Landscapers'"
-        },
-        {
-          "level": "WARN",
-          "check": "content_depth",
-          "detail": "Word count fell 20% (2103 -> 1681)"
-        }
-      ]
-    },
-    {
-      "path": "/leaf-removal",
-      "target_path": "/leaf-removal",
-      "clicks": 0,
-      "issues": [
-        {
-          "level": "FAIL",
-          "check": "content_depth",
-          "detail": "Word count fell 41% (1087 -> 642). Thin rebuilds lose rankings."
-        }
-      ]
-    },
-    {
-      "path": "/hardscapes",
-      "target_path": "/hardscapes",
-      "clicks": 0,
-      "issues": [
-        {
-          "level": "WARN",
-          "check": "content_depth",
-          "detail": "Word count fell 31% (1454 -> 1006)"
-        }
-      ]
-    },
-    {
-      "path": "/sevierville",
-      "target_path": "/sevierville",
-      "clicks": 0,
-      "issues": [
-        {
-          "level": "WARN",
-          "check": "title",
-          "detail": "Changed: 'Landscape Design and Install Sevier Co.| Mountain Landscapers' -> 'Landscaping in Sevierville, TN | Mountain Landscapers'"
-        },
-        {
-          "level": "WARN",
-          "check": "content_depth",
-          "detail": "Word count fell 20% (2113 -> 1691)"
         }
       ]
     },
@@ -209,64 +487,6 @@
       ]
     },
     {
-      "path": "/seymour",
-      "target_path": "/seymour",
-      "clicks": 0,
-      "issues": [
-        {
-          "level": "WARN",
-          "check": "title",
-          "detail": "Changed: 'Landscape Design and Install Sevier Co.| Mountain Landscapers' -> 'Landscaping in Seymour, TN | Mountain Landscapers'"
-        },
-        {
-          "level": "WARN",
-          "check": "content_depth",
-          "detail": "Word count fell 19% (2267 -> 1845)"
-        }
-      ]
-    },
-    {
-      "path": "/septic-tank-installation",
-      "target_path": "/septic-tank-installation",
-      "clicks": 0,
-      "issues": [
-        {
-          "level": "WARN",
-          "check": "content_depth",
-          "detail": "Word count fell 37% (1218 -> 771)"
-        }
-      ]
-    },
-    {
-      "path": "/fire-pits",
-      "target_path": "/fire-pits",
-      "clicks": 0,
-      "issues": [
-        {
-          "level": "WARN",
-          "check": "content_depth",
-          "detail": "Word count fell 25% (1761 -> 1317)"
-        }
-      ]
-    },
-    {
-      "path": "/garden-services",
-      "target_path": "/garden-services",
-      "clicks": 0,
-      "issues": [
-        {
-          "level": "WARN",
-          "check": "h1",
-          "detail": "Changed: 'Garden Design and Installation\ufeff' -> 'Garden Design and Installation'"
-        },
-        {
-          "level": "WARN",
-          "check": "content_depth",
-          "detail": "Word count fell 29% (1527 -> 1079)"
-        }
-      ]
-    },
-    {
       "path": "/our-blog",
       "target_path": "/our-blog",
       "clicks": 0,
@@ -292,30 +512,6 @@
           "level": "FAIL",
           "check": "content_depth",
           "detail": "Word count fell 62% (762 -> 287). Thin rebuilds lose rankings."
-        }
-      ]
-    },
-    {
-      "path": "/lawn-care",
-      "target_path": "/lawn-care",
-      "clicks": 0,
-      "issues": [
-        {
-          "level": "WARN",
-          "check": "content_depth",
-          "detail": "Word count fell 26% (1396 -> 1035)"
-        }
-      ]
-    },
-    {
-      "path": "/irrigation-services",
-      "target_path": "/irrigation-services",
-      "clicks": 0,
-      "issues": [
-        {
-          "level": "WARN",
-          "check": "content_depth",
-          "detail": "Word count fell 25% (1362 -> 1019)"
         }
       ]
     },

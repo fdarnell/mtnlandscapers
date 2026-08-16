@@ -72,3 +72,22 @@ Already addressed in the rebuild pushed to fdarnell/mtnlandscapers:
   4 posts must all survive.
 - **Internal links**: old site had a uniform 24-link nav; rebuild nav must
   link every money page at least as well.
+
+## ADDENDUM 2026-08-16 — real GSC history recovered (old Duda-era property)
+
+Franklin gained access to the pre-rebuild URL-prefix property post-launch;
+12 months of history pulled via API (gsc-history.json; last-3-months page
+clicks in gsc-clicks.json). What the data actually says:
+
+- **Clicks are brand-led**: ~53 clicks/3mo on `/`, of which 28 came from the
+  branded query "mountain landscapers" at position 1.6. Generic local terms
+  ("landscaper near me" pos ~4–6) contribute single clicks each.
+- **True money pages by clicks (3mo)**: `/` (53), `/fire-pits` (9),
+  `/seymour` (4), then a long tail of 1–2-click pages. The conservative
+  everything-is-a-money-page stance cost nothing and remains right.
+- **The upside is impressions**: 4,773 impressions on `/` at avg position 22,
+  1,742 on /fire-pits at pos 49 — a large near-miss footprint. The growth
+  phase (post day-30) should target moving these existing impressions onto
+  page 1 rather than chasing new keywords.
+- Preservation stakes are therefore modest in absolute clicks; the watch
+  compares against these real numbers now.
