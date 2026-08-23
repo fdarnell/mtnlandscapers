@@ -542,7 +542,11 @@ def business_node():
              'opens': o['opens'], 'closes': o['closes']}
             for o in CFG['openingHoursSpec']
         ],
-        'sameAs': [CFG['social'][k] for k in ('facebook', 'twitter', 'youtube', 'linkedin')],
+        # Google Business Profile first: it is the entity anchor search and AI
+        # engines use to match this page to the real-world business.
+        'sameAs': [CFG['social'][k] for k in
+                   ('googleBusinessProfile', 'facebook', 'twitter', 'youtube', 'linkedin')
+                   if CFG['social'].get(k)],
     }
 
 
