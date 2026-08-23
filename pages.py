@@ -188,12 +188,14 @@ PAGES = [
     },
     {
         'slug': 'thank-you', 'src': 'thank-you',
+        'noindex': True,   # form-confirmation page: not a search result
         'title': 'Thank You for Choosing Mountain Landscapers',
         'desc': "Thank you for considering Mountain Landscapers. We're excited to make your outdoor dreams a reality. Your satisfaction is our commitment.",
         'kind': 'page',
     },
     {
         'slug': 'thankyousf', 'src': 'thankyousf',
+        'noindex': True,   # form-confirmation page: not a search result
         'title': 'Thank You | Mountain Landscapers',
         'desc': 'Thank you for submitting your form. A member of the Mountain Landscapers team will be in touch shortly.',
         'kind': 'page',

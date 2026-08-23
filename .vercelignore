@@ -1,0 +1,22 @@
+# The deploy root is the public web root: anything not excluded here is
+# fetchable at https://www.mtnlandscapers.com/<path> and indexable by Google.
+
+# Build tooling and content sources
+*.py
+site.config.json
+content.json
+heroes.json
+
+# CONFIDENTIAL — client Search Console history, query positions, redirect map
+seo-baseline/
+
+# Internal agency documents
+content-plan.md
+CLIENT-HANDOFF.md
+README.md
+parity-notes.md
+screenshots/
+
+# Editor / agent state
+.claude/
+.DS_Store

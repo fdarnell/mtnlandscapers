@@ -747,6 +747,8 @@ def render_page(page):
     hero_cls = 'hero' if page.get('kind') in ('home', 'service', 'city') else 'hero compact'
     ld = jsonld_for(page, trail)
 
+    robots_meta = ('\n<meta name="robots" content="noindex, follow">'
+                   if page.get('noindex') else '')
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -754,7 +756,7 @@ def render_page(page):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(page['title'])}</title>
 <meta name="description" content="{esc(page['desc'])}">
-<link rel="canonical" href="{esc(canonical)}">
+<link rel="canonical" href="{esc(canonical)}">{robots_meta}
 <!-- TODO: paste Google Search Console verification meta tag here -->
 <meta property="og:type" content="{'article' if page.get('kind') == 'post' else 'website'}">
 <meta property="og:site_name" content="{esc(NAME)}">
@@ -801,6 +803,8 @@ def render_page(page):
 def write_sitemap():
     urls = []
     for p in PAGES:
+        if p.get('noindex'):
+            continue
         urls.append(f'  <url>\n    <loc>{url_for(p["slug"])}</loc>\n'
                     f'    <lastmod>{LASTMOD}</lastmod>\n'
                     f'    <changefreq>monthly</changefreq>\n'
@@ -855,6 +859,8 @@ def write_llms():
             lines.append(f'- [Landscaping in {p["city"]}, TN]({url_for(p["slug"])}): {p["desc"]}')
     lines += ['', '## Other pages', '']
     for p in PAGES:
+        if p.get('noindex'):
+            continue
         if p.get('kind') in ('home', 'contact', 'page', 'blog-index', 'post'):
             label = p['title'].split('|')[0].strip()
             lines.append(f'- [{label}]({url_for(p["slug"])}): {p["desc"]}')
