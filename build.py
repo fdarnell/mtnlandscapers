@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 """Static site generator for mtnlandscapers.com.
 
 Run:  python3 build.py
@@ -930,3 +931,13 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# Content-hash every asset reference so /images, /css, /js and /fonts can be
+# cached for a year without ever stranding an edit. Must run last: it rewrites
+# image URLs inside the stylesheet and only then recomputes the stylesheet hash.
+try:
+    import stamp_assets as _stamp
+    _stamp.main(os.path.dirname(os.path.abspath(__file__)))
+except Exception as _e:  # never let cache-busting break a build
+    print("stamp_assets skipped:", _e)
