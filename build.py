@@ -28,6 +28,15 @@ SITE = CFG['domain']
 PHONE = CFG['phone']
 TEL = CFG['phoneHref']
 NAME = CFG['name']
+
+# --- Advertising tags. Driven entirely by site.config.json -> analytics.
+# Every value blank means tags() emits nothing at all, so the site carries zero
+# third-party weight until the IDs actually exist. ---
+_AN = CFG.get('analytics', {})
+GOOGLE_ADS_ID = (_AN.get('googleAdsId') or '').strip()
+GOOGLE_ADS_LEAD_LABEL = (_AN.get('googleAdsLeadLabel') or '').strip()
+META_PIXEL_ID = (_AN.get('metaPixelId') or '').strip()
+CONVERSION_SLUGS = ('thank-you', 'thankyousf')
 ADDR = CFG['address']
 
 BUILD_YEAR = 2026
@@ -796,7 +805,7 @@ def render_page(page):
 </main>
 {footer()}
 <script src="/js/main.js?v={JS_V}" defer></script>
-<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>{tags(slug)}
 </body>
 </html>
 '''
@@ -805,6 +814,49 @@ def render_page(page):
 # --------------------------------------------------------------------------
 # site-level files
 # --------------------------------------------------------------------------
+
+def tags(slug=''):
+    """Advertising tags, emitted last in <body> and loaded async so they stay off
+    the critical rendering path. The homepage currently ships ~17.7 KB gzipped
+    with zero third-party scripts; each of these is several times that on its
+    own, which is why they load async and only when configured.
+
+    On the thank-you pages this also fires the conversion events. That is what
+    lets Google and Meta optimize toward leads instead of clicks."""
+    if not GOOGLE_ADS_ID and not META_PIXEL_ID:
+        return ''
+    is_conv = slug in CONVERSION_SLUGS
+    out = []
+
+    if GOOGLE_ADS_ID:
+        conv = ''
+        if is_conv and GOOGLE_ADS_LEAD_LABEL:
+            conv = ("gtag('event','conversion',{'send_to':'%s/%s'});"
+                    % (GOOGLE_ADS_ID, GOOGLE_ADS_LEAD_LABEL))
+        out.append(
+            '<script async src="https://www.googletagmanager.com/gtag/js?id={gid}"></script>\n'
+            '<script>window.dataLayer=window.dataLayer||[];'
+            'function gtag(){{dataLayer.push(arguments)}}'
+            "gtag('js',new Date());gtag('config','{gid}');{conv}</script>".format(
+                gid=GOOGLE_ADS_ID, conv=conv))
+
+    if META_PIXEL_ID:
+        lead = "fbq('track','Lead');" if is_conv else ''
+        out.append(
+            '<script>!function(f,b,e,v,n,t,s){{if(f.fbq)return;n=f.fbq=function(){{'
+            'n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)}};'
+            'if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version=\'2.0\';n.queue=[];'
+            't=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];'
+            's.parentNode.insertBefore(t,s)}}(window,document,\'script\','
+            '\'https://connect.facebook.net/en_US/fbevents.js\');'
+            "fbq('init','{pid}');fbq('track','PageView');{lead}</script>\n"
+            '<noscript><img height="1" width="1" style="display:none" alt=""'
+            ' src="https://www.facebook.com/tr?id={pid}&ev=PageView&noscript=1"></noscript>'.format(
+                pid=META_PIXEL_ID, lead=lead))
+
+    return '\n' + '\n'.join(out)
+
+
 def write_sitemap():
     urls = []
     for p in PAGES:
