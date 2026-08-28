@@ -1,15 +1,16 @@
 """Privacy policy, terms of service and accessibility statement.
 
 These replace the generic boilerplate that was on the Duda site. They describe
-what this site actually does: one contact form, no analytics, no advertising
-pixels, no cookies, self-hosted fonts. Written in the same block format the
+what this site actually does: one contact form, privacy-friendly page
+analytics, Google Ads and Meta advertising tags, a first-party attribution
+cookie, and self-hosted fonts. Written in the same block format the
 generator uses for extracted content, so they render with the same chrome.
 
 Not legal advice — an hour of an attorney's time is still recommended, and the
 signed service agreement matters more than the website terms.
 """
 
-EFFECTIVE = 'August 11, 2026'
+EFFECTIVE = 'August 28, 2026'
 
 PHONE = '(865) 280-4642'
 EMAIL = 'mtnlandscapers@mtnlandscapers.com'
@@ -45,14 +46,45 @@ PRIVACY = [[
     _h2('Information collected automatically'),
     _p('Our web host records standard server logs &mdash; your IP address, browser type, the page you '
        'requested, and the time. These logs exist for security and troubleshooting.'),
-    _p('The pages themselves run <strong>no advertising pixels, no tracking scripts and no '
-       'third-party analytics</strong>, and our fonts and images are served from our own domain.'),
+    _p('We use privacy-friendly page analytics from our web host to count visits and see which '
+       'pages are read. It does not follow you to other websites. Our fonts and images are '
+       'served from our own domain.'),
     _p('The one exception is our contact form, which is provided by our customer relationship system '
        '(Coraline, built on HighLevel). The form loads inside a frame from '
        '<em>app.saltservicesusa.mtnlandscapers.com</em> when you scroll down to it or open it, and at '
        'that point that system receives your IP address and may set its own cookies so the form works '
        'and submissions are not duplicated. If you never reach the form, it never loads. You can '
        'always skip it and call or email us instead.'),
+
+    _h2('Advertising and how we measure it'),
+    _p('We advertise this business on Google and on Meta&rsquo;s platforms (Facebook and Instagram). '
+       'To know which ads actually produce work &mdash; instead of guessing &mdash; those platforms '
+       'place measurement tags on this site.'),
+    _ul([
+        '<strong>Google Ads tag.</strong> Google may set cookies to record that you arrived from one '
+        'of our ads and later contacted us, and to show you our ads again on other sites, on YouTube, '
+        'and in search results. This is commonly called remarketing.',
+        '<strong>Meta pixel.</strong> Meta may set cookies and receive a record of your visit so we '
+        'can measure which Facebook or Instagram ads led to an inquiry, and so we can show our ads to '
+        'people who have visited this site.',
+        '<strong>Our own attribution cookie.</strong> When you arrive from an ad, the link carries a '
+        'click identifier. We store that identifier, plus the campaign it came from, in a first-party '
+        'cookie named <em>ml_attr</em> that lasts <strong>90 days</strong>, and we attach it to your '
+        'form submission. It tells us which ad brought you here. It contains no name, email, phone '
+        'number or address &mdash; only the advertising platform&rsquo;s own click identifier.',
+    ]),
+    _p('These tags mean Google and Meta receive your IP address and information about your visit, '
+       'subject to their own privacy policies. We do not send them your name, email address or phone '
+       'number from this website. We do not sell this information, and we do not use it for anything '
+       'other than measuring and improving our own advertising.'),
+    _p('You can limit this. Google&rsquo;s ad settings are at '
+       '<a href="https://myadcenter.google.com/" rel="nofollow noopener" target="_blank">'
+       'myadcenter.google.com</a> and Meta&rsquo;s at '
+       '<a href="https://accountscenter.facebook.com/ad_preferences" rel="nofollow noopener" '
+       'target="_blank">accountscenter.facebook.com/ad_preferences</a>. Most browsers also let you '
+       'block or delete cookies, and browser settings such as Do Not Track or Global Privacy Control '
+       'can be used to signal your preference. Blocking these cookies does not stop you using this '
+       'site, reaching the form, or calling us.'),
 
     _h2('SMS and text messaging'),
     _p('If you give us your mobile number and check the consent box on our form, we may text you about '
@@ -70,6 +102,9 @@ PRIVACY = [[
         '(which receives form submissions and sends our texts and emails), and our web host. They '
         'process this information on our behalf and are not permitted to use it for their own '
         'marketing.',
+        'Google and Meta, which receive visit information through the advertising tags '
+        'described above so we can measure and target our own ads. They do not receive your '
+        'name, email address or phone number from this website.',
         'Our own crew and office staff, so we can quote, schedule and complete your work.',
         'Anyone we are legally required to share it with &mdash; a court order, a subpoena, or a law '
         'enforcement request we are obligated to honor.',
