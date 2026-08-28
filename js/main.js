@@ -22,6 +22,10 @@
   'use strict';
 
   var CLICK_IDS = ['gclid', 'wbraid', 'gbraid', 'fbclid', 'ttclid', 'msclkid'];
+  /* No real click ID approaches this. The cap exists because exceeding the
+     4096-byte cookie limit makes the browser drop ml_attr entirely, which
+     would discard every stored id rather than just the oversized one. */
+  var MAX_LEN = 256;
   var UTMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
   var COOKIE = 'ml_attr';
   var DAYS = 90;
@@ -43,7 +47,8 @@
         domain = '; domain=.mtnlandscapers.com';
       }
       document.cookie = name + '=' + encodeURIComponent(value) +
-        '; expires=' + d.toUTCString() + '; path=/' + domain + '; SameSite=Lax';
+        '; expires=' + d.toUTCString() + '; path=/' + domain +
+        '; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : '');
     } catch (e) { /* cookies blocked: attribution degrades, the page must not */ }
   }
 
@@ -69,14 +74,14 @@
     for (i = 0; i < CLICK_IDS.length; i++) {
       var ck = CLICK_IDS[i];
       var cv = qs.get(ck);
-      if (cv) { attr.ids[ck] = { v: cv, t: now }; changed = true; }
+      if (cv) { attr.ids[ck] = { v: cv.slice(0, MAX_LEN), t: now }; changed = true; }
     }
 
     var utm = {};
     var hasUtm = false;
     for (i = 0; i < UTMS.length; i++) {
       var uv = qs.get(UTMS[i]);
-      if (uv) { utm[UTMS[i]] = uv; hasUtm = true; }
+      if (uv) { utm[UTMS[i]] = uv.slice(0, MAX_LEN); hasUtm = true; }
     }
     if (hasUtm) {
       utm.t = now;
