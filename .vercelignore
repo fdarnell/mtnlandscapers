@@ -20,3 +20,10 @@ screenshots/
 # Editor / agent state
 .claude/
 .DS_Store
+
+# Local backup copies and bytecode — never publish
+*.bak
+*.bak-*
+*.orig
+__pycache__/
+*.pyc

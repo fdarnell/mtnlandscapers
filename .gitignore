@@ -1,2 +1,11 @@
 images/
 _source-meta.json
+
+# Python bytecode cache from build.py
+__pycache__/
+*.pyc
+
+# Local backup copies — never commit, never deploy
+*.bak
+*.bak-*
+*.orig
