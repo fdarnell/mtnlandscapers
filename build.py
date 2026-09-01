@@ -6,7 +6,7 @@ Run:  python3 build.py
 Writes every .html page, sitemap.xml, robots.txt and llms.txt from
 content.json (page copy) + pages.py (metadata) + site.config.json (facts).
 """
-import json, os, re, html, hashlib, shutil, sys
+import json, os, re, html, hashlib, shutil, subprocess, sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
@@ -52,10 +52,51 @@ FEATURED_POST = {
 
 
 def asset_hash(relpath):
+    """Content hash for a cache-busted asset URL.
+
+    Hashes the file ON DISK, which is right when the tree is clean and a trap
+    when it is not. Vercel deploys what git holds, so building with an
+    uncommitted change to a hashed asset stamps a version the deploy cannot
+    serve: the browser is told to fetch ?v=<working copy> and receives the
+    committed file's bytes instead. Because /css/* and /js/* are served
+    immutable for a year, those wrong bytes are then pinned under that URL --
+    and when the asset is finally committed its hash is unchanged, so the URL
+    never moves and the cache bust silently stops working for anyone who
+    visited in between.
+
+    That failure is invisible in the output, so it gets announced here.
+    """
     p = os.path.join(ROOT, relpath.lstrip('/'))
     if not os.path.exists(p):
         return '0'
-    return hashlib.md5(open(p, 'rb').read()).hexdigest()[:10]
+    digest = hashlib.md5(open(p, 'rb').read()).hexdigest()[:10]
+    _warn_if_uncommitted(relpath, digest)
+    return digest
+
+
+def _warn_if_uncommitted(relpath, digest):
+    """Shout if this asset differs from the committed copy. Never fatal:
+    outside a git checkout, or with git unavailable, building must still work."""
+    rel = relpath.lstrip('/')
+    try:
+        committed = subprocess.run(
+            ['git', 'show', 'HEAD:' + rel],
+            cwd=ROOT, capture_output=True, timeout=10)
+        if committed.returncode != 0:
+            return                      # not tracked yet; nothing to compare
+        head_digest = hashlib.md5(committed.stdout).hexdigest()[:10]
+    except (OSError, subprocess.SubprocessError):
+        return                          # no git, or not a checkout: not fatal
+    if head_digest == digest:
+        return
+    print('\n' + '!' * 72)
+    print('  STALE-CACHE HAZARD: %s is modified but not committed.' % rel)
+    print('  Pages were stamped ?v=%s (working copy).' % digest)
+    print('  A deploy from git would serve ?v=%s instead.' % head_digest)
+    print('  Browsers cache /css/* and /js/* immutable for a year, so this')
+    print('  pins the wrong bytes under that URL and defeats the cache bust.')
+    print('  Commit or stash %s, then rebuild before deploying.' % rel)
+    print('!' * 72 + '\n')
 
 
 CSS_V = asset_hash('css/style.css')
