@@ -36,6 +36,7 @@ _AN = CFG.get('analytics', {})
 GOOGLE_ADS_ID = (_AN.get('googleAdsId') or '').strip()
 GOOGLE_ADS_LEAD_LABEL = (_AN.get('googleAdsLeadLabel') or '').strip()
 META_PIXEL_ID = (_AN.get('metaPixelId') or '').strip()
+GOOGLE_ADS_CALL_LABEL = (_AN.get('googleAdsCallLabel') or '').strip()
 CONVERSION_SLUGS = ('thank-you', 'thankyousf')
 ADDR = CFG['address']
 
@@ -838,12 +839,28 @@ def tags(slug=''):
         if is_conv and GOOGLE_ADS_LEAD_LABEL:
             conv = ("gtag('event','conversion',{'send_to':'%s/%s'});"
                     % (GOOGLE_ADS_ID, GOOGLE_ADS_LEAD_LABEL))
+        # Click-to-call. Delegated in the capture phase so it covers every tel:
+        # link on the page -- there are six to nine of them -- without stamping an
+        # onclick on each one, and still fires if something stops propagation.
+        # Navigation is deliberately NOT delayed: a tel: link hands off to the
+        # dialer without unloading the page, so the beacon has time to leave, and
+        # Google's own event_callback pattern would risk swallowing the tap.
+        # Guarded to fire once per page so repeated taps do not spam the account.
+        call = ''
+        if GOOGLE_ADS_CALL_LABEL:
+            call = (
+                "var _c=0;document.addEventListener('click',function(e){"
+                "if(_c)return;var t=e.target;"
+                "while(t&&t!==document){if(t.tagName==='A'&&(t.getAttribute('href')||'')"
+                ".indexOf('tel:')===0){_c=1;"
+                "gtag('event','conversion',{'send_to':'%s/%s'});return}t=t.parentNode}"
+                "},true);" % (GOOGLE_ADS_ID, GOOGLE_ADS_CALL_LABEL))
         out.append(
             '<script async src="https://www.googletagmanager.com/gtag/js?id={gid}"></script>\n'
             '<script>window.dataLayer=window.dataLayer||[];'
             'function gtag(){{dataLayer.push(arguments)}}'
-            "gtag('js',new Date());gtag('config','{gid}');{conv}</script>".format(
-                gid=GOOGLE_ADS_ID, conv=conv))
+            "gtag('js',new Date());gtag('config','{gid}');{conv}{call}</script>".format(
+                gid=GOOGLE_ADS_ID, conv=conv, call=call))
 
     if META_PIXEL_ID:
         lead = "fbq('track','Lead');" if is_conv else ''

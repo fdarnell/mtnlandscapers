@@ -104,6 +104,7 @@
     "_comment": "Google Ads restored 2026-09-01: conversion action 'Short Form 4/16/26' (type ID 7577967046) went Misconfigured when the mid-August rebuild dropped the old Duda tag; last conversion recorded Aug 14 2026. metaPixelId stays blank until the client's own Business Manager is confirmed.",
     "googleAdsId": "AW-17775624847",
     "googleAdsLeadLabel": "q7XUCMazup0cEI-FipxC",
-    "metaPixelId": ""
+    "metaPixelId": "",
+    "googleAdsCallLabel": "IZsMCNmIlewcEI-FipxC"
   }
 }
