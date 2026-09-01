@@ -10,5 +10,3 @@ __pycache__/
 *.bak-*
 *.orig
 
-# Local agent/editor state — already excluded from Vercel
-.claude/
