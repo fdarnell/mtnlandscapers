@@ -315,10 +315,13 @@ def form_card(heading='Got Questions?', compact=False):
 
 
 def cta_card(heading='Get a Free Quote', line=None):
-    """Conversion card for pages that don't carry the form.
+    """Call-and-link conversion card, for pages that don't carry the form.
 
-    The Coraline form lives only on /contact — every other page points here
-    instead, so there's still a one-tap path to calling or requesting a quote.
+    Service and city pages now embed the real form inline: they are the landing
+    pages paid traffic arrives on, and sending an ad click to /contact first
+    cost a page load and a scroll before the visitor could type anything. The
+    form lazy-loads, so carrying it costs those pages nothing until the visitor
+    scrolls near it.
     """
     line = line or ('Tell us about your project and we&rsquo;ll get right back to you. '
                     'Call us directly, or send it through in about a minute.')
@@ -726,8 +729,10 @@ def render_page(page):
             f'<div class="intro-copy"><h2>Get a Free Quote</h2>'
             f'<p>Tell us about your project and we&rsquo;ll get back to you fast. '
             f'Prefer to talk it through? Call <a href="{TEL}">{PHONE}</a> and you&rsquo;ll reach our team directly.</p>'
-            f'<p>We serve {", ".join(CFG["serviceArea"][:-1])} and {CFG["serviceArea"][-1]}.</p></div>'
-            f'<div>{cta_card("Request Your Quote")}</div>'
+            f'<p>We serve {", ".join(CFG["serviceArea"][:-1])} and {CFG["serviceArea"][-1]}.</p>'
+            f'<p class="ctacard-actions"><a class="btn btn-green" href="{TEL}">Call {PHONE}</a></p>'
+            f'<p class="formnote">Mon&ndash;Fri 9:00 am&ndash;5:00 pm &middot; Saturday by appointment</p></div>'
+            f'<div>{form_card("Request Your Quote")}</div>'
             f'</div></div></section>')
 
     if page.get('kind') == 'contact':
