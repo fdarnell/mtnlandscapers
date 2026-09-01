@@ -21,6 +21,22 @@ PAGES = [
 
     # ---------------- service pages ----------------
     {
+        'slug': 'drainage', 'src': 'drainage',
+        'title': 'Yard Drainage and Water Management | Mountain Landscapers',
+        'desc': 'Standing water, a soggy yard, or water against the foundation? We install French drains, catch basins and regrading across Sevier County. Free estimates. 865-280-4642',
+        'kind': 'service', 'service': 'Yard Drainage and Water Management',
+        'faqs': [
+            ('Do I need a French drain, or would regrading fix it?',
+             'Often regrading alone will do it, and it&rsquo;s the simpler solution when the ground cooperates. We&rsquo;ll look at where the water is coming from and tell you which one your yard actually needs.'),
+            ('Will you tear up my whole lawn?',
+             'No. Drainage work is trenched along the path the water needs to take, not across the whole yard, and we finish the disturbed ground the way you&rsquo;ve chosen &mdash; seed and hay, sod, or decorative stone.'),
+            ('Do you take on large or commercial drainage jobs?',
+             'Yes. We have planned and installed drainage for condominium properties and worked alongside engineers on projects that needed one, as well as everyday back-yard drainage.'),
+            ('What does yard drainage cost?',
+             'It depends on the size of the problem and the finish you want. Estimates are free &mdash; we&rsquo;ll come look at it and tell you.'),
+        ],
+    },
+    {
         'slug': 'retaining-walls', 'src': 'retaining-walls',
         'title': 'Retaining Wall Design and Installation | Mountain Landscapers',
         'desc': "Enhance your property with expert retaining wall solutions. Custom designs that harmonize with East Tennessee's climate. Contact us for functional beauty.",
@@ -226,6 +242,7 @@ PAGES = [
 NAV = [
     {'label': 'Home', 'href': '/'},
     {'label': 'Services', 'children': [
+        {'label': 'Drainage', 'href': '/drainage'},
         {'label': 'Fire Pits', 'href': '/fire-pits'},
         {'label': 'Garden Services', 'href': '/Garden-Services'},
         {'label': 'Water Features', 'href': '/water-features'},
@@ -242,6 +259,7 @@ NAV = [
         {'label': 'Retaining Walls', 'href': '/retaining-walls'},
         {'label': 'Outdoor Lighting Design', 'href': '/outdoor-lighting-design'},
         {'label': 'Hardscapes', 'href': '/hardscapes'},
+        {'label': 'Drainage', 'href': '/drainage'},
         {'label': 'Septic Tank Installation', 'href': '/septic-tank-installation'},
     ]},
     {'label': 'Our Blog', 'href': '/our-blog'},
@@ -249,6 +267,7 @@ NAV = [
 
 FOOTER_SERVICES = [
     ('Retaining Walls', '/retaining-walls'),
+    ('Drainage', '/drainage'),
     ('Fire Pits', '/fire-pits'),
     ('Garden Services', '/Garden-Services'),
     ('Water Features', '/water-features'),
