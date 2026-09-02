@@ -227,7 +227,13 @@
 
       var iframe = document.createElement('iframe');
       var _base = mount.dataset.iframeSrc;
-      var _extra = mount.dataset.service ? { service: mount.dataset.service } : null;
+      /* The parameter name is whatever the CRM form's hidden field listens on, so it
+         travels in from config rather than being hard-coded here. */
+      var _extra = null;
+      if (mount.dataset.service) {
+        _extra = {};
+        _extra[mount.dataset.serviceKey || 'service'] = mount.dataset.service;
+      }
       iframe.src = _base + (window.MTN_ATTR_QS ? window.MTN_ATTR_QS(_base, _extra) : '');
       iframe.id = 'inline-' + formId;
       iframe.title = mount.dataset.formName || 'Contact form';
