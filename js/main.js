@@ -232,7 +232,10 @@
       var _extra = null;
       if (mount.dataset.service) {
         _extra = {};
-        _extra[mount.dataset.serviceKey || 'service'] = mount.dataset.service;
+        var _keys = (mount.dataset.serviceKey || 'service').split(',');
+        for (var _k = 0; _k < _keys.length; _k++) {
+          if (_keys[_k]) _extra[_keys[_k]] = mount.dataset.service;
+        }
       }
       iframe.src = _base + (window.MTN_ATTR_QS ? window.MTN_ATTR_QS(_base, _extra) : '');
       iframe.id = 'inline-' + formId;

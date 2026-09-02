@@ -108,12 +108,15 @@
     "googleAdsCallLabel": "IZsMCNmIlewcEI-FipxC"
   },
   "coralineFormShort": {
-    "_comment": "Short lead form for service + city pages. Redirects to /thankyousf, which fires the 'Short Form 4/16/26' Google Ads conversion action. serviceQueryKey is the URL parameter the form's hidden Service field listens on -- it is currently the field's auto-generated default name because the Query Key did not save in the builder. Change it here if that key is ever corrected to 'service'.",
+    "_comment": "Short lead form for service + city pages. Redirects to /thankyousf, which fires the 'Short Form 4/16/26' Google Ads conversion action. serviceQueryKeys lists every URL parameter the service is sent under; the form's hidden field takes whichever one it listens on and ignores the rest. Both are sent because the Query Key would not save in the builder, so the field still answers to its auto-generated default name -- this way it keeps working whether or not that is ever corrected.",
     "iframeSrc": "https://app.saltservicesusa.mtnlandscapers.com/widget/form/LHCau5gVvyaTUFw9625P",
     "embedJs": "https://app.saltservicesusa.mtnlandscapers.com/js/form_embed.js",
     "formId": "LHCau5gVvyaTUFw9625P",
     "formName": "Short Contact Form",
     "formHeight": 790,
-    "serviceQueryKey": "single_line_164jl"
+    "serviceQueryKeys": [
+      "service",
+      "single_line_164jl"
+    ]
   }
 }

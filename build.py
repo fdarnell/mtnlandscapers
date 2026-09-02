@@ -347,7 +347,7 @@ def form_card(heading='Got Questions?', compact=False, service=''):
 <h2>{esc(heading)}</h2>
 <div class="coraline-form"
      data-service="{esc(service)}"
-     data-service-key="{esc(f.get('serviceQueryKey', 'service'))}"
+     data-service-key="{esc(','.join(f.get('serviceQueryKeys') or ['service']))}"
      data-iframe-src="{esc(f['iframeSrc'])}"
      data-embed-js="{esc(f['embedJs'])}"
      data-form-id="{esc(f['formId'])}"
