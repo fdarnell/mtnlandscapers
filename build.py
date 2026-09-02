@@ -6,7 +6,7 @@ Run:  python3 build.py
 Writes every .html page, sitemap.xml, robots.txt and llms.txt from
 content.json (page copy) + pages.py (metadata) + site.config.json (facts).
 """
-import json, os, re, html, hashlib, shutil, subprocess, sys
+import json, os, re, html, hashlib, shutil, subprocess, sys, urllib.parse
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
@@ -326,7 +326,7 @@ def footer():
 # --------------------------------------------------------------------------
 # contact form (native HTML; endpoint set in site.config.json)
 # --------------------------------------------------------------------------
-def form_card(heading='Got Questions?', compact=False):
+def form_card(heading='Got Questions?', compact=False, service=''):
     """The client's Coraline (HighLevel) form, lazy-loaded.
 
     The raw embed is a ~1700px iframe plus an external script — eager-loading it
@@ -334,11 +334,19 @@ def form_card(heading='Got Questions?', compact=False):
     and swaps in the real form when the visitor scrolls near it or taps it, so
     Core Web Vitals stay clean and leads still land in Coraline.
     """
+    # Service and city pages use the short form once it exists; until its id is
+    # filled in they fall back to the long form, so a half-finished migration
+    # never leaves a page without a way to convert.
     f = CFG['coralineForm']
+    if service:
+        short = CFG.get('coralineFormShort') or {}
+        if short.get('iframeSrc') and short.get('formId'):
+            f = short
     return f'''<div class="formcard" id="contact-form">
 <span class="mailicon">{ICONS['mail']}</span>
 <h2>{esc(heading)}</h2>
 <div class="coraline-form"
+     data-service="{esc(service)}"
      data-iframe-src="{esc(f['iframeSrc'])}"
      data-embed-js="{esc(f['embedJs'])}"
      data-form-id="{esc(f['formId'])}"
@@ -774,7 +782,7 @@ def render_page(page):
             f'<p>We serve {", ".join(CFG["serviceArea"][:-1])} and {CFG["serviceArea"][-1]}.</p>'
             f'<p class="ctacard-actions"><a class="btn btn-green" href="{TEL}">Call {PHONE}</a></p>'
             f'<p class="formnote">Mon&ndash;Fri 9:00 am&ndash;5:00 pm &middot; Saturday by appointment</p></div>'
-            f'<div class="quote-form">{form_card("Request Your Quote")}</div>'
+            f'<div class="quote-form">{form_card("Request Your Quote", service=page.get("service", ""))}</div>'
             f'</div></section>')
 
     if page.get('kind') == 'contact':
@@ -1025,6 +1033,175 @@ def write_404():
 '''
     open(os.path.join(ROOT, '404.html'), 'w').write(body)
 
+# --------------------------------------------------------------------------
+# Product & supplier guide  —  UNLISTED
+#
+# Not in PAGES, not in NAV, not in sitemap.xml, not in llms.txt, and nothing
+# on the public site links to it. It is reachable only by someone who has the
+# URL: the crew, an estimator, or a customer we hand it to during a sale.
+#
+# Deliberately NOT disallowed in robots.txt. A Disallow line is a public file
+# that would announce the path to everyone, and it would also stop crawlers
+# reading the noindex below — the page would then be crawl-blocked but still
+# indexable from any stray link. noindex,nofollow is the setting that actually
+# keeps it out, and nofollow keeps the outbound supplier and manufacturer
+# links from bleeding authority off a site that is mid ranking-watch.
+# --------------------------------------------------------------------------
+
+GUIDE_SLUG = 'product-guide'
+GUIDE_HERO = 'adobestock_428764136-8a4786c4'   # the hardscapes hero — this page is mostly hardscape product
+
+
+def cat_id(name):
+    """Anchor for a product category.
+
+    Derived from the category NAME rather than the service page it points at,
+    because more than one category can hang off the same service page — fire
+    pit surrounds and fire pit inserts are two separate decisions that both
+    link to /fire-pits, and deriving from the path would give them one id.
+    """
+    return re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+
+
+def maps_href(addr):
+    return 'https://www.google.com/maps/search/?api=1&query=' + urllib.parse.quote(addr)
+
+
+def supplier_card(s):
+    chips = ''.join(f'<li>{esc(c)}</li>' for c in s['carries'])
+    tel = re.sub(r'[^0-9]', '', s.get('phone') or '')
+    rows = []
+    if s.get('address'):
+        rows.append(f'<a class="g-row g-addr" href="{esc(maps_href(s["address"]))}" '
+                    f'target="_blank" rel="noopener nofollow">{esc(s["address"])}</a>')
+    if s.get('phone'):
+        rows.append(f'<a class="g-row g-tel" href="tel:+1{tel}">{esc(s["phone"])}</a>')
+    if s.get('hours'):
+        rows.append(f'<span class="g-row g-hours">{esc(s["hours"])}</span>')
+    # verify: True gives the default warning, or pass a string to say what
+    # specifically needs confirming — they are rarely uncertain for the same reason.
+    v = s.get('verify')
+    flag = ''
+    if v:
+        msg = v if isinstance(v, str) else ('Confirm this one before you send a truck — '
+                                            'we have not checked it directly.')
+        flag = f'<p class="g-verify">{esc(msg)}</p>'
+    site = (f'<a class="g-site" href="{esc(s["url"])}" target="_blank" rel="noopener nofollow">'
+            f'Visit site</a>') if s.get('url') else ''
+    return f'''<article class="g-card">
+<h4>{esc(s["name"])}</h4>
+<p class="g-kind">{esc(s["kind"])}</p>
+<div class="g-rows">{"".join(rows)}</div>
+<ul class="g-chips">{chips}</ul>
+<p class="g-note">{esc(s.get("notes", ""))}</p>
+{flag}
+{site}
+</article>'''
+
+
+def option_card(o):
+    return f'''<div class="g-opt g-opt--{esc(o["tier"].lower())}">
+<div class="g-opt-head">
+<span class="g-tier">{esc(o["tier"])}</span>
+<span class="g-band" aria-label="Relative cost {esc(o["band"])}">{esc(o["band"])}</span>
+</div>
+<h4>{esc(o["brand"])}</h4>
+<p class="g-line">{esc(o["line"])}</p>
+{f'<p class="g-price">{esc(o["price"])}</p>' if o.get("price") else ''}
+<p class="g-what">{esc(o["what"])}</p>
+<p class="g-why">{esc(o["why"])}</p>
+{f'<p class="g-verify">{esc(o["caution"])}</p>' if o.get("caution") else ''}
+<a class="g-link" href="{esc(o["url"])}" target="_blank" rel="noopener nofollow">See the range</a>
+</div>'''
+
+
+def write_product_guide():
+    G = json.load(open(os.path.join(ROOT, 'products.json')))
+
+    groups = ''.join(
+        f'''<section class="g-group">
+<h3>{esc(grp["group"])}</h3>
+<p class="g-blurb">{esc(grp["blurb"])}</p>
+<div class="g-grid">{"".join(supplier_card(s) for s in grp["items"])}</div>
+</section>''' for grp in G['suppliers'])
+
+    cats = ''.join(
+        f'''<section class="g-cat" id="{esc(cat_id(c["name"]))}">
+<div class="g-cat-head">
+<h3>{esc(c["name"])}</h3>
+<a class="g-cat-link" href="{esc(c["service"])}">Our {esc(c["service"].strip("/").replace("-", " ").lower())} page</a>
+</div>
+<p class="g-blurb">{esc(c["blurb"])}</p>
+<div class="g-pair">{"".join(option_card(o) for o in c["options"])}</div>
+</section>''' for c in G['categories'])
+
+    toc = ''.join(
+        f'<a href="#{esc(cat_id(c["name"]))}">{esc(c["name"])}</a>'
+        for c in G['categories'])
+
+    body = f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product &amp; Supplier Guide | {esc(NAME)}</title>
+<meta name="description" content="Internal reference: where we buy materials and what we install.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-600.woff2" crossorigin>
+<link rel="stylesheet" href="/css/style.css?v={CSS_V}">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+{topbar()}
+{header('/product-guide')}
+<main id="main">
+<section class="hero compact" style="background-image:url({img_src(GUIDE_HERO, small=False)})">
+<div class="wrap"><h1>Product &amp; Supplier Guide</h1></div>
+{RIDGE}
+</section>
+
+<section class="section">
+<div class="wrap">
+<p class="g-intro">{esc(G["intro"])}</p>
+<p class="g-updated">Checked {esc(G["updated"])}. Prices, stock and links change — call before you count on any of it.</p>
+</div>
+</section>
+
+<section class="section tint">
+<div class="wrap">
+<h2>Where we buy</h2>
+<p class="g-blurb">{esc(G["supplierNote"])}</p>
+{groups}
+</div>
+</section>
+
+<section class="section">
+<div class="wrap">
+<h2>What we install</h2>
+<p class="g-blurb">Two ways to build the same thing. Neither one is the wrong answer — they are different budgets and different lifespans.</p>
+<nav class="g-toc" aria-label="Product categories">{toc}</nav>
+{cats}
+</div>
+</section>
+
+<section class="section tint">
+<div class="wrap">
+{cta_card("Talk through the options")}
+</div>
+</section>
+</main>
+{footer()}
+<script src="/js/main.js?v={JS_V}" defer></script>
+</body>
+</html>
+'''
+    open(os.path.join(ROOT, GUIDE_SLUG + '.html'), 'w').write(body)
+
+
+
 
 def main():
     written = []
@@ -1038,7 +1215,8 @@ def main():
     write_robots()
     write_llms()
     write_404()
-    print(f'Built {len(written)} pages + sitemap.xml, robots.txt, llms.txt, 404.html')
+    write_product_guide()
+    print(f'Built {len(written)} pages + sitemap.xml, robots.txt, llms.txt, 404.html, product-guide.html (unlisted)')
     print(f'  css/style.css?v={CSS_V}   js/main.js?v={JS_V}')
     for w in written:
         print('  ', w)

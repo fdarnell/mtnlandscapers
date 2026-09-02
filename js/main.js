@@ -102,7 +102,11 @@
     return f ? 'fb.1.' + f.t + '.' + f.v : '';
   };
 
-  window.MTN_ATTR_QS = function (baseUrl) {
+  /* `extra` carries page-level context the CRM cannot otherwise see: the form is
+     an iframe on another origin, so it has no idea which page it is sitting on.
+     Passing the service here is what lets a short form on a service page drop the
+     "which service?" checkboxes without losing the answer. */
+  window.MTN_ATTR_QS = function (baseUrl, extra) {
     var out = [];
     function add(k, v) {
       if (v) out.push(encodeURIComponent(k) + '=' + encodeURIComponent(v));
@@ -116,6 +120,11 @@
     var n;
     if (attr.last) { for (n = 0; n < UTMS.length; n++) add(UTMS[n], attr.last[UTMS[n]]); }
     if (attr.first) { for (n = 0; n < UTMS.length; n++) add('ft_' + UTMS[n], attr.first[UTMS[n]]); }
+    if (extra) {
+      for (k in extra) {
+        if (Object.prototype.hasOwnProperty.call(extra, k)) add(k, extra[k]);
+      }
+    }
     if (!out.length) return '';
     var sep = (baseUrl && baseUrl.indexOf('?') !== -1) ? '&' : '?';
     return sep + out.join('&');
@@ -218,7 +227,8 @@
 
       var iframe = document.createElement('iframe');
       var _base = mount.dataset.iframeSrc;
-      iframe.src = _base + (window.MTN_ATTR_QS ? window.MTN_ATTR_QS(_base) : '');
+      var _extra = mount.dataset.service ? { service: mount.dataset.service } : null;
+      iframe.src = _base + (window.MTN_ATTR_QS ? window.MTN_ATTR_QS(_base, _extra) : '');
       iframe.id = 'inline-' + formId;
       iframe.title = mount.dataset.formName || 'Contact form';
       iframe.style.cssText =

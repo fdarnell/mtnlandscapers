@@ -106,5 +106,13 @@
     "googleAdsLeadLabel": "q7XUCMazup0cEI-FipxC",
     "metaPixelId": "",
     "googleAdsCallLabel": "IZsMCNmIlewcEI-FipxC"
+  },
+  "coralineFormShort": {
+    "_comment": "Short lead form for service + city pages. BLANK until built in Coraline; while blank, those pages fall back to the long coralineForm so nothing breaks. Redirects to /thankyousf, which fires the 'Short Form 4/16/26' conversion action.",
+    "iframeSrc": "",
+    "embedJs": "https://app.saltservicesusa.mtnlandscapers.com/js/form_embed.js",
+    "formId": "",
+    "formName": "Website Short Lead Form",
+    "formHeight": 900
   }
 }
