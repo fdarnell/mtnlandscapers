@@ -1116,7 +1116,15 @@ def option_card(o):
 
 
 def write_product_guide():
-    G = json.load(open(os.path.join(ROOT, 'products.json')))
+    guide_data = os.path.join(ROOT, 'products.json')
+    if not os.path.exists(guide_data):
+        # The guide is an optional, unlisted page and its data file is not
+        # required to be present. A missing products.json used to abort the
+        # whole build, so a clean clone could not produce the public site at
+        # all -- an optional extra should never be able to do that.
+        print('  (skipped product-guide.html: products.json not present)')
+        return
+    G = json.load(open(guide_data))
 
     groups = ''.join(
         f'''<section class="g-group">
