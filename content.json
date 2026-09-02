@@ -4469,6 +4469,39 @@
     [
       {
         "t": "h2",
+        "html": "The Work Itself"
+      },
+      {
+        "t": "img",
+        "src": "drainage-french-drain-detail",
+        "alt": "French drain trench lined with filter fabric and drainage gravel, with PVC fittings staged alongside"
+      },
+      {
+        "t": "p",
+        "html": "Filter fabric under and over the gravel, so soil can&rsquo;t silt the drain up"
+      },
+      {
+        "t": "img",
+        "src": "drainage-trench-alongside-building",
+        "alt": "Open drainage trench excavated alongside a condominium building"
+      },
+      {
+        "t": "p",
+        "html": "Trenched along the building, following the path the water needed to take"
+      },
+      {
+        "t": "img",
+        "src": "drainage-french-drain-run",
+        "alt": "Completed French drain run with filter fabric, gravel and solid pipe tied into the building's downspout"
+      },
+      {
+        "t": "p",
+        "html": "The finished run, with the downspout tied straight into the system"
+      }
+    ],
+    [
+      {
+        "t": "h2",
         "html": "We Diagnose Before We Dig"
       },
       {

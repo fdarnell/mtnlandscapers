@@ -21,7 +21,7 @@ PAGES = [
 
     # ---------------- service pages ----------------
     {
-        'slug': 'drainage', 'src': 'drainage',
+        'slug': 'drainage', 'src': 'drainage', 'hero': 'drainage-french-drain-run',
         'title': 'Yard Drainage and Water Management | Mountain Landscapers',
         'desc': 'Standing water, a soggy yard, or water against the foundation? We install French drains, catch basins and regrading across Sevier County. Free estimates. 865-280-4642',
         'kind': 'service', 'service': 'Yard Drainage and Water Management',
