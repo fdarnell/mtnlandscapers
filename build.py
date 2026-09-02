@@ -767,15 +767,15 @@ def render_page(page):
     # short lead form on service + city pages
     if page.get('kind') in ('service', 'city'):
         body_parts.append(
-            f'<section class="section tint"><div class="wrap"><div class="intro">'
-            f'<div class="intro-copy"><h2>Get a Free Quote</h2>'
+            f'<section class="section tint"><div class="wrap">'
+            f'<div class="quote-lead"><h2>Get a Free Quote</h2>'
             f'<p>Tell us about your project and we&rsquo;ll get back to you fast. '
             f'Prefer to talk it through? Call <a href="{TEL}">{PHONE}</a> and you&rsquo;ll reach our team directly.</p>'
             f'<p>We serve {", ".join(CFG["serviceArea"][:-1])} and {CFG["serviceArea"][-1]}.</p>'
             f'<p class="ctacard-actions"><a class="btn btn-green" href="{TEL}">Call {PHONE}</a></p>'
             f'<p class="formnote">Mon&ndash;Fri 9:00 am&ndash;5:00 pm &middot; Saturday by appointment</p></div>'
-            f'<div>{form_card("Request Your Quote")}</div>'
-            f'</div></div></section>')
+            f'<div class="quote-form">{form_card("Request Your Quote")}</div>'
+            f'</div></section>')
 
     if page.get('kind') == 'contact':
         cal = CFG['coralineCalendar']
