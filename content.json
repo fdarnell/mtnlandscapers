@@ -4899,5 +4899,113 @@
         "html": "Tell us what you want the yard to do and we&rsquo;ll come look at it. Call <a href=\"tel:+18652804642\">(865) 280-4642</a>. Estimates are free."
       }
     ]
+  ],
+  "outdoor-living": [
+    [
+      {
+        "t": "h1",
+        "html": "Outdoor Living Spaces in Sevierville"
+      },
+      {
+        "t": "h2",
+        "html": "The Part of the Yard You Actually Use"
+      },
+      {
+        "t": "p",
+        "html": "A yard you look at and a yard you live in are different things. The difference is usually somewhere to sit, something to gather around, and enough flat, finished ground to make both work."
+      },
+      {
+        "t": "p",
+        "html": "We build outdoor living spaces across Sevierville, Pigeon Forge, Gatlinburg, Seymour and Kodak. We&rsquo;re insured and estimates are free."
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "What We Build"
+      },
+      {
+        "t": "ul",
+        "items": [
+          "<strong>Fire pits and fire features</strong> &mdash; gas, propane or wood, built in or freestanding",
+          "<strong>Pergolas and shade structures</strong> &mdash; for the hours the sun makes a patio unusable",
+          "<strong>Seating walls and built-in seating</strong> &mdash; permanent seating that doubles as structure",
+          "<strong>Outdoor kitchens and grill stations</strong> &mdash; including the pad, gas and power they need"
+        ]
+      },
+      {
+        "t": "p",
+        "html": "Most of these are built together rather than alone. A fire feature wants seating around it; seating wants a surface under it; the surface wants ground that has been graded and held in place first."
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "A Back Yard Rebuilt From the Ground Up"
+      },
+      {
+        "t": "p",
+        "html": "The house came with a simple fire pit area the builder had put in out back. The owner wanted considerably more than that: the whole yard raised and levelled, a concrete pad, artificial turf, a gas fire pit, a grill station, and enough usable space to add a golf simulator later."
+      },
+      {
+        "t": "p",
+        "html": "We took out the existing fire pit area and the lighting around it, then <strong>worked with an engineer</strong> to get engineered plans for a retaining wall that would hold the new grade and give him the footprint he was after."
+      },
+      {
+        "t": "p",
+        "html": "From there: the retaining wall went in, then roughly <strong>20 yards of concrete</strong> for the pad, then an artificial turf area big enough to play cornhole on. Our certified gas installer and electricians handled the gas line and the power so everything went in <strong>to code</strong>."
+      },
+      {
+        "t": "p",
+        "html": "Finished with a high-end railing where the drop needed one, and a <strong>seating wall</strong> around the rest of the perimeter &mdash; safety on one side, somewhere to sit on the other."
+      },
+      {
+        "t": "p",
+        "html": "That job is a fair picture of what these projects actually involve. Almost none of it is what people picture when they say &ldquo;fire pit&rdquo;, and most of it happens before anything you can see gets installed."
+      },
+      {
+        "t": "img",
+        "src": "photo-coming-soon",
+        "alt": "Outdoor living project photos coming soon"
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "It&rsquo;s Rarely Just One Thing"
+      },
+      {
+        "t": "p",
+        "html": "An outdoor living project usually collects several trades. That back yard needed <a href=\"/excavation\">grading</a>, a <a href=\"/retaining-walls\">retaining wall</a>, <a href=\"/concrete\">concrete</a>, gas, electrical and a railing before the fire pit ever went in."
+      },
+      {
+        "t": "p",
+        "html": "We do the earth, wall, concrete and hardscape ourselves, and bring in a certified gas installer and licensed electricians for the parts that require them. What we don&rsquo;t do is guess at those &mdash; if it needs an engineer or a permit, it gets one."
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "Build the Space, Then Add to It"
+      },
+      {
+        "t": "p",
+        "html": "The golf simulator on that job is a later phase, and the yard was built with it in mind. That&rsquo;s worth planning for: getting the grade, the pad and the utilities right the first time is far cheaper than opening it back up in two years."
+      },
+      {
+        "t": "p",
+        "html": "If you know roughly where you want to end up, tell us at the start even if you&rsquo;re only building part of it now."
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "Tell Us What You Want the Space to Do"
+      },
+      {
+        "t": "p",
+        "html": "Call <a href=\"tel:+18652804642\">(865) 280-4642</a> or send us the details and we&rsquo;ll come look at the yard. Estimates are free."
+      }
+    ]
   ]
 }

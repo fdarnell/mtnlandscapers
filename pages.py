@@ -53,6 +53,22 @@ PAGES = [
         ],
     },
     {
+        'slug': 'outdoor-living', 'src': 'outdoor-living',
+        'title': 'Outdoor Living Spaces | Mountain Landscapers',
+        'desc': 'Fire pits, pergolas, seating walls and outdoor living spaces across Sevier County. Built with the grading, wall and concrete work underneath. Free estimates. 865-280-4642',
+        'kind': 'service', 'service': 'Outdoor Living Spaces',
+        'faqs': [
+            ('Do you build the whole space, or just the fire pit?',
+             'The whole space. A recent back yard needed grading, an engineered retaining wall, about 20 yards of concrete, artificial turf, gas, electrical and a railing before the fire feature went in. We do the earth, wall, concrete and hardscape ourselves and bring in a certified gas installer and licensed electricians for their parts.'),
+            ('Can I build it in stages?',
+             'Yes, and it is worth planning the whole thing even if you build part of it now. Getting the grade, the pad and the utilities right the first time costs far less than reopening the yard in two years.'),
+            ('Gas or wood burning fire pit?',
+             'Either. Gas is the more common request and needs a gas line run by a certified installer, which we coordinate as part of the job.'),
+            ('Do you handle permits and inspections?',
+             'Where the work requires an engineer or a permit, it gets one. The gas and electrical on these projects is done by licensed trades so it goes in to code.'),
+        ],
+    },
+    {
         'slug': 'concrete', 'src': 'concrete',
         'title': 'Concrete Driveways, Walkways and Patios | Mountain Landscapers',
         'desc': 'Concrete driveways, walkways, patios and steps across Sevier County. Broom, stamped and colored finishes. We do our own base prep. Free estimates. 865-280-4642',
@@ -280,6 +296,7 @@ NAV = [
     {'label': 'Home', 'href': '/'},
     {'label': 'Services', 'children': [
         {'label': 'Concrete', 'href': '/concrete'},
+        {'label': 'Outdoor Living', 'href': '/outdoor-living'},
         {'label': 'Landscape Design & Build', 'href': '/landscape-design-build'},
         {'label': 'Excavation', 'href': '/excavation'},
         {'label': 'Drainage', 'href': '/drainage'},
@@ -299,6 +316,7 @@ NAV = [
         {'label': 'Outdoor Lighting Design', 'href': '/outdoor-lighting-design'},
         {'label': 'Hardscapes', 'href': '/hardscapes'},
         {'label': 'Concrete', 'href': '/concrete'},
+        {'label': 'Outdoor Living', 'href': '/outdoor-living'},
         {'label': 'Landscape Design & Build', 'href': '/landscape-design-build'},
         {'label': 'Excavation', 'href': '/excavation'},
         {'label': 'Drainage', 'href': '/drainage'},
@@ -309,6 +327,7 @@ NAV = [
 FOOTER_SERVICES = [
     ('Retaining Walls', '/retaining-walls'),
     ('Concrete', '/concrete'),
+    ('Outdoor Living', '/outdoor-living'),
     ('Landscape Design & Build', '/landscape-design-build'),
     ('Excavation', '/excavation'),
     ('Drainage', '/drainage'),
