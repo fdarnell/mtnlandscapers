@@ -7,6 +7,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/Garden-Services",
+      "destination": "/landscape-design-build",
+      "statusCode": 301
+    },
+    {
       "source": "/septic-tank-installation",
       "destination": "/excavation",
       "statusCode": 301
@@ -18,7 +23,7 @@
     },
     {
       "source": "/garden-services",
-      "destination": "/Garden-Services",
+      "destination": "/landscape-design-build",
       "statusCode": 301
     }
   ],
