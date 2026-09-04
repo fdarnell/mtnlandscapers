@@ -7,6 +7,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/septic-tank-installation",
+      "destination": "/excavation",
+      "statusCode": 301
+    },
+    {
       "source": "/tree-removal-and-service",
       "destination": "/",
       "statusCode": 301

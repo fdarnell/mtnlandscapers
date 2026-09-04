@@ -21,6 +21,39 @@ PAGES = [
 
     # ---------------- service pages ----------------
     {
+        'slug': 'excavation', 'src': 'excavation',
+        'title': 'Excavation, Grading and Site Work | Mountain Landscapers',
+        'desc': 'Excavation, grading, trenching and site prep across Sevier County. Building pads, footings, finish grading and clearing. Insured. Free estimates. 865-280-4642',
+        'kind': 'service', 'service': 'Excavation, Grading and Site Work',
+        'faqs': [
+            ('Will your equipment tear up my yard?',
+             'We size the machine to the access rather than the job, so your property sees the smallest machine that can do the work. Some repair to the immediate work area is normal; the rest of the lawn should not be part of it.'),
+            ('Do you haul the dirt away?',
+             'That is your call. We can haul spoil off, or leave it on site where it is useful &mdash; filling a low corner, building a berm, or backfilling behind a wall. Moving dirt twice costs money.'),
+            ('Do you clear trees?',
+             'We clear brush, undergrowth, small trees and stumps where they sit in the footprint of the work. A large tree that needs removing on its own account is a job for a tree company, and we will tell you so.'),
+            ('Do I need excavation, or just grading?',
+             'Often just grading &mdash; reshaping what is already there so it drains correctly. We will look at the ground and tell you which one your project actually needs.'),
+        ],
+    },
+    {
+        'slug': 'concrete', 'src': 'concrete',
+        'title': 'Concrete Driveways, Walkways and Patios | Mountain Landscapers',
+        'desc': 'Concrete driveways, walkways, patios and steps across Sevier County. Broom, stamped and colored finishes. We do our own base prep. Free estimates. 865-280-4642',
+        'kind': 'service', 'service': 'Concrete Driveways, Walkways and Patios',
+        'hero': 'concrete-stamped-walkway-cabin',
+        'faqs': [
+            ('Do you replace concrete that&rsquo;s already cracked?',
+             'Yes. We break out the failing slab, haul it off, correct whatever caused it to fail, and pour new. Fixing the cause matters &mdash; otherwise the new pour goes the same way as the old one.'),
+            ('Do you do the base prep, or just the pour?',
+             'We do the whole thing: excavation, grading, compacting the base, setting forms and pouring. A slab is only as good as the ground under it.'),
+            ('Can you do stamped or colored concrete?',
+             'Yes. We pour broom-finished, stamped and colored concrete. Stamped and tinted work is common on walkways and patios where a plain grey slab would look out of place.'),
+            ('How big a job will you take on?',
+             'From a set of steps up through driveways and multi-building sites. If a pour is larger than we would take on by ourselves, we bring in partners we work with rather than stretch a crew too thin over it.'),
+        ],
+    },
+    {
         'slug': 'drainage', 'src': 'drainage', 'hero': 'drainage-french-drain-run',
         'title': 'Yard Drainage and Water Management | Mountain Landscapers',
         'desc': 'Standing water, a soggy yard, or water against the foundation? We install French drains, catch basins and regrading across Sevier County. Free estimates. 865-280-4642',
@@ -122,12 +155,6 @@ PAGES = [
             ('Can you help with weeds and yard health?',
              'We provide basic weed control support and can recommend the best steps to improve lawn health.'),
         ],
-    },
-    {
-        'slug': 'septic-tank-installation', 'src': 'septic-tank-installation',
-        'title': 'Septic Tank Installation | Mountain Landscapers',
-        'desc': 'Need Septic install? Look no further than Mountain Landscapers. Call for a quote today! 865-280-4642',
-        'kind': 'service', 'service': 'Septic Tank Installation',
     },
 
     # ---------------- city pages ----------------
@@ -242,6 +269,8 @@ PAGES = [
 NAV = [
     {'label': 'Home', 'href': '/'},
     {'label': 'Services', 'children': [
+        {'label': 'Concrete', 'href': '/concrete'},
+        {'label': 'Excavation', 'href': '/excavation'},
         {'label': 'Drainage', 'href': '/drainage'},
         {'label': 'Fire Pits', 'href': '/fire-pits'},
         {'label': 'Garden Services', 'href': '/Garden-Services'},
@@ -259,14 +288,17 @@ NAV = [
         {'label': 'Retaining Walls', 'href': '/retaining-walls'},
         {'label': 'Outdoor Lighting Design', 'href': '/outdoor-lighting-design'},
         {'label': 'Hardscapes', 'href': '/hardscapes'},
+        {'label': 'Concrete', 'href': '/concrete'},
+        {'label': 'Excavation', 'href': '/excavation'},
         {'label': 'Drainage', 'href': '/drainage'},
-        {'label': 'Septic Tank Installation', 'href': '/septic-tank-installation'},
     ]},
     {'label': 'Our Blog', 'href': '/our-blog'},
 ]
 
 FOOTER_SERVICES = [
     ('Retaining Walls', '/retaining-walls'),
+    ('Concrete', '/concrete'),
+    ('Excavation', '/excavation'),
     ('Drainage', '/drainage'),
     ('Fire Pits', '/fire-pits'),
     ('Garden Services', '/Garden-Services'),
@@ -276,7 +308,6 @@ FOOTER_SERVICES = [
     ('Shrub Care', '/shrub-care'),
     ('Leaf Removal', '/leaf-removal'),
     ('Hardscapes', '/hardscapes'),
-    ('Septic Tank Installation', '/septic-tank-installation'),
     ('Irrigation Services', '/irrigation-services'),
     ('Lawn Care', '/lawn-care'),
 ]
