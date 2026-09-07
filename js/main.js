@@ -254,7 +254,23 @@
       iframe.setAttribute('data-layout-iframe-id', 'inline-' + formId);
       iframe.setAttribute('data-form-id', formId);
 
+      /* The form's own bundle is ~1.4 MB from two third-party origins, so there is a
+         real window where the iframe is present but blank. A blank white box reads as
+         broken, so hold a skeleton until the iframe actually fires load. */
+      var skel = document.createElement('div');
+      skel.className = 'coraline-form__skeleton';
+      skel.setAttribute('aria-hidden', 'true');
+      skel.innerHTML = '<span></span><span></span><span></span>' +
+                       '<span class="is-tall"></span><span class="is-btn"></span>';
+
+      iframe.style.opacity = '0';
+      iframe.addEventListener('load', function () {
+        iframe.style.opacity = '';
+        if (skel.parentNode) skel.parentNode.removeChild(skel);
+      });
+
       mount.innerHTML = '';
+      mount.appendChild(skel);
       mount.appendChild(iframe);
 
       if (!embedJsLoaded) {
@@ -266,18 +282,28 @@
       }
     };
 
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            loadForm(entry.target);
-            io.unobserve(entry.target);
-          }
-        });
-      }, { rootMargin: '600px' });
-      Array.prototype.forEach.call(mounts, function (m) { io.observe(m); });
-    } else {
-      Array.prototype.forEach.call(mounts, loadForm);
+    /* Service, city and contact pages exist to get the form filled in, so those mounts
+       are marked eager and start fetching immediately rather than waiting to be scrolled
+       near. Secondary embeds (the booking calendar) stay lazy. */
+    var lazy = [];
+    Array.prototype.forEach.call(mounts, function (m) {
+      if (m.dataset.eager) loadForm(m); else lazy.push(m);
+    });
+
+    if (lazy.length) {
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              loadForm(entry.target);
+              io.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '600px' });
+        lazy.forEach(function (m) { io.observe(m); });
+      } else {
+        lazy.forEach(loadForm);
+      }
     }
 
     Array.prototype.forEach.call(mounts, function (m) {

@@ -99,6 +99,30 @@ def _warn_if_uncommitted(relpath, digest):
     print('!' * 72 + '\n')
 
 
+# Origins the Coraline form iframe pulls from. The widget HTML is fast, but the
+# form's own bundle is ~1.4 MB across two more origins, so paying the DNS+TLS
+# handshake up front takes a chunk off the time-to-interactive on ad landing pages.
+def _origins():
+    seen, out = set(), []
+    for key in ('coralineForm', 'coralineFormShort', 'coralineCalendar'):
+        blk = CFG.get(key) or {}
+        for url in (blk.get('iframeSrc'), blk.get('embedJs')):
+            if not url:
+                continue
+            o = '{u.scheme}://{u.netloc}'.format(u=urllib.parse.urlsplit(url))
+            if o not in seen:
+                seen.add(o); out.append(o)
+    # The form bundle itself (intl-tel-input, libphonenumber) ships from GoHighLevel's
+    # CDN, which never appears in our config.
+    for o in ('https://stcdn.leadconnectorhq.com',):
+        if o not in seen:
+            seen.add(o); out.append(o)
+    return out
+
+PRECONNECT = '\n'.join(
+    f'<link rel="preconnect" href="{o}" crossorigin>\n<link rel="dns-prefetch" href="{o}">'
+    for o in _origins())
+
 CSS_V = asset_hash('css/style.css')
 JS_V = asset_hash('js/main.js')
 
@@ -346,6 +370,7 @@ def form_card(heading='Got Questions?', compact=False, service=''):
 <span class="mailicon">{ICONS['mail']}</span>
 <h2>{esc(heading)}</h2>
 <div class="coraline-form"
+     data-eager="1"
      data-service="{esc(service)}"
      data-service-key="{esc(','.join(f.get('serviceQueryKeys') or ['service']))}"
      data-iframe-src="{esc(f['iframeSrc'])}"
@@ -824,6 +849,7 @@ def render_page(page):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{PRECONNECT}
 <title>{esc(page['title'])}</title>
 <meta name="description" content="{esc(page['desc'])}">
 <link rel="canonical" href="{esc(canonical)}">{robots_meta}
