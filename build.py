@@ -723,6 +723,31 @@ def build_trail(page):
     return [home, (label, path_for(page['slug']))]
 
 
+def hero_lead_in(page):
+    """Optional subhead / buttons / trust strip under the hero h1.
+
+    Opt-in per page via heroSub, heroActions and heroTrust in pages.py, so a
+    page that sets none of them renders exactly the markup it always did.
+    In heroActions, href 'TEL' becomes the click-to-call link (which the call
+    conversion handler already picks up) and {phone} in a label is filled in.
+    The first action is the primary button; the rest render as ghost buttons.
+    """
+    out = []
+    if page.get('heroSub'):
+        out.append(f'<p class="hero-sub">{page["heroSub"]}</p>')
+    if page.get('heroActions'):
+        btns = []
+        for i, (label, href) in enumerate(page['heroActions']):
+            cls = 'btn' if i == 0 else 'btn btn-ghost'
+            btns.append(f'<a class="{cls}" href="{esc(TEL) if href == "TEL" else esc(href)}">'
+                        f'{label.format(phone=PHONE)}</a>')
+        out.append(f'<p class="hero-actions">{"".join(btns)}</p>')
+    if page.get('heroTrust'):
+        spans = ''.join(f'<span>{t}</span>' for t in page['heroTrust'])
+        out.append(f'<p class="hero-trust">{spans}</p>')
+    return ''.join(out)
+
+
 def render_page(page):
     slug = page['slug']
     rows = CONTENT.get(page['src'], [])
@@ -840,6 +865,7 @@ def render_page(page):
             f'</div></section>')
 
     hero_cls = 'hero' if page.get('kind') in ('home', 'service', 'city') else 'hero compact'
+    hero_extra = hero_lead_in(page)
     ld = jsonld_for(page, trail)
 
     robots_meta = ('\n<meta name="robots" content="noindex, follow">'
@@ -879,7 +905,7 @@ def render_page(page):
 <main id="main">
 <section class="{hero_cls}" style="background-image:url({img_src(hero_img, small=False)})">
 {f'<div class="hero-slides" aria-hidden="true" data-slides="{",".join(img_src(s, small=False) for s in HERO_SLIDES)}"></div>' if page.get('kind') == 'home' else ''}
-<div class="wrap"><h1>{hero_h1}</h1></div>
+<div class="wrap"><h1>{hero_h1}</h1>{hero_extra}</div>
 {RIDGE}
 </section>
 {crumbs_html(trail)}

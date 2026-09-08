@@ -41,6 +41,12 @@ PAGES = [
         'title': 'Landscape Design and Build | Mountain Landscapers',
         'desc': 'Landscape design and installation across Sevier County. Every project starts with a drawn plan, then we build it. Hardscape, planting, lawn and lighting. 865-280-4642',
         'kind': 'service', 'service': 'Landscape Design and Build',
+        'hero': 'design-build-before-after',
+        'heroSub': 'Every project starts with a simple drawing and a project plan, so you '
+                   'see the yard before we build it. The drawing is free.',
+        'heroActions': [('Start With the Drawing', '#contact-form'),
+                        ('Call {phone}', 'TEL')],
+        'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
         'faqs': [
             ('Do I get to see a design before you start?',
              'Yes. Every design and build project gets a plan drawn in our design software, so you can see the layout and change it before anything is built. 3D visuals of the finished design are available for an additional cost.'),
