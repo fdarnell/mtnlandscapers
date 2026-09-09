@@ -247,7 +247,7 @@ def nav_html(current):
     return ''.join(out)
 
 
-def header(current):
+def header(current, quote_href='/contact'):
     return f'''<header class="site-header">
 <div class="wrap">
 <a class="brand" href="/" aria-label="{esc(NAME)} home">
@@ -257,7 +257,7 @@ def header(current):
 <nav class="mainnav" id="mainnav" aria-label="Main">
 <ul>{nav_html(current)}</ul>
 </nav>
-<a class="btn btn-quote" href="/contact">Schedule Quote</a>
+<a class="btn btn-quote" href="{esc(quote_href)}">Schedule Quote</a>
 </div>
 </header>'''
 
@@ -287,7 +287,7 @@ def cta_band():
 </section>'''
 
 
-def footer():
+def footer(quote_href='/contact'):
     s = CFG['social']
     navlis = ''.join(
         f'<li><a href="{esc(CFG["clientPortal"] if h == "PORTAL" else h)}"'
@@ -343,7 +343,7 @@ def footer():
 </footer>
 <div class="callbar">
 <a href="{TEL}">{ICONS['phone']}Call Now</a>
-<a href="/contact">{ICONS['calendar']}Free Quote</a>
+<a href="{esc(quote_href)}">{ICONS['calendar']}Free Quote</a>
 </div>'''
 
 
@@ -390,7 +390,7 @@ def form_card(heading='Got Questions?', compact=False, service=''):
 </div>'''
 
 
-def cta_card(heading='Get a Free Quote', line=None):
+def cta_card(heading='Get a Free Quote', line=None, quote_href='/contact'):
     """Call-and-link conversion card, for pages that don't carry the form.
 
     Service and city pages now embed the real form inline: they are the landing
@@ -407,7 +407,7 @@ def cta_card(heading='Get a Free Quote', line=None):
 <p>{line}</p>
 <p class="ctacard-actions">
 <a class="btn btn-green" href="{TEL}">Call {PHONE}</a>
-<a class="btn" href="/contact">Request a Quote</a>
+<a class="btn" href="{esc(quote_href)}">Request a Quote</a>
 </p>
 <p class="formnote">Mon&ndash;Fri 9:00 am&ndash;5:00 pm &middot; Saturday by appointment</p>
 </div>'''
@@ -751,6 +751,10 @@ def hero_lead_in(page):
 def render_page(page):
     slug = page['slug']
     rows = CONTENT.get(page['src'], [])
+    # Service and city pages carry the short lead form further down, so every
+    # quote CTA on them points at that form instead of sending paid traffic to
+    # /contact and its 25-field form. Pages without the form keep /contact.
+    quote_href = '#contact-form' if page.get('kind') in ('service', 'city') else '/contact'
     trail = build_trail(page)
     canonical = url_for(slug)
     hero_img = page.get('hero') or HEROES.get(page['src']) or HERO_DEFAULT
@@ -797,10 +801,15 @@ def render_page(page):
             body_parts.append(
                 f'<section class="section"><div class="wrap"><div class="intro">'
                 f'<div class="intro-copy">{render_blocks(copy)}</div>'
-                f'<div>{cta_card("Got Questions?")}</div>'
+                f'<div>{cta_card("Got Questions?", quote_href=quote_href)}</div>'
                 f'</div></div></section>')
             continue
         html_row = render_row(row, i, tint, kind=page.get('kind'))
+        if html_row and quote_href != '/contact':
+            # in-body quote buttons ("Get Instant Quote", "Contact Mountain
+            # Landscapers") go to the form on this page. Only the bare link is
+            # rewritten, so /contact#book and the like are left alone.
+            html_row = html_row.replace('href="/contact"', f'href="{quote_href}"')
         if html_row:
             body_parts.append(html_row)
             if 'class="section tint"' in html_row:
@@ -901,7 +910,7 @@ def render_page(page):
 <body>
 <a class="skip" href="#main">Skip to content</a>
 {topbar()}
-{header(path_for(slug))}
+{header(path_for(slug), quote_href)}
 <main id="main">
 <section class="{hero_cls}" style="background-image:url({img_src(hero_img, small=False)})">
 {f'<div class="hero-slides" aria-hidden="true" data-slides="{",".join(img_src(s, small=False) for s in HERO_SLIDES)}"></div>' if page.get('kind') == 'home' else ''}
@@ -911,7 +920,7 @@ def render_page(page):
 {crumbs_html(trail)}
 {chr(10).join(body_parts)}
 </main>
-{footer()}
+{footer(quote_href)}
 <script src="/js/main.js?v={JS_V}" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>{tags(slug)}
 </body>
