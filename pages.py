@@ -109,6 +109,12 @@ PAGES = [
     },
     {
         'slug': 'retaining-walls', 'src': 'retaining-walls',
+        'heroSub': 'A complicated slope or standing water does not fix itself. We design and '
+                   'install retaining walls in concrete block, stone, brick and timber across '
+                   'Sevier County.',
+        'heroActions': [('Get My Free Estimate', '#contact-form'),
+                        ('Call {phone}', 'TEL')],
+        'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
         'title': 'Retaining Wall Design and Installation | Mountain Landscapers',
         'desc': "Enhance your property with expert retaining wall solutions. Custom designs that harmonize with East Tennessee's climate. Contact us for functional beauty.",
         'kind': 'service', 'service': 'Retaining Wall Design and Installation',
