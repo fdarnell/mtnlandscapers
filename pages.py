@@ -116,6 +116,14 @@ PAGES = [
         'heroActions': [('Get My Free Estimate', '#contact-form'),
                         ('Call {phone}', 'TEL')],
         'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
+        # Verbatim from the Google Business Profile — nothing here is written by us.
+        'reviewRating': '4.9',
+        'reviewCount': '16',
+        'reviews': [
+            ('The cabin sits on a ridge and I needed a creative design to give it some curb '
+             'appeal. The guys worked hard on the stone wall and then added some beautiful rock '
+             'and flowers.', 'Emily P. &middot; Google review'),
+        ],
         'faqs': [
             ('What goes in behind the wall so it does not fail?',
              'Every wall we install has drainage pipe behind it at the base, and on some walls a '

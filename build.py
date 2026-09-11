@@ -586,6 +586,31 @@ def render_row(row, idx, tint_toggle, kind=None):
     return f'<section class="{cls}"><div class="wrap">{inner}</div></section>'
 
 
+def render_reviews(reviews, rating=None, count=None, profile_url=None):
+    """Customer quotes pulled from the Google Business Profile.
+
+    Opt-in per page via a `reviews` list in pages.py, so a page without one
+    renders exactly the markup it always did. Every quote here is a real
+    review; nothing in this block is written by us.
+    """
+    if not reviews:
+        return ''
+    cards = ''.join(
+        f'<figure class="review"><blockquote><p>{q}</p></blockquote>'
+        f'<figcaption>{who}</figcaption></figure>'
+        for q, who in reviews)
+    head = ''
+    if rating and count:
+        link = (f'<a href="{esc(profile_url)}" target="_blank" rel="noopener">'
+                f'{count} Google reviews</a>' if profile_url else f'{count} Google reviews')
+        head = (f'<p class="review-score"><span class="review-stars" aria-hidden="true">'
+                f'&#9733;&#9733;&#9733;&#9733;&#9733;</span> '
+                f'<strong>{rating}</strong> from {link}</p>')
+    return (f'<section class="section"><div class="wrap reviews-block">'
+            f'{head}<div class="reviews">{cards}</div>'
+            f'</div></section>')
+
+
 def render_faqs(faqs):
     if not faqs:
         return ''
@@ -835,6 +860,12 @@ def render_page(page):
 
     if page.get('faqs'):
         body_parts.append(render_faqs(page['faqs']))
+
+    # real customer quotes, immediately before the form
+    if page.get('reviews'):
+        body_parts.append(render_reviews(
+            page['reviews'], page.get('reviewRating'), page.get('reviewCount'),
+            CFG['social'].get('googleBusinessProfile')))
 
     # short lead form on service + city pages
     if page.get('kind') in ('service', 'city'):

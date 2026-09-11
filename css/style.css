@@ -214,6 +214,27 @@ li { margin-bottom: .55em; }
 .hero-trust span { white-space: nowrap; }
 .hero-trust span + span::before { content: '\00b7'; margin: 0 10px; opacity: .6; }
 
+/* ---------- customer reviews (opt-in per page) ---------- */
+.reviews-block { text-align: center; }
+.review-score {
+  margin: 0 0 34px; font-size: 1.05rem; color: var(--forest);
+}
+.review-score strong { font-size: 1.5rem; font-family: var(--font-display); }
+.review-stars { color: var(--amber); letter-spacing: 2px; }
+.reviews {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 26px; text-align: left;
+}
+.review {
+  margin: 0; padding: 28px 30px; background: #fff;
+  border: 1px solid var(--line); border-left: 3px solid var(--amber);
+}
+.review blockquote { margin: 0; }
+.review blockquote p { margin: 0; color: var(--forest-950); line-height: 1.6; }
+.review figcaption {
+  margin-top: 16px; font-size: .88rem; font-weight: 600; color: var(--muted, #565e57);
+}
+
 /* rotating home-hero photos: layers crossfade under the overlay */
 .hero-slides { position: absolute; inset: 0; }
 .hero-slide {
