@@ -2641,8 +2641,7 @@
         "items": [
           "concrete block retaining walls",
           "stone retaining walls",
-          "brick retaining walls",
-          "wood retention walls"
+          "brick retaining walls"
         ]
       },
       {
@@ -2681,15 +2680,6 @@
         "t": "img",
         "src": "brickwall",
         "alt": "Orange brick retaining wall"
-      },
-      {
-        "t": "img",
-        "src": "woodwall",
-        "alt": "Side of wooden retaining wall"
-      },
-      {
-        "t": "p",
-        "html": "<strong>Wooden Retaining Walls</strong>"
       }
     ],
     [

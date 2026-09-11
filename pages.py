@@ -132,10 +132,10 @@ PAGES = [
              'specification for that wall.'),
             ('Do I need a permit for a retaining wall in Sevier County?',
              'In Sevier County you need a permit if the wall is going to exceed 4 feet in height.'),
-            ('Block, stone or timber &mdash; which should I choose?',
-             'We install a lot of different kinds of wall, but we steer people away from timber. '
-             'Wood does not take on water well, and failing wooden walls are one of the most common '
-             'reasons people call us to put a block wall in their place.'),
+            ('What about wooden retaining walls?',
+             'We build in concrete block, stone and brick. Wood does not take on water well, and '
+             'failing wooden walls are one of the most common reasons people call us &mdash; '
+             'usually to put a block wall in where a timber one has given way.'),
             ('How long does a retaining wall take to build?',
              'Anywhere from one to four weeks, depending on the size of the wall and how unusual '
              'the situation is. A lot of walls are needed because of a critical slope, and those '
