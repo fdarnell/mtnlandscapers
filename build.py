@@ -783,7 +783,7 @@ def render_page(page):
     # Service and city pages carry the short lead form further down, so every
     # quote CTA on them points at that form instead of sending paid traffic to
     # /contact and its 25-field form. Pages without the form keep /contact.
-    quote_href = '#contact-form' if page.get('kind') in ('service', 'city') else '/contact'
+    quote_href = '#contact-form' if page.get('kind') in ('service', 'city', 'home') else '/contact'
     trail = build_trail(page)
     canonical = url_for(slug)
     hero_img = page.get('hero') or HEROES.get(page['src']) or HERO_DEFAULT
@@ -867,8 +867,8 @@ def render_page(page):
             page['reviews'], page.get('reviewRating'), page.get('reviewCount'),
             CFG['social'].get('googleBusinessProfile')))
 
-    # short lead form on service + city pages
-    if page.get('kind') in ('service', 'city'):
+    # short lead form on service, city and home pages
+    if page.get('kind') in ('service', 'city', 'home'):
         body_parts.append(
             f'<section class="section tint"><div class="wrap">'
             f'<div class="quote-lead"><h2>Get a Free Quote</h2>'

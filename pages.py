@@ -17,6 +17,11 @@ PAGES = [
         'hero': 'construction-worker-hero',
         'crumbs': [],
         'kind': 'home',
+        'service': 'Landscape Design and Installation',
+        # The h1 already carries a tap-to-call link, so the hero only needs the
+        # second path: a jump to the short form further down this page.
+        'heroActions': [('Get My Free Estimate', '#contact-form')],
+        'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
     },
 
     # ---------------- service pages ----------------
