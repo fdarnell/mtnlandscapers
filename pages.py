@@ -120,9 +120,14 @@ PAGES = [
         'reviewRating': '4.9',
         'reviewCount': '16',
         'reviews': [
-            ('The cabin sits on a ridge and I needed a creative design to give it some curb '
-             'appeal. The guys worked hard on the stone wall and then added some beautiful rock '
-             'and flowers.', 'Emily P. &middot; Google review'),
+            ('Mountain Landscapers did a wonderful job on my landscaping project. The cabin sits '
+             'on a ridge and I needed a creative design to give it some curb appeal. The guys '
+             'worked hard on the stone wall and then added some beautiful rock and flowers to '
+             'make it all blend in. They were detailed and easy to work with and that&rsquo;s '
+             'important since I live in another state. I highly recommend them for your next '
+             'project.', 'Emily P. &middot; Google review'),
+            ('My new favorite business in Sevierville! The team was amazing start to finish. '
+             'Thank you.', 'Lynn H. &middot; Google review, retaining wall design'),
         ],
         'faqs': [
             ('What goes in behind the wall so it does not fail?',
