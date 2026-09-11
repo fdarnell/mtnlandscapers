@@ -22,6 +22,40 @@ PAGES = [
         # second path: a jump to the short form further down this page.
         'heroActions': [('Get My Free Estimate', '#contact-form')],
         'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
+        'faqs': [
+            ('What areas do you cover, and how far will you travel?',
+             'The core of our work is Sevier County and the towns around it &mdash; Sevierville, '
+             'Pigeon Forge, Gatlinburg, Kodak, Seymour and Knoxville. Past that it depends on the '
+             'job. For the right project we will travel further, including out of state, so it is '
+             'worth asking.'),
+            ('Is there a minimum job size?',
+             'No. We will take on a single set of steps as readily as a whole yard.'),
+            ('Do you charge for an estimate?',
+             'No. Estimates are free. On a design and build project the simple drawing and '
+             'project plan are free as well. 3D visuals of the finished design are available for '
+             'an additional cost.'),
+            ('How soon will I hear back?',
+             'We call back the same day.'),
+            ('Do you do the work yourselves, or subcontract it?',
+             'We do it ourselves. The same crew handles the excavation, drainage, concrete, walls '
+             'and planting, which is why the water, the grade and the structure end up agreeing '
+             'with each other. Where a job needs gas or electrical, that part goes to a certified '
+             'gas installer and licensed electricians.'),
+            ('How soon can you start?',
+             'It varies with the project, mostly according to how many different trades it needs. '
+             'A patio and some planting schedules faster than a job that has to line up gas, '
+             'electrical and concrete alongside the landscaping.'),
+            ('Can I do the work in stages?',
+             'Yes. We can design the whole yard and build it in phases as it suits you. Planning '
+             'it all up front means the early stages do not get in the way of the later ones.'),
+            ('How does payment work?',
+             'A standard deposit is 50%. On a larger project we set up a payment plan instead, '
+             'with payments tied to phases of the job being completed.'),
+            ('I do not live in Tennessee. Can you still handle my property?',
+             'Yes, and it is routine. A great deal of the property here is owned from out of '
+             'state, and we are used to running a project for someone who cannot be on site while '
+             'it happens.'),
+        ],
     },
 
     # ---------------- service pages ----------------
