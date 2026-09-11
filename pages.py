@@ -109,12 +109,48 @@ PAGES = [
     },
     {
         'slug': 'retaining-walls', 'src': 'retaining-walls',
+        'hero': 'retaining-wall-finished-hero',
         'heroSub': 'A complicated slope or standing water does not fix itself. We design and '
-                   'install retaining walls in concrete block, stone, brick and timber across '
+                   'install retaining walls in concrete block, stone and brick across '
                    'Sevier County.',
         'heroActions': [('Get My Free Estimate', '#contact-form'),
                         ('Call {phone}', 'TEL')],
         'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
+        'faqs': [
+            ('What goes in behind the wall so it does not fail?',
+             'Every wall we install has drainage pipe behind it at the base, and on some walls a '
+             'second run inside the gravel footing. Which pipe depends on the engineer&rsquo;s spec '
+             '&mdash; sometimes corrugated perforated, sometimes schedule 40 PVC with belly holes. '
+             'Clean #57 gravel goes in behind the wall, and how much depends on how large the wall '
+             'is. We always put 7 oz geofabric between the gravel and the dirt so the two do not '
+             'mix. Depending on the height of the wall, we also run geogrid back through the gravel '
+             'and soil to the manufacturer&rsquo;s specification or the engineered plan.'),
+            ('How deep is the base, and what stops the wall settling?',
+             'The base is either concrete or #10 gravel, depending on the type of wall, and it is '
+             'typically at least 8 inches thick. The size of the footing is not a rule of thumb '
+             '&mdash; it comes from the engineered plan or the block manufacturer&rsquo;s '
+             'specification for that wall.'),
+            ('Do I need a permit for a retaining wall in Sevier County?',
+             'In Sevier County you need a permit if the wall is going to exceed 4 feet in height.'),
+            ('Block, stone or timber &mdash; which should I choose?',
+             'We install a lot of different kinds of wall, but we steer people away from timber. '
+             'Wood does not take on water well, and failing wooden walls are one of the most common '
+             'reasons people call us to put a block wall in their place.'),
+            ('How long does a retaining wall take to build?',
+             'Anywhere from one to four weeks, depending on the size of the wall and how unusual '
+             'the situation is. A lot of walls are needed because of a critical slope, and those '
+             'can take longer because access and working space are limited.'),
+            ('Do you handle the drainage and grading around the wall too?',
+             'Yes. Most of our retaining wall contracts include drainage management, with grading '
+             'shaped around the wall to take water where it needs to go.'),
+            ('What if the wall is holding up a driveway or a structure?',
+             'Then engineered plans matter, and that is usually step one. It is a high-liability '
+             'situation, so the right move is to get in touch early and let us start the '
+             'engineering process. We work with engineers we trust on a regular basis.'),
+            ('Is the wall under warranty?',
+             'Yes. Every wall we install comes with a warranty, and the terms are settled with you '
+             'as part of the quote.'),
+        ],
         'title': 'Retaining Wall Design and Installation | Mountain Landscapers',
         'desc': "Enhance your property with expert retaining wall solutions. Custom designs that harmonize with East Tennessee's climate. Contact us for functional beauty.",
         'kind': 'service', 'service': 'Retaining Wall Design and Installation',

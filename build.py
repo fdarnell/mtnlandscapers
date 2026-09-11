@@ -695,8 +695,12 @@ def jsonld_for(page, trail):
         graph.append({
             '@type': 'FAQPage',
             'mainEntity': [
-                {'@type': 'Question', 'name': re.sub('<[^>]+>', '', q),
-                 'acceptedAnswer': {'@type': 'Answer', 'text': re.sub('<[^>]+>', '', a)}}
+                # strip tags, then decode entities: the copy is written as HTML
+                # (&mdash;, &rsquo;), and JSON-LD wants the characters themselves
+                # rather than the literal entity text.
+                {'@type': 'Question', 'name': html.unescape(re.sub('<[^>]+>', '', q)),
+                 'acceptedAnswer': {'@type': 'Answer',
+                                    'text': html.unescape(re.sub('<[^>]+>', '', a))}}
                 for q, a in page['faqs']
             ],
         })
