@@ -249,6 +249,12 @@ PAGES = [
         'title': 'Hardscape Design and Install | Mountain Landscapers',
         'desc': 'Transform your property with a professional hardscape today. Call for a quote! 865-280-4642',
         'kind': 'service', 'service': 'Hardscape Design and Construction',
+        'hero': 'hardscapes-flagstone-firepit',
+        'heroSub': 'Patios, walkways and steps built across Sevier County &mdash; on a base we '
+                   'prepare ourselves, because that is what decides whether they stay flat.',
+        'heroActions': [('Get My Free Estimate', '#contact-form'),
+                        ('Call {phone}', 'TEL')],
+        'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
     },
     {
         'slug': 'irrigation-services', 'src': 'irrigation-services',
