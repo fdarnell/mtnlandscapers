@@ -6,7 +6,7 @@
   "phone": "(865) 280-4642",
   "phoneHref": "tel:+18652804642",
   "phoneDigits": "+18652804642",
-  "smsHelpNumber": "+1 (866) 846-6002",
+  "smsHelpNumber": "(865) 280-4642",
   "email": "mtnlandscapers@mtnlandscapers.com",
   "address": {
     "_comment": "streetPrivate is NEVER rendered as visible text — it goes only into the JSON-LD so the site's NAP matches the Google Business Profile. There is no public office. Visible address is city/region/postalCode only.",

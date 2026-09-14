@@ -11,6 +11,8 @@ signed service agreement matters more than the website terms.
 """
 
 EFFECTIVE = 'August 28, 2026'
+# The terms gained an SMS program section on this date; privacy and accessibility are unchanged.
+TOS_EFFECTIVE = 'September 14, 2026'
 
 PHONE = '(865) 280-4642'
 EMAIL = 'mtnlandscapers@mtnlandscapers.com'
@@ -148,7 +150,7 @@ PRIVACY = [[
 
 TOS = [[
     {'t': 'h1', 'html': 'Terms of Service'},
-    _p(f'<strong>Effective {EFFECTIVE}</strong>'),
+    _p(f'<strong>Effective {TOS_EFFECTIVE}</strong>'),
     _p('These terms cover your use of mtnlandscapers.com, operated by Mountain Landscapers, LLC. By '
        'using this site you agree to them. If you do not agree, please do not use the site.'),
     _p('<strong>If you have signed a written agreement, estimate or contract with us, that document '
@@ -166,6 +168,33 @@ TOS = [[
        'binding once we have put it in writing for your project and you have accepted it.'),
     _p('Submitting a form on this site does not create a contract or reserve a place on our schedule. '
        'It starts a conversation.'),
+
+    _h2('Text messaging (SMS) program terms'),
+    _p('Mountain Landscapers sends text messages only to people who have given us their mobile number '
+       'and agreed to receive them &mdash; by checking the consent box on our estimate form, by telling '
+       'us on a call that we may text them, or by giving us a mobile number for scheduling work they '
+       'have hired us to do. The messages we send are about your own estimate, appointment and job: '
+       'estimate confirmations, arrival windows and reminders for scheduled crew visits, replies to '
+       'questions about work in progress, weather rescheduling, a one-time code when you open your own '
+       'quote at quotes.mtnlandscapers.com, and an automatic reply when we miss your call. We do not '
+       'send marketing or promotional texts, and we never text numbers from a purchased or rented '
+       'list. By opting in, you consent to receive these messages from Mountain Landscapers at the '
+       'mobile number you provided.'),
+    _p('<strong>Message frequency varies.</strong> Message and data rates may apply; check with your '
+       'wireless carrier for the details of your plan.'),
+    _p('<strong>To opt out</strong>, reply STOP to any message. You will receive one final text '
+       'confirming that you have been unsubscribed, and nothing after that. <strong>For help</strong>, '
+       f'reply HELP to any message, text HELP to <a href="tel:+18652804642">{PHONE}</a>, or email '
+       f'<a href="mailto:{EMAIL}">{EMAIL}</a>. Opting out of texts does not stop us from calling or '
+       'emailing you about work you have asked us to do.'),
+    _p('Wireless carriers are not liable for delayed or undelivered messages. Delivery depends on your '
+       'carrier&rsquo;s network and is subject to the transmission errors and delays of mobile networks, '
+       'and a message may not arrive if your phone is out of range, switched off, or otherwise '
+       'unavailable.'),
+    _p('<strong>No mobile information will be shared with third parties or affiliates for marketing or '
+       'promotional purposes.</strong> Opt-in data and consent are not shared with any third party. How '
+       'we collect, use and protect your mobile number and message history is set out in our '
+       '<a href="/privacy-policy">Privacy Policy</a>.'),
 
     _h2('Using this website'),
     _p('You agree not to use this site to do anything illegal, to interfere with how it works, to try '
