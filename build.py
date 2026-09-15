@@ -126,6 +126,24 @@ PRECONNECT = '\n'.join(
 CSS_V = asset_hash('css/style.css')
 JS_V = asset_hash('js/main.js')
 
+# Owner text editing, driven from the client portal. The editor itself is only
+# fetched when a signed token says someone is editing, so a public pageload
+# carries just this bootstrap and no extra request. The token is moved into
+# sessionStorage and struck from the address bar immediately, which keeps it
+# out of the Referer header, analytics and anything the client pastes to
+# someone else.
+EDIT_V = asset_hash('js/edit.js')
+EDIT_BOOTSTRAP = (
+    '<script>(function(){try{'
+    'var u=new URL(location.href),t=u.searchParams.get("edit");'
+    'if(t){sessionStorage.setItem("slt_edit",t);u.searchParams.delete("edit");'
+    'history.replaceState(null,"",u.pathname+(u.search?u.search:"")+u.hash);}'
+    'if(!sessionStorage.getItem("slt_edit"))return;'
+    'var s=document.createElement("script");s.src="/js/edit.js?v=' + EDIT_V + '";'
+    's.defer=true;document.head.appendChild(s);'
+    '}catch(e){}})();</script>'
+)
+
 
 IMG_DIR = os.path.join(ROOT, 'img')
 _HAVE_IMG = set(os.listdir(IMG_DIR)) if os.path.isdir(IMG_DIR) else set()
@@ -957,6 +975,7 @@ def render_page(page):
 </main>
 {footer(quote_href)}
 <script src="/js/main.js?v={JS_V}" defer></script>
+{EDIT_BOOTSTRAP}
 <script defer src="/_vercel/insights/script.js"></script>{tags(slug)}
 </body>
 </html>
@@ -1124,6 +1143,7 @@ def write_404():
 </main>
 {footer()}
 <script src="/js/main.js?v={JS_V}" defer></script>
+{EDIT_BOOTSTRAP}
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
@@ -1300,6 +1320,7 @@ def write_product_guide():
 </main>
 {footer()}
 <script src="/js/main.js?v={JS_V}" defer></script>
+{EDIT_BOOTSTRAP}
 </body>
 </html>
 '''
@@ -1329,6 +1350,18 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# Stamp the stable data-e keys the portal's inline editor addresses, then put
+# the client's own wording back on top of the freshly generated copy. Runs
+# before stamp_assets so the asset hashes are computed over the final bytes.
+# An edit whose recorded original no longer matches is reported and skipped —
+# a rewritten block keeps the new copy rather than silently taking the old.
+try:
+    import site_edits as _site_edits
+    _site_edits.main(os.path.dirname(os.path.abspath(__file__)))
+except Exception as _e:  # never let editing support break a build
+    print("site_edits skipped:", _e)
 
 
 # Content-hash every asset reference so /images, /css, /js and /fonts can be
