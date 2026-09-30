@@ -102,10 +102,26 @@ def _warn_if_uncommitted(relpath, digest):
 # Origins the Coraline form iframe pulls from. The widget HTML is fast, but the
 # form's own bundle is ~1.4 MB across two more origins, so paying the DNS+TLS
 # handshake up front takes a chunk off the time-to-interactive on ad landing pages.
+# Salt CRM, which replaces Coraline: its forms render into the page as plain
+# HTML from one script, and its booking page is a link rather than an iframe.
+SALTCRM_ORIGIN = 'https://crm.saltservicesusa.com'
+
+
+def on_saltcrm(blk):
+    """Is this form or calendar served by Salt CRM rather than Coraline?"""
+    return bool(blk.get('saltcrmToken') or blk.get('bookingUrl'))
+
+
 def _origins():
     seen, out = set(), []
+    coraline_left = False
     for key in ('coralineForm', 'coralineFormShort', 'coralineCalendar'):
         blk = CFG.get(key) or {}
+        if on_saltcrm(blk):
+            if blk.get('saltcrmToken') and SALTCRM_ORIGIN not in seen:
+                seen.add(SALTCRM_ORIGIN); out.append(SALTCRM_ORIGIN)
+            continue
+        coraline_left = True
         for url in (blk.get('iframeSrc'), blk.get('embedJs')):
             if not url:
                 continue
@@ -113,10 +129,11 @@ def _origins():
             if o not in seen:
                 seen.add(o); out.append(o)
     # The form bundle itself (intl-tel-input, libphonenumber) ships from GoHighLevel's
-    # CDN, which never appears in our config.
-    for o in ('https://stcdn.leadconnectorhq.com',):
-        if o not in seen:
-            seen.add(o); out.append(o)
+    # CDN, which never appears in our config — needed only while a Coraline embed is.
+    if coraline_left:
+        for o in ('https://stcdn.leadconnectorhq.com',):
+            if o not in seen:
+                seen.add(o); out.append(o)
     return out
 
 PRECONNECT = '\n'.join(
@@ -382,8 +399,10 @@ def form_card(heading='Got Questions?', compact=False, service=''):
     f = CFG['coralineForm']
     if service:
         short = CFG.get('coralineFormShort') or {}
-        if short.get('iframeSrc') and short.get('formId'):
+        if short.get('saltcrmToken') or (short.get('iframeSrc') and short.get('formId')):
             f = short
+    if f.get('saltcrmToken'):
+        return saltcrm_form_card(f, heading, service)
     return f'''<div class="formcard" id="contact-form">
 <span class="mailicon">{ICONS['mail']}</span>
 <h2>{esc(heading)}</h2>
@@ -396,6 +415,38 @@ def form_card(heading='Got Questions?', compact=False, service=''):
      data-form-id="{esc(f['formId'])}"
      data-form-name="{esc(f['formName'])}"
      data-form-height="{f['formHeight']}">
+<div class="coraline-form__placeholder">
+<p>Tell us about your project and we&rsquo;ll get right back to you.</p>
+<button type="button" class="coraline-form__load-btn">Open the contact form</button>
+<noscript><p>Our contact form needs JavaScript. You can also call
+<a href="{TEL}">{PHONE}</a> or email
+<a href="mailto:{esc(CFG['email'])}">{esc(CFG['email'])}</a>.</p></noscript>
+</div>
+</div>
+<p class="legal"><a href="/privacy-policy">Privacy Policy</a> | <a href="/tos">Terms of Service</a></p>
+</div>'''
+
+
+def saltcrm_form_card(f, heading, service):
+    """The same card, with the form served by Salt CRM instead of a Coraline iframe.
+
+    The CRM renders plain HTML into the page, so the site's own CSS styles it and
+    it is as tall as its content. js/main.js mounts it and hands it the stored
+    click ids and this page's service; the script URL is built here so the
+    token lives in site.config.json alone. On submit it redirects to the same
+    /thankyousf or /thank-you page Coraline did, which is where the Google Ads
+    conversion fires.
+    """
+    token = f['saltcrmToken']
+    return f'''<div class="formcard" id="contact-form">
+<span class="mailicon">{ICONS['mail']}</span>
+<h2>{esc(heading)}</h2>
+<div class="saltcrm-mount"
+     data-eager="1"
+     data-token="{esc(token)}"
+     data-embed-js="{SALTCRM_ORIGIN}/api/embed/{esc(token)}"
+     data-service="{esc(service)}"
+     data-service-key="{esc(','.join(f.get('serviceQueryKeys') or ['service']))}">
 <div class="coraline-form__placeholder">
 <p>Tell us about your project and we&rsquo;ll get right back to you.</p>
 <button type="button" class="coraline-form__load-btn">Open the contact form</button>
@@ -900,6 +951,30 @@ def render_page(page):
 
     if page.get('kind') == 'contact':
         cal = CFG['coralineCalendar']
+        if cal.get('bookingUrl'):
+            # Salt CRM's booking page will not sit in another site's iframe (it
+            # refuses to be framed, as it should), so the card keeps its look and
+            # the button opens the booking page instead of loading one in place.
+            cal_inner = (
+                f'<div class="coraline-form">'
+                f'<div class="coraline-form__placeholder">'
+                f'<p>See available times with one of our design specialists.</p>'
+                f'<a class="coraline-form__load-btn" href="{esc(cal["bookingUrl"])}">Open the calendar</a>'
+                f'</div></div>')
+        else:
+            cal_inner = (
+                f'<div class="coraline-form"'
+                f' data-iframe-src="{esc(cal["iframeSrc"])}"'
+                f' data-embed-js="{esc(cal["embedJs"])}"'
+                f' data-form-id="{esc(cal["calendarId"])}"'
+                f' data-form-name="{esc(cal["name"])}"'
+                f' data-form-height="{cal["height"]}">'
+                f'<div class="coraline-form__placeholder">'
+                f'<p>See available times with one of our design specialists.</p>'
+                f'<button type="button" class="coraline-form__load-btn">Open the calendar</button>'
+                f'<noscript><p>The booking calendar needs JavaScript. You can also call '
+                f'<a href="{TEL}">{PHONE}</a> to schedule.</p></noscript>'
+                f'</div></div>')
         body_parts.append(
             f'<section class="section"><div class="wrap contact-stack">'
             f'<h2>Send Us a Message</h2>'
@@ -911,19 +986,7 @@ def render_page(page):
             f'<section class="section tint"><div class="wrap contact-stack" id="book">'
             f'<h2>Book Your Appointment Online</h2>'
             f'<p>Pick a day and time that works for you and it goes straight on our calendar.</p>'
-            f'<div class="formcard calcard">'
-            f'<div class="coraline-form"'
-            f' data-iframe-src="{esc(cal["iframeSrc"])}"'
-            f' data-embed-js="{esc(cal["embedJs"])}"'
-            f' data-form-id="{esc(cal["calendarId"])}"'
-            f' data-form-name="{esc(cal["name"])}"'
-            f' data-form-height="{cal["height"]}">'
-            f'<div class="coraline-form__placeholder">'
-            f'<p>See available times with one of our design specialists.</p>'
-            f'<button type="button" class="coraline-form__load-btn">Open the calendar</button>'
-            f'<noscript><p>The booking calendar needs JavaScript. You can also call '
-            f'<a href="{TEL}">{PHONE}</a> to schedule.</p></noscript>'
-            f'</div></div></div>'
+            f'<div class="formcard calcard">{cal_inner}</div>'
             f'</div></section>')
 
     hero_cls = 'hero' if page.get('kind') in ('home', 'service', 'city') else 'hero compact'
