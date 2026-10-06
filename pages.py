@@ -135,6 +135,10 @@ PAGES = [
         'title': 'Yard Drainage and Water Management | Mountain Landscapers',
         'desc': 'Standing water, a soggy yard, or water against the foundation? We install French drains, catch basins and regrading across Sevier County. Free estimates. 865-280-4642',
         'kind': 'service', 'service': 'Yard Drainage and Water Management',
+        'heroSub': 'One crew to rule them all &mdash; backyards to condos.',
+        'heroActions': [('Get My Free Estimate', '#contact-form'),
+                        ('Call {phone}', 'TEL')],
+        'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
         'faqs': [
             ('Do I need a French drain, or would regrading fix it?',
              'Often regrading alone will do it, and it&rsquo;s the simpler solution when the ground cooperates. We&rsquo;ll look at where the water is coming from and tell you which one your yard actually needs.'),
