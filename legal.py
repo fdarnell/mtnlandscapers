@@ -11,6 +11,8 @@ signed service agreement matters more than the website terms.
 """
 
 EFFECTIVE = 'August 28, 2026'
+# The forms, texts and email moved from Coraline (HighLevel) to Salt CRM; only the privacy policy changed.
+PRIVACY_EFFECTIVE = 'October 3, 2026'
 # The terms gained an SMS program section on this date; privacy and accessibility are unchanged.
 TOS_EFFECTIVE = 'September 14, 2026'
 
@@ -32,7 +34,7 @@ def _ul(items):
 
 PRIVACY = [[
     {'t': 'h1', 'html': 'Privacy Policy'},
-    _p(f'<strong>Effective {EFFECTIVE}</strong>'),
+    _p(f'<strong>Effective {PRIVACY_EFFECTIVE}</strong>'),
     _p('Mountain Landscapers, LLC ("we", "us", "our") runs this website to tell people about our '
        'landscaping work and to let them ask us for a quote. This policy explains what we collect, '
        'why, and what we do with it. Short version: we collect what you type into our contact form, '
@@ -51,12 +53,14 @@ PRIVACY = [[
     _p('We use privacy-friendly page analytics from our web host to count visits and see which '
        'pages are read. It does not follow you to other websites. Our fonts and images are '
        'served from our own domain.'),
-    _p('The one exception is our contact form, which is provided by our customer relationship system '
-       '(Coraline, built on HighLevel). The form loads inside a frame from '
-       '<em>app.saltservicesusa.mtnlandscapers.com</em> when you scroll down to it or open it, and at '
-       'that point that system receives your IP address and may set its own cookies so the form works '
-       'and submissions are not duplicated. If you never reach the form, it never loads. You can '
-       'always skip it and call or email us instead.'),
+    _p('The one exception is our contact form and online booking, which come from our customer '
+       'relationship system, Salt CRM, run for us by Salt Services. They load from '
+       '<em>crm.saltservicesusa.com</em> when you scroll down to the form or open it, and at that point '
+       'that system receives your IP address. It does not set cookies. It does keep the advertising '
+       'click identifier described below, and any details carried in the link you arrived on, in your '
+       'browser&rsquo;s session storage until you close the tab, so they reach the form if you move '
+       'between pages. If you never reach the form, it never loads. You can always skip it and call or '
+       'email us instead.'),
 
     _h2('Advertising and how we measure it'),
     _p('We advertise this business on Google and on Meta&rsquo;s platforms (Facebook and Instagram). '
@@ -100,10 +104,10 @@ PRIVACY = [[
     _h2('How we share information'),
     _p('We do not sell your personal information, and we do not rent or trade it. We share it only with:'),
     _ul([
-        'The companies that run our software &mdash; Coraline, our customer relationship system '
-        '(which receives form submissions and sends our texts and emails), and our web host. They '
-        'process this information on our behalf and are not permitted to use it for their own '
-        'marketing.',
+        'The companies that run our software &mdash; Salt CRM, our customer relationship system run '
+        'for us by Salt Services (which receives form submissions and sends our texts and emails, '
+        'through Twilio for texts and Resend for email), and our web host. They process this '
+        'information on our behalf and are not permitted to use it for their own marketing.',
         'Google and Meta, which receive visit information through the advertising tags '
         'described above so we can measure and target our own ads. They do not receive your '
         'name, email address or phone number from this website.',

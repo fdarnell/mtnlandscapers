@@ -213,6 +213,49 @@
     });
   }
 
+  /* ---- Salt CRM form (replaces Coraline) ----
+     The CRM renders the form into this page as plain HTML, so there is no
+     iframe, no fixed height and no third-party bundle. What it cannot see on
+     its own is the ml_attr cookie — a click id from a visit last week — or
+     which service page this is. So the same string MTN_ATTR_QS() built for the
+     Coraline iframe is handed to it on data-prefill, and it posts those with
+     the lead. */
+  var crmMounts = document.querySelectorAll('.saltcrm-mount');
+  if (crmMounts.length) {
+    var crmScripts = {};
+    var loadCrm = function (mount) {
+      if (mount.dataset.loaded) return;
+      mount.dataset.loaded = 'true';
+      var token = mount.dataset.token;
+      var extra = null;
+      if (mount.dataset.service) {
+        extra = {};
+        var keys = (mount.dataset.serviceKey || 'service').split(',');
+        for (var i = 0; i < keys.length; i++) {
+          if (keys[i]) extra[keys[i]] = mount.dataset.service;
+        }
+      }
+      var qs = window.MTN_ATTR_QS ? window.MTN_ATTR_QS('', extra) : '';
+      var host = document.createElement('div');
+      host.setAttribute('data-saltcrm-form', token);
+      if (qs) host.setAttribute('data-prefill', qs.replace(/^\?/, ''));
+      mount.innerHTML = '';
+      mount.appendChild(host);
+      if (!crmScripts[token]) {
+        crmScripts[token] = true;
+        var s = document.createElement('script');
+        s.src = mount.dataset.embedJs;
+        s.async = true;
+        document.body.appendChild(s);
+      }
+    };
+    Array.prototype.forEach.call(crmMounts, function (m) {
+      if (m.dataset.eager) { loadCrm(m); return; }
+      var btn = m.querySelector('.coraline-form__load-btn');
+      if (btn) btn.addEventListener('click', function () { loadCrm(m); });
+    });
+  }
+
   /* ---- Coraline form: inject the iframe only when it's actually needed ---- */
   var mounts = document.querySelectorAll('.coraline-form');
   if (mounts.length) {
