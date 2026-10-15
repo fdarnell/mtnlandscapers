@@ -21,6 +21,7 @@ Content changes begin after the day-30 preservation check (Sep 15, 2026).
 | Septic tank installation | /septic-tank-installation | — | Live |
 | Fire pits content refresh — push pos 49 to page 1 | /fire-pits | October 2026 | Planned |
 | Home page content refresh — push pos 22 to page 1 | / | October 2026 | Planned |
+| Lawn care page refresh — 'lawn care / mowing near me' sit at positions 10–14 and the page has the site's most impressions (1,142 in 28 days, avg pos 33) | /lawn-care | November 2026 | Planned |
 | Landscaping in Pigeon Forge (new city page) | /pigeon-forge | November 2026 | Planned |
 | Leaf removal refresh ahead of fall season | /leaf-removal | November 2026 | Planned |
 | Landscaping in Kodak (new city page) | /kodak | December 2026 | Planned |
