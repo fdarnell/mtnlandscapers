@@ -249,6 +249,16 @@ RIDGE = ('<svg class="ridge" viewBox="0 0 1440 90" preserveAspectRatio="none" ar
 # --------------------------------------------------------------------------
 # chrome
 # --------------------------------------------------------------------------
+def rating_badge():
+    """The Google rating, as printed on the Business Profile (site.config.json -> googleRating)."""
+    g = CFG.get('googleRating') or {}
+    if not (g.get('rating') and g.get('count')):
+        return ''
+    return (f'<a class="stars" href="{esc(CFG["social"].get("googleBusinessProfile", "#"))}" target="_blank" rel="noopener">'
+            f'<span class="stars-glyphs" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>'
+            f'<span><strong>{esc(g["rating"])}</strong> &middot; {esc(g["count"])} <span class="stars-word">Google </span>reviews</span></a>')
+
+
 def topbar():
     s = CFG['social']
     links = ''.join(
@@ -258,7 +268,7 @@ def topbar():
     )
     return f'''<div class="topbar">
 <div class="wrap">
-<span class="stars"><img src="/img/five-stars.webp" width="108" height="33" alt="Five star rated landscaping company"></span>
+{rating_badge()}
 <span class="socials">{links}</span>
 <a class="employment" href="/apply">EMPLOYMENT</a>
 <a class="tel" href="{TEL}">{PHONE}</a>
@@ -669,6 +679,9 @@ def render_reviews(reviews, rating=None, count=None, profile_url=None):
         f'<figcaption>{who}</figcaption></figure>'
         for q, who in reviews)
     head = ''
+    if rating == 'GBP':
+        g = CFG.get('googleRating') or {}
+        rating, count = g.get('rating'), g.get('count')
     if rating and count:
         link = (f'<a href="{esc(profile_url)}" target="_blank" rel="noopener">'
                 f'{count} Google reviews</a>' if profile_url else f'{count} Google reviews')
@@ -677,6 +690,52 @@ def render_reviews(reviews, rating=None, count=None, profile_url=None):
                 f'<strong>{rating}</strong> from {link}</p>')
     return (f'<section class="section"><div class="wrap reviews-block">'
             f'{head}<div class="reviews">{cards}</div>'
+            f'</div></section>')
+
+
+# In-text links between services. Each page's menu and footer links already
+# exist, but links inside the copy are the ones search engines weigh, and on
+# 17 Oct 2026 most service pages had none.
+RELATED = {
+    'retaining-walls': ['drainage', 'excavation', 'hardscapes', 'concrete'],
+    'hardscapes': ['retaining-walls', 'fire-pits', 'outdoor-living', 'concrete'],
+    'fire-pits': ['hardscapes', 'outdoor-living', 'outdoor-lighting-design', 'water-features'],
+    'outdoor-living': ['hardscapes', 'fire-pits', 'outdoor-lighting-design', 'landscape-design-build'],
+    'concrete': ['hardscapes', 'retaining-walls', 'excavation', 'drainage'],
+    'drainage': ['retaining-walls', 'excavation', 'irrigation-services', 'concrete'],
+    'excavation': ['drainage', 'retaining-walls', 'concrete', 'landscape-design-build'],
+    'landscape-design-build': ['hardscapes', 'retaining-walls', 'outdoor-living', 'irrigation-services'],
+    'water-features': ['hardscapes', 'outdoor-lighting-design', 'landscape-design-build', 'fire-pits'],
+    'outdoor-lighting-design': ['outdoor-living', 'fire-pits', 'water-features', 'hardscapes'],
+    'irrigation-services': ['lawn-care', 'drainage', 'landscape-design-build', 'shrub-care'],
+    'lawn-care': ['leaf-removal', 'shrub-care', 'irrigation-services', 'pressure-washing'],
+    'leaf-removal': ['lawn-care', 'shrub-care', 'pressure-washing', 'drainage'],
+    'shrub-care': ['lawn-care', 'leaf-removal', 'landscape-design-build', 'irrigation-services'],
+    'pressure-washing': ['hardscapes', 'concrete', 'lawn-care', 'leaf-removal'],
+}
+
+
+def render_related(slug):
+    picks = [p for s in RELATED.get(slug, []) for p in PAGES if p['slug'] == s]
+    if not picks:
+        return ''
+    links = ''.join(f'<li><a href="/{p["slug"]}">{esc(p["service"])}</a></li>' for p in picks)
+    cities = ''.join(f'<a href="/{c["slug"]}">{esc(c["name"])}</a>, ' for c in CFG['cityPages'])
+    return (f'<section class="section"><div class="wrap related">'
+            f'<h2>Work that often goes with it</h2><ul class="related-links">{links}</ul>'
+            f'<p>We build this across Sevier County, including {cities}Pigeon Forge and Kodak.</p>'
+            f'</div></section>')
+
+
+def render_where_we_work():
+    cities = ' '.join(f'<a class="btn btn-green" href="/{c["slug"]}">{esc(c["name"])}</a>'
+                      for c in CFG['cityPages'])
+    return (f'<section class="section"><div class="wrap related">'
+            f'<h2>Where we work</h2>'
+            f'<p>We&rsquo;re based in Sevierville, and most of our jobs are in Sevierville, Pigeon Forge and '
+            f'Gatlinburg, with regular work in Kodak and Seymour. We also take jobs in Wears Valley, Boyds Creek '
+            f'and Pittman Center, and further out when the project is right.</p>'
+            f'<p class="related-cities">{cities}</p>'
             f'</div></section>')
 
 
@@ -927,6 +986,11 @@ def render_page(page):
             f'<a href="mailto:?body={enc}" aria-label="Share by email">{ICONS["mail"]}</a>'
             f'</div></section>')
 
+    if page.get('kind') == 'service':
+        body_parts.append(render_related(slug))
+    if page.get('kind') == 'home':
+        body_parts.append(render_where_we_work())
+
     if page.get('faqs'):
         body_parts.append(render_faqs(page['faqs']))
 
@@ -1108,13 +1172,25 @@ def tags(slug=''):
     return '\n' + '\n'.join(out)
 
 
+def page_lastmod(slug):
+    """Date the built page was last committed; LASTMOD when git can't say."""
+    import subprocess
+    f = 'index.html' if slug == '' else f'{slug}.html'
+    try:
+        out = subprocess.run(['git', 'log', '-1', '--format=%cs', '--', f], cwd=ROOT,
+                             capture_output=True, text=True, timeout=10).stdout.strip()
+        return out or LASTMOD
+    except Exception:
+        return LASTMOD
+
+
 def write_sitemap():
     urls = []
     for p in PAGES:
         if p.get('noindex'):
             continue
         urls.append(f'  <url>\n    <loc>{url_for(p["slug"])}</loc>\n'
-                    f'    <lastmod>{LASTMOD}</lastmod>\n'
+                    f'    <lastmod>{page_lastmod(p["slug"])}</lastmod>\n'
                     f'    <changefreq>monthly</changefreq>\n'
                     f'    <priority>{"1.0" if p["slug"] == "" else "0.8"}</priority>\n  </url>')
     open(os.path.join(ROOT, 'sitemap.xml'), 'w').write(

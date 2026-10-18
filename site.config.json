@@ -52,8 +52,11 @@
     "Sevierville",
     "Pigeon Forge",
     "Gatlinburg",
+    "Wears Valley",
     "Kodak",
     "Seymour",
+    "Boyds Creek",
+    "Pittman Center",
     "Knoxville"
   ],
   "cityPages": [
@@ -120,5 +123,10 @@
     "serviceQueryKeys": [
       "service"
     ]
+  },
+  "googleRating": {
+    "_comment": "Copied from the Google Business Profile by hand. Update both numbers when new reviews come in (checked 2026-10-17).",
+    "rating": "4.8",
+    "count": "17"
   }
 }
