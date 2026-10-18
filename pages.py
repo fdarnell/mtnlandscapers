@@ -294,6 +294,28 @@ PAGES = [
         ],
     },
 
+    {
+        'slug': 'patios', 'src': 'patios',
+        'title': 'Paver, Flagstone and Concrete Patios in Sevierville, TN | Mountain Landscapers',
+        'desc': 'Paver, flagstone and concrete patios, walkways and steps across Sevier County, built on a base we dig and compact ourselves. Free estimates: (865) 280-4642.',
+        'kind': 'service', 'service': 'Paver, Flagstone and Concrete Patios',
+        'hero': 'hardscapes-flagstone-firepit',
+        'heroSub': 'Paver, flagstone and concrete patios across Sevier County, on a base we dig, '
+                   'grade and compact ourselves.',
+        'heroActions': [('Get My Free Estimate', '#contact-form'), ('Call {phone}', 'TEL')],
+        'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
+        'faqs': [
+            ('Pavers, flagstone or concrete?',
+             'Pavers give an even, finished surface in many colors and patterns, and a paver can be lifted and reset later. Flagstone suits cabins, curves and slopes, and every piece is different. Stamped and colored concrete gives a stone look as one continuous slab. We build all three and will tell you which fits the spot.'),
+            ('Do you do the base, or just the stone?',
+             'The base too. We excavate, grade and compact it ourselves, because that is what decides whether the patio stays flat.'),
+            ('My yard is sloped. Can I still have a patio?',
+             'Usually, yes. On a slope the flat area often comes from a retaining wall, with drainage behind it, and the patio goes on top.'),
+            ('Do you charge for an estimate?',
+             'No. Estimates are free, and on design and build projects the simple drawing and project plan are free too.'),
+        ],
+    },
+
     # ---------------- city pages ----------------
     {
         'slug': 'sevierville', 'src': 'sevierville',
@@ -323,6 +345,17 @@ PAGES = [
         'title': 'Landscaping in Seymour, TN | Mountain Landscapers',
         'desc': 'Landscape design, retaining walls, lawn care and hardscapes for Seymour, TN homes and businesses. Free quotes from a local crew. Call (865) 280-4642.',
         'kind': 'city', 'city': 'Seymour',
+    },
+    {
+        'slug': 'pigeon-forge', 'src': 'pigeon-forge',
+        'title': 'Landscaping in Pigeon Forge, TN | Mountain Landscapers',
+        'desc': 'French drains, retaining walls, walkways and fire pit areas for Pigeon Forge cabins and homes on hillside lots. Free estimates: (865) 280-4642.',
+        'kind': 'city', 'city': 'Pigeon Forge',
+        'hero': 'rockretainingwall',
+        'heroSub': 'Drainage, retaining walls and finished yards for hillside cabins and homes '
+                   'in Pigeon Forge.',
+        'heroActions': [('Get My Free Estimate', '#contact-form'), ('Call {phone}', 'TEL')],
+        'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
     },
 
     # ---------------- blog ----------------
@@ -428,6 +461,7 @@ NAV = [
         {'label': 'Shrub Care', 'href': '/shrub-care'},
         {'label': 'Leaf Removal', 'href': '/leaf-removal'},
         {'label': 'Hardscapes', 'href': '/hardscapes'},
+        {'label': 'Patios', 'href': '/patios'},
         {'label': 'Retaining Walls', 'href': '/retaining-walls'},
         {'label': 'Irrigation Services', 'href': '/irrigation-services'},
         {'label': 'Lawn Care', 'href': '/lawn-care'},
@@ -436,6 +470,7 @@ NAV = [
         {'label': 'Retaining Walls', 'href': '/retaining-walls'},
         {'label': 'Outdoor Lighting Design', 'href': '/outdoor-lighting-design'},
         {'label': 'Hardscapes', 'href': '/hardscapes'},
+        {'label': 'Patios', 'href': '/patios'},
         {'label': 'Concrete', 'href': '/concrete'},
         {'label': 'Outdoor Living', 'href': '/outdoor-living'},
         {'label': 'Landscape Design & Build', 'href': '/landscape-design-build'},
@@ -459,6 +494,7 @@ FOOTER_SERVICES = [
     ('Shrub Care', '/shrub-care'),
     ('Leaf Removal', '/leaf-removal'),
     ('Hardscapes', '/hardscapes'),
+    ('Patios', '/patios'),
     ('Irrigation Services', '/irrigation-services'),
     ('Lawn Care', '/lawn-care'),
 ]
