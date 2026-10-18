@@ -296,17 +296,17 @@ PAGES = [
 
     {
         'slug': 'patios', 'src': 'patios',
-        'title': 'Flagstone and Concrete Patios in Sevierville, TN | Mountain Landscapers',
-        'desc': 'Flagstone and concrete patios, walkways and steps across Sevier County, built on a base we dig and compact ourselves. Free estimates: (865) 280-4642.',
-        'kind': 'service', 'service': 'Flagstone and Concrete Patios',
+        'title': 'Paver, Flagstone and Concrete Patios in Sevierville, TN | Mountain Landscapers',
+        'desc': 'Paver, flagstone and concrete patios, walkways and steps across Sevier County, built on a base we dig and compact ourselves. Free estimates: (865) 280-4642.',
+        'kind': 'service', 'service': 'Paver, Flagstone and Concrete Patios',
         'hero': 'hardscapes-flagstone-firepit',
-        'heroSub': 'Flagstone and concrete patios across Sevier County, on a base we dig, grade '
-                   'and compact ourselves.',
+        'heroSub': 'Paver, flagstone and concrete patios across Sevier County, on a base we dig, '
+                   'grade and compact ourselves.',
         'heroActions': [('Get My Free Estimate', '#contact-form'), ('Call {phone}', 'TEL')],
         'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
         'faqs': [
-            ('Flagstone or concrete?',
-             'Flagstone suits cabins, curves and slopes and every piece is different. Stamped and colored concrete gives a stone look as one continuous slab with no joints to settle. We build both and will tell you which fits the spot.'),
+            ('Pavers, flagstone or concrete?',
+             'Pavers give an even, finished surface in many colors and patterns, and a paver can be lifted and reset later. Flagstone suits cabins, curves and slopes, and every piece is different. Stamped and colored concrete gives a stone look as one continuous slab. We build all three and will tell you which fits the spot.'),
             ('Do you do the base, or just the stone?',
              'The base too. We excavate, grade and compact it ourselves, because that is what decides whether the patio stays flat.'),
             ('My yard is sloped. Can I still have a patio?',

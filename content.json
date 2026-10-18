@@ -4330,7 +4330,7 @@
       },
       {
         "t": "p",
-        "html": "The walkway above is stamped and tinted. It reads as cut stone, it was poured as one continuous slab, and there are no pavers to settle unevenly or sprout weeds between."
+        "html": "The walkway above is stamped and tinted. It reads as cut stone, it was poured as one continuous slab, so there are no joints to settle unevenly or sprout weeds."
       },
       {
         "t": "img",
@@ -4903,7 +4903,7 @@
     [
       {
         "t": "h1",
-        "html": "Patios in Sevierville: Flagstone and Concrete"
+        "html": "Patios in Sevierville: Pavers, Flagstone and Concrete"
       }
     ],
     [
@@ -4926,11 +4926,26 @@
       {
         "t": "ul",
         "items": [
+          "<strong>Paver patios and walkways</strong>: pavers laid by our own crew on a base we dig and compact ourselves",
           "<strong>Flagstone patios and walkways</strong>: 2-inch flagstone set on a prepared base, with mortared joints where you want a solid surface",
           "<strong>Concrete patios</strong>: broom finish, stamped or colored, poured over steel on a compacted stone base (more on our <a href=\"/concrete\">concrete page</a>)",
           "<strong>Steps and landings</strong> where a patio meets a slope or a door",
           "<strong>Walkway and patio repairs</strong>: loose or broken flagstone re-set, and the cause fixed too"
         ]
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "hardscapegarden"
+      },
+      {
+        "t": "h3",
+        "html": "Pavers"
+      },
+      {
+        "t": "p",
+        "html": "Pavers give you a finished, even surface in almost any color and pattern, and a single paver can be lifted and reset if something underneath ever needs work. Our own crew lays them. The part that decides how they age is the base, which is why we dig and compact it ourselves instead of setting pavers on whatever ground is there."
       }
     ],
     [
