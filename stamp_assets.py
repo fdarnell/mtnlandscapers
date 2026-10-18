@@ -118,6 +118,18 @@ def stamp_html(root: pathlib.Path) -> int:
 
         text = re.sub(r'(?P<a>\bsrcset|\bimagesrcset)="(?P<v>[^"]+)"', sset, text, flags=re.I)
 
+        # 3. url(...) in inline styles, and the comma lists in data-slides*, so a
+        #    hero background asks for the exact URL its <link rel=preload> fetched
+        #    (a bare /img/x.webp next to a preloaded /img/x.webp?v=… downloads twice)
+        text = re.sub(
+            r"url\(\s*(?P<q>['\"]?)(?P<url>/(?:%s)/[^)'\"]+?)(?P=q)\s*\)" % "|".join(ASSET_DIRS),
+            lambda m: f"url({m.group('q') or ''}{_stamp_url(root, m.group('url'))}{m.group('q') or ''})",
+            text)
+        text = re.sub(
+            r'(?P<a>\bdata-slides(?:-sm)?)="(?P<v>[^"]+)"',
+            lambda m: f'{m.group("a")}="{",".join(_stamp_url(root, u.strip()) for u in m.group("v").split(","))}"',
+            text)
+
         # never stamp inside <meta ...> tags
         text = re.sub(r"(<meta[^>]*?)\?v=[A-Za-z0-9]+", r"\1", text, flags=re.I)
 

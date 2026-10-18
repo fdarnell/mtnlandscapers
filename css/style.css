@@ -197,6 +197,10 @@ li { margin-bottom: .55em; }
 .hero h1 { color: #fff; margin: 0; text-shadow: 0 2px 22px rgba(0, 0, 0, .5); }
 .hero h1 a { color: #fff; text-decoration: underline; text-underline-offset: 5px; }
 .hero.compact { min-height: 300px; padding: 72px 0 110px; }
+/* hero photo comes from --hero / --hero-sm on the section, so phones fetch the
+   800px file the head preloads for them instead of the 1600px desktop one */
+.hero { background-image: var(--hero, none); }
+@media (max-width: 800px) { .hero { background-image: var(--hero-sm, var(--hero, none)); } }
 
 /* optional hero lead-in: subhead, buttons and trust strip under the h1.
    Only rendered on pages that set heroSub / heroActions / heroTrust. */

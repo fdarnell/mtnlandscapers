@@ -1019,7 +1019,8 @@ def render_page(page):
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-600.woff2" crossorigin>
-<link rel="preload" as="image" href="{img_src(hero_img, small=False)}" fetchpriority="high">
+<link rel="preload" as="image" href="{img_src(hero_img)}" media="(max-width: 800px)" fetchpriority="high">
+<link rel="preload" as="image" href="{img_src(hero_img, small=False)}" media="(min-width: 801px)" fetchpriority="high">
 <link rel="stylesheet" href="/css/style.css?v={CSS_V}">
 <script type="application/ld+json">{ld}</script>
 </head>
@@ -1028,8 +1029,8 @@ def render_page(page):
 {topbar()}
 {header(path_for(slug), quote_href)}
 <main id="main">
-<section class="{hero_cls}" style="background-image:url({img_src(hero_img, small=False)})">
-{f'<div class="hero-slides" aria-hidden="true" data-slides="{",".join(img_src(s, small=False) for s in HERO_SLIDES)}"></div>' if page.get('kind') == 'home' else ''}
+<section class="{hero_cls}" style="--hero:url({img_src(hero_img, small=False)});--hero-sm:url({img_src(hero_img)})">
+{f'<div class="hero-slides" aria-hidden="true" data-slides="{",".join(img_src(s, small=False) for s in HERO_SLIDES)}" data-slides-sm="{",".join(img_src(s) for s in HERO_SLIDES)}"></div>' if page.get('kind') == 'home' else ''}
 <div class="wrap"><h1>{hero_h1}</h1>{hero_extra}</div>
 {RIDGE}
 </section>

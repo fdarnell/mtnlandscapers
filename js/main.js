@@ -194,7 +194,8 @@
   var slidesMount = document.querySelector('.hero-slides');
   if (slidesMount && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     window.addEventListener('load', function () {
-      var srcs = slidesMount.getAttribute('data-slides').split(',');
+      var small = window.matchMedia('(max-width: 800px)').matches && slidesMount.getAttribute('data-slides-sm');
+      var srcs = (small || slidesMount.getAttribute('data-slides')).split(',');
       if (srcs.length < 2) return;
       var layers = srcs.map(function (src) {
         var d = document.createElement('div');
