@@ -755,7 +755,7 @@
     [
       {
         "t": "p",
-        "html": "We also work in <a href=\"/sevierville\">Sevierville</a>, Pigeon Forge, Kodak and <a href=\"/seymour\">Seymour</a>. <a href=\"tel:+18652804642\">Call (865) 280-4642</a> or use the form below for a free estimate."
+        "html": "We also work in <a href=\"/sevierville\">Sevierville</a>, <a href=\"/pigeon-forge\">Pigeon Forge</a>, Kodak and <a href=\"/seymour\">Seymour</a>. <a href=\"tel:+18652804642\">Call (865) 280-4642</a> or use the form below for a free estimate."
       }
     ]
   ],
@@ -3056,7 +3056,7 @@
     [
       {
         "t": "p",
-        "html": "We work out of Sevierville every day, and we take jobs in <a href=\"/gatlinburg\">Gatlinburg</a>, Pigeon Forge, Kodak, <a href=\"/seymour\">Seymour</a> and the rest of Sevier County. <a href=\"tel:+18652804642\">Call (865) 280-4642</a> or use the form below."
+        "html": "We work out of Sevierville every day, and we take jobs in <a href=\"/gatlinburg\">Gatlinburg</a>, <a href=\"/pigeon-forge\">Pigeon Forge</a>, Kodak, <a href=\"/seymour\">Seymour</a> and the rest of Sevier County. <a href=\"tel:+18652804642\">Call (865) 280-4642</a> or use the form below."
       }
     ]
   ],
@@ -4749,6 +4749,240 @@
       {
         "t": "p",
         "html": "Call <a href=\"tel:+18652804642\">(865) 280-4642</a> or send us the details and we&rsquo;ll come look at the yard. Estimates are free."
+      }
+    ]
+  ],
+  "pigeon-forge": [
+    [
+      {
+        "t": "h1",
+        "html": "Landscaping and Retaining Walls in Pigeon Forge, TN"
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "Cabin lots, runoff and walls that have to hold"
+      },
+      {
+        "t": "p",
+        "html": "Off the Parkway, most of Pigeon Forge is hillside: cabins, rentals and homes cut into slopes that send every rainstorm downhill. That shapes almost every job we do here. Before anything gets planted or paved, the water has to have somewhere to go and the ground has to be held in place."
+      },
+      {
+        "t": "p",
+        "html": "We&rsquo;re based in Sevierville, a short drive up the road, and Pigeon Forge is the second-busiest town in our estimate book. This year we&rsquo;ve put in French drains there and drawn up stone wall repairs and Everloc block walls for steep back yards."
+      },
+      {
+        "t": "h3",
+        "html": "What Pigeon Forge jobs usually need"
+      },
+      {
+        "t": "ul",
+        "items": [
+          "<a href=\"/drainage\">French drains</a> in perforated 4-inch pipe, finished with a pop-up emitter so the water comes out well away from the foundation",
+          "<a href=\"/retaining-walls\">Retaining walls</a> in Everloc block, with caps, drain pipe at the base and #57 gravel behind the wall",
+          "Repairs to stone walls that have started to let go, re-set with stone veneer mortar before they get worse",
+          "<a href=\"/hardscapes\">Walkways and fire pit areas</a> on cabin lots, laid on a base we dig and compact ourselves",
+          "Small fixes too: locating property markers, clearing out unwanted boulders, repairing a broken water line"
+        ]
+      },
+      {
+        "t": "p",
+        "html": "Not sure what your lot needs? <a href=\"tel:+18652804642\">Call us</a> and we&rsquo;ll come look."
+      }
+    ],
+    [
+      {
+        "t": "img",
+        "src": "retainingwall_2",
+        "alt": ""
+      },
+      {
+        "t": "p",
+        "html": "Retaining Wall Design and Installation"
+      },
+      {
+        "t": "img",
+        "src": "hardscapegarden",
+        "alt": ""
+      },
+      {
+        "t": "p",
+        "html": "<strong>Garden Design</strong>"
+      },
+      {
+        "t": "img",
+        "src": "firepit_2",
+        "alt": "clean looking  modern fire pit with bench seating over river gravel"
+      },
+      {
+        "t": "p",
+        "html": "Fire Pits"
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "How we approach a Pigeon Forge job"
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "drainage-french-drain-run"
+      },
+      {
+        "t": "h3",
+        "html": "Find the water first"
+      },
+      {
+        "t": "p",
+        "html": "The wet spot is rarely where the problem starts. On a hillside lot it&rsquo;s usually a roofline, a driveway above you or a neighbor&rsquo;s grade. We trace the water before we price any pipe, so the drain goes where the water actually starts."
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "rockretainingwall"
+      },
+      {
+        "t": "h3",
+        "html": "Walls built for the slope"
+      },
+      {
+        "t": "p",
+        "html": "Every wall gets drainage pipe at the base, clean #57 gravel behind it and geofabric between the gravel and the dirt. On taller walls we run geogrid back into the hill to the block maker&rsquo;s spec or the engineered plan. Walls that hold up a driveway or a building start with an engineer, and we work with engineers we trust."
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "firepit_1"
+      },
+      {
+        "t": "h3",
+        "html": "A yard guests will use"
+      },
+      {
+        "t": "p",
+        "html": "A lot of Pigeon Forge cabins rent, so the yard does real work: a flat place to sit, a fire pit, a walkway that doesn&rsquo;t turn to mud. We build those on top of the drainage and grading, never in place of it."
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "design-build-walkway-beds"
+      },
+      {
+        "t": "h3",
+        "html": "Owners who live somewhere else"
+      },
+      {
+        "t": "p",
+        "html": "Plenty of the property here is owned from out of state. You get the plan and the quote by email, you can sign online, and you approve any change before we make it."
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "Permits and engineering"
+      },
+      {
+        "t": "p",
+        "html": "Whether a wall needs a permit depends on its height and on whether the lot is inside Pigeon Forge city limits or out in the county. In Sevier County it&rsquo;s any wall over 4 feet. We check which rules apply before we price the job."
+      }
+    ],
+    [
+      {
+        "t": "p",
+        "html": "We also work in <a href=\"/sevierville\">Sevierville</a>, <a href=\"/gatlinburg\">Gatlinburg</a>, Kodak and <a href=\"/seymour\">Seymour</a>. <a href=\"tel:+18652804642\">Call (865) 280-4642</a> or use the form below for a free estimate."
+      }
+    ]
+  ],
+  "patios": [
+    [
+      {
+        "t": "h1",
+        "html": "Patios in Sevierville: Flagstone and Concrete"
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "A patio is only as flat as the ground under it"
+      },
+      {
+        "t": "p",
+        "html": "Most patios that heave, crack or hold puddles were fine on the day they went in. What failed was underneath: a base that was never compacted, or water running across the spot with nowhere else to go. We dig, grade and compact the base ourselves, so we&rsquo;re answerable for that part too."
+      },
+      {
+        "t": "p",
+        "html": "We build patios across Sevierville, Pigeon Forge, Gatlinburg, Seymour and Kodak. We&rsquo;re insured and estimates are free."
+      },
+      {
+        "t": "h3",
+        "html": "What we build"
+      },
+      {
+        "t": "ul",
+        "items": [
+          "<strong>Flagstone patios and walkways</strong>: 2-inch flagstone set on a prepared base, with mortared joints where you want a solid surface",
+          "<strong>Concrete patios</strong>: broom finish, stamped or colored, poured over steel on a compacted stone base (more on our <a href=\"/concrete\">concrete page</a>)",
+          "<strong>Steps and landings</strong> where a patio meets a slope or a door",
+          "<strong>Walkway and patio repairs</strong>: loose or broken flagstone re-set, and the cause fixed too"
+        ]
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "hardscapes-flagstone-firepit"
+      },
+      {
+        "t": "h3",
+        "html": "Flagstone"
+      },
+      {
+        "t": "p",
+        "html": "Flagstone suits a cabin or a hillside better than anything poured. It&rsquo;s natural stone, every piece is different, and it can follow a curve or step down a grade. We set it on a prepared base and mortar the joints so the patio stays tight and weeds stay out."
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "concrete-stamped-walkway-cabin"
+      },
+      {
+        "t": "h3",
+        "html": "Stamped and colored concrete"
+      },
+      {
+        "t": "p",
+        "html": "If you want the look of stone without the joints, stamped and tinted concrete gets close. It goes down as one continuous slab, so there&rsquo;s nothing to settle unevenly. The walkway in this photo is one of ours."
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "drainage-french-drain-detail"
+      },
+      {
+        "t": "h3",
+        "html": "Drainage comes first"
+      },
+      {
+        "t": "p",
+        "html": "If water already runs across the spot where you want the patio, that gets solved before we build. Sometimes that&rsquo;s a regrade, sometimes a <a href=\"/drainage\">French drain</a>, and on a slope it&rsquo;s often a <a href=\"/retaining-walls\">retaining wall</a> to make a flat place in the first place."
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "Patios that grow into more"
+      },
+      {
+        "t": "p",
+        "html": "A patio is often the first piece of a bigger plan: a <a href=\"/fire-pits\">fire pit</a>, seating walls, lighting, or a full <a href=\"/outdoor-living\">outdoor living area</a>. Tell us where you want to end up, even if you&rsquo;re only building part of it now, and we&rsquo;ll set the grade and the base so the later pieces fit."
       }
     ]
   ]

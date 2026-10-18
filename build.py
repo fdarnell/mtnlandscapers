@@ -698,10 +698,11 @@ def render_reviews(reviews, rating=None, count=None, profile_url=None):
 # 17 Oct 2026 most service pages had none.
 RELATED = {
     'retaining-walls': ['drainage', 'excavation', 'hardscapes', 'concrete'],
-    'hardscapes': ['retaining-walls', 'fire-pits', 'outdoor-living', 'concrete'],
+    'hardscapes': ['patios', 'retaining-walls', 'fire-pits', 'outdoor-living'],
+    'patios': ['hardscapes', 'concrete', 'retaining-walls', 'fire-pits'],
     'fire-pits': ['hardscapes', 'outdoor-living', 'outdoor-lighting-design', 'water-features'],
     'outdoor-living': ['hardscapes', 'fire-pits', 'outdoor-lighting-design', 'landscape-design-build'],
-    'concrete': ['hardscapes', 'retaining-walls', 'excavation', 'drainage'],
+    'concrete': ['patios', 'hardscapes', 'retaining-walls', 'drainage'],
     'drainage': ['retaining-walls', 'excavation', 'irrigation-services', 'concrete'],
     'excavation': ['drainage', 'retaining-walls', 'concrete', 'landscape-design-build'],
     'landscape-design-build': ['hardscapes', 'retaining-walls', 'outdoor-living', 'irrigation-services'],
@@ -723,7 +724,7 @@ def render_related(slug):
     cities = ''.join(f'<a href="/{c["slug"]}">{esc(c["name"])}</a>, ' for c in CFG['cityPages'])
     return (f'<section class="section"><div class="wrap related">'
             f'<h2>Work that often goes with it</h2><ul class="related-links">{links}</ul>'
-            f'<p>We build this across Sevier County, including {cities}Pigeon Forge and Kodak.</p>'
+            f'<p>We build this across Sevier County, including {cities}Kodak and Wears Valley.</p>'
             f'</div></section>')
 
 
