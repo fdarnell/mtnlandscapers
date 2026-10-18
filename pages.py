@@ -12,8 +12,8 @@ HERO_DEFAULT = 'construction-worker-hero'
 PAGES = [
     {
         'slug': '', 'src': 'index',
-        'title': 'Landscape Design and Install Sevier Co.| Mountain Landscapers',
-        'desc': 'Elevate your Sevierville landscaping with Mountain Landscapers. Expert garden design, retaining walls, fire pits, and more. Your East Tennessee outdoor oasis awaits.',
+        'title': 'Landscape Design and Install Sevier Co. | Mountain Landscapers',
+        'desc': 'Landscape design and installation in Sevierville and Sevier County: retaining walls, patios, fire pits, drainage and planting. Free estimates from a local crew.',
         'hero': 'construction-worker-hero',
         'crumbs': [],
         'kind': 'home',
@@ -77,7 +77,7 @@ PAGES = [
     },
     {
         'slug': 'landscape-design-build', 'src': 'landscape-design-build',
-        'title': 'Landscape Design and Build | Mountain Landscapers',
+        'title': 'Landscape and Garden Design and Build | Mountain Landscapers',
         'desc': 'Landscape design and installation across Sevier County. Every project starts with a drawn plan, then we build it. Hardscape, planting, lawn and lighting. 865-280-4642',
         'kind': 'service', 'service': 'Landscape Design and Build',
         'hero': 'design-build-before-after',
@@ -93,6 +93,8 @@ PAGES = [
              'Yes. We can design the whole yard and build it in phases as it suits you. Planning it all up front means the early stages do not get in the way of the later ones.'),
             ('What does a design and build project cover?',
              'It can take in hardscape (patios, retaining walls, walkways and steps), planting, lawn from seed or sod, and features such as landscape lighting, water features and fire features.'),
+            ('Do you do garden and flower bed design?',
+             'Yes. Planting beds, shrubs and seasonal flowers are part of most design and build projects, and we will plan and plant a garden bed on its own too.'),
             ('Do you build what you design, or hand the plan to someone else?',
              'We build it. The same people handle the excavation, drainage, concrete, walls, lighting and planting, which is why water, grade and structure end up agreeing with each other.'),
         ],
@@ -160,8 +162,7 @@ PAGES = [
                         ('Call {phone}', 'TEL')],
         'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
         # Verbatim from the Google Business Profile — nothing here is written by us.
-        'reviewRating': '4.9',
-        'reviewCount': '16',
+        'reviewRating': 'GBP',
         'reviews': [
             ('Mountain Landscapers did a wonderful job on my landscaping project. The cabin sits '
              'on a ridge and I needed a creative design to give it some curb appeal. The guys '
@@ -207,7 +208,7 @@ PAGES = [
              'Yes. Every wall we install comes with a warranty, and the terms are settled with you '
              'as part of the quote.'),
         ],
-        'title': 'Retaining Wall Design and Installation | Mountain Landscapers',
+        'title': 'Retaining Wall Installation in Sevierville, TN | Mountain Landscapers',
         'desc': "Enhance your property with expert retaining wall solutions. Custom designs that harmonize with East Tennessee's climate. Contact us for functional beauty.",
         'kind': 'service', 'service': 'Retaining Wall Design and Installation',
     },
@@ -250,8 +251,8 @@ PAGES = [
     },
     {
         'slug': 'hardscapes', 'src': 'hardscapes',
-        'title': 'Hardscape Design and Install | Mountain Landscapers',
-        'desc': 'Transform your property with a professional hardscape today. Call for a quote! 865-280-4642',
+        'title': 'Hardscapes and Patios in Sevierville, TN | Mountain Landscapers',
+        'desc': 'Patios, walkways, steps and flagstone built on a base we prepare ourselves, across Sevierville and Sevier County. Free estimates: (865) 280-4642.',
         'kind': 'service', 'service': 'Hardscape Design and Construction',
         'hero': 'hardscapes-flagstone-firepit',
         'heroSub': 'Patios, walkways and steps built across Sevier County &mdash; on a base we '
@@ -300,12 +301,22 @@ PAGES = [
         'title': 'Landscaping in Sevierville, TN | Mountain Landscapers',
         'desc': 'Landscape design and installation in Sevierville, TN. Retaining walls, hardscapes, fire pits, water features and lawn care. Call (865) 280-4642 for a free quote.',
         'kind': 'city', 'city': 'Sevierville',
+        'hero': 'retaining-wall-finished-hero',
+        'heroSub': 'Retaining walls, patios, drainage and planting for Sevierville homes and '
+                   'cabins, designed and built by the same local crew.',
+        'heroActions': [('Get My Free Estimate', '#contact-form'), ('Call {phone}', 'TEL')],
+        'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
     },
     {
         'slug': 'gatlinburg', 'src': 'gatlinburg',
         'title': 'Landscaping in Gatlinburg, TN | Mountain Landscapers',
-        'desc': 'Landscape design and installation for Gatlinburg, TN properties. Retaining walls, hardscapes, fire pits and mountain-lot grading. Call (865) 280-4642.',
+        'desc': 'Retaining walls, drainage, lot clearing and planting for Gatlinburg cabins and homes on steep lots, including owners out of state. Call (865) 280-4642.',
         'kind': 'city', 'city': 'Gatlinburg',
+        'hero': 'retaining-wall-build-crew',
+        'heroSub': 'Walls, drainage and planting for steep Gatlinburg lots, with jobs run for '
+                   'owners who live out of state.',
+        'heroActions': [('Get My Free Estimate', '#contact-form'), ('Call {phone}', 'TEL')],
+        'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
     },
     {
         'slug': 'seymour', 'src': 'seymour',
