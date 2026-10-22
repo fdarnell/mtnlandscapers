@@ -854,3 +854,91 @@ ul.tl > li.lit .tl-dot { border-color: var(--amber); background: var(--amber); b
   /* steps sit on alternate sides, so each can tuck up beside the one before */
   .steps-tl ul.tl > li + li { margin-top: -90px; }
 }
+
+/* flip cards: the three green service cards turn over to a real job photo */
+.card.flip { cursor: pointer; perspective: 1200px; overflow: visible; background: transparent; box-shadow: none; padding: 0; position: relative; }
+.card.flip:hover { transform: none; box-shadow: none; }
+.flip-inner { position: relative; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.19, 1, .22, 1); border-radius: var(--radius); }
+.card.flipped .flip-inner { transform: rotateY(180deg); }
+.flip-front, .flip-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.flip-front { background: #fff; padding: 0 0 8px; position: relative; }
+.flip-back {
+  position: absolute; inset: 0; transform: rotateY(180deg); background: var(--forest-950); color: #fff;
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; padding: 20px; text-align: left;
+}
+.flip-back img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; aspect-ratio: auto; }
+.flip-back::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(19, 32, 24, .05) 20%, rgba(19, 32, 24, .9) 72%); }
+.flip-back > :not(img) { position: relative; z-index: 2; }
+.flip-text { font-size: .92rem; line-height: 1.5; }
+.flip-link { color: var(--amber); font-weight: 700; text-decoration: none; }
+.flip-link:hover { text-decoration: underline; }
+.flip-hint { display: block; text-align: center; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); margin: -2px 0 6px; }
+.flip-back .flip-hint { color: #c9d3c6; text-align: left; margin: 0; }
+.card.flip:focus-visible { outline: 3px solid var(--amber); outline-offset: 4px; border-radius: var(--radius); }
+@media (hover: hover) { .card.flip:hover .flip-front { box-shadow: var(--shadow-lg); } }
+@media (prefers-reduced-motion: reduce) { .flip-inner { transition: none; } }
+
+/* try laying a patio */
+.patio { background: var(--cream); }
+.patio-wrap { display: grid; grid-template-columns: 1fr 1.25fr; gap: 44px; align-items: center; }
+.patio-title { font-family: var(--font-display); font-weight: 600; line-height: 1.16; letter-spacing: -.012em; font-size: clamp(1.55rem, 3vw, 2.3rem); color: var(--forest); margin-bottom: .45em; }
+.patio-sub { color: var(--ink-soft); margin-bottom: 18px; }
+.patio-swatches { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.patio-sw {
+  position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
+  padding: 8px 12px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff;
+  font: 600 .85rem var(--font); color: var(--ink); cursor: pointer;
+}
+.patio-sw i { width: 18px; height: 18px; border-radius: 4px; background: conic-gradient(#585654 0 30%, #655a51 0 55%, #8a7660 0 70%, #454341 0); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15); }
+.patio-sw[aria-checked="true"] { border-color: var(--forest); box-shadow: 0 0 0 2px var(--forest) inset; }
+.patio-count { font-weight: 600; color: var(--forest); margin-bottom: 12px; }
+.patio-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.patio-actions button {
+  position: relative; overflow: hidden; min-height: 44px; padding: 8px 18px; border-radius: 999px; cursor: pointer;
+  font: 600 .88rem var(--font); border: 1.5px solid var(--forest); background: transparent; color: var(--forest);
+}
+.patio-done { margin-top: 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; font-weight: 600; color: var(--forest); }
+.patio-done[hidden] { display: none; }
+.patio-bed {
+  position: relative; aspect-ratio: 2 / 1; border-radius: 10px; overflow: hidden; touch-action: pan-y;
+  user-select: none; -webkit-user-select: none; cursor: crosshair;
+  background-color: #cdb994;
+  background-image: radial-gradient(rgba(120, 98, 66, .28) .8px, transparent 1.3px), radial-gradient(rgba(255, 248, 230, .4) .8px, transparent 1.3px),
+    radial-gradient(rgba(96, 78, 50, .22) 1.1px, transparent 1.6px), radial-gradient(rgba(140, 120, 90, .2) .7px, transparent 1.2px);
+  background-size: 7px 9px, 11px 13px, 17px 19px, 5px 6px; background-position: 0 0, 3px 5px, 9px 2px, 2px 3px;
+  box-shadow: inset 0 2px 10px rgba(60, 45, 25, .3), 0 1px 0 #fff;
+}
+.pb { position: absolute; box-sizing: border-box; border: 1px dashed rgba(90, 70, 40, .28); }
+.pb.laid {
+  border: 0; margin: 1px; width: auto; background-color: var(--c, #585654);
+  background-image: url(/img/paver3d/paver-tile.webp?v=c34bdec1b0); background-size: 192px; background-position: var(--px, 0) var(--py, 0);
+  background-blend-mode: multiply; border-radius: 3px;
+  box-shadow: inset 0 1px 0 rgba(255, 246, 228, .3), inset 0 -2px 0 rgba(30, 22, 14, .35), inset -1px 0 0 rgba(30, 22, 14, .2), 0 1px 2px rgba(30, 22, 14, .35);
+  animation: pb-drop .32s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+@keyframes pb-drop { from { transform: translateY(-14px); opacity: 0; } 60% { opacity: 1; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .pb.laid { animation: none; } }
+@media (max-width: 860px) { .patio-wrap { grid-template-columns: 1fr; gap: 24px; } }
+
+/* FAQ ink (arsenal 72): ink sweeps the open question, the plus turns */
+.faq-ink details { position: relative; }
+.faq-ink summary { position: relative; z-index: 0; isolation: isolate; transition: color .4s, padding-left .5s cubic-bezier(.19, 1, .22, 1); }
+.faq-ink summary::before {
+  content: ''; position: absolute; z-index: -1; inset: 0 -14px; border-radius: 8px; background: var(--forest);
+  transform: scaleX(0); transform-origin: left; transition: transform .6s cubic-bezier(.19, 1, .22, 1);
+}
+.faq-ink details[open] summary { color: #fff; padding-left: 10px; }
+.faq-ink details[open] summary::before { transform: scaleX(1); }
+.faq-ink details[open] summary::after { border-color: var(--amber); }
+.faq-ink details[open] > summary + * { margin-top: 14px; }
+@media (prefers-reduced-motion: reduce) { .faq-ink summary, .faq-ink summary::before { transition: none; } }
+
+/* button feedback on the home page: press-in, plus a soft ring where pressed */
+.has-pbar .btn { position: relative; overflow: hidden; }
+.has-pbar .btn:active, .patio-sw:active, .patio-actions button:active, .reel-btn:active { transform: translateY(1px) scale(.97); }
+.reel-btn { position: relative; overflow: hidden; }
+.tap-ring {
+  position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; pointer-events: none;
+  background: rgba(255, 255, 255, .55); animation: tap-ring .55s ease-out forwards;
+}
+@keyframes tap-ring { to { transform: scale(14); opacity: 0; } }

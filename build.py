@@ -246,6 +246,53 @@ STEPS_HINT = ('<div class="tl-hint" data-noedit aria-hidden="true"><span class="
               '<span class="hint-touch">Drag up to light each step</span></div>')
 
 
+# Flip cards: the back of each "green" service card on the home page shows a
+# real job photo and a sentence taken word for word from that service's page.
+CARD_BACKS = {
+    'retainingwall_2': ('retaining-wall-finished-hero', '/retaining-walls', 'See retaining walls',
+                        'We design and install retaining walls in concrete block, stone and brick across Sevier County.'),
+    'hardscapegarden': ('design-build-walkway-beds', '/landscape-design-build', 'See design &amp; build',
+                        'Every project starts with a simple drawing and a project plan, so you see the yard before we build it. The drawing is free.'),
+    'firepit_2': ('hardscapes-flagstone-firepit', '/fire-pits', 'See fire pits',
+                  'Perfect for chilly evenings, our expertly crafted fire pits add a captivating focal point to your outdoor space.'),
+}
+
+
+def _card_backs(part):
+    def add(m):
+        img = re.search(r'/img/([a-z0-9_-]+?)(?:-800)?\.webp', m.group(0))
+        back = CARD_BACKS.get(img.group(1)) if img else None
+        if not back:
+            return m.group(0)
+        photo, href, label, text = back
+        return (f'<div class="card" data-back-img="/img/{photo}-800.webp" data-back-href="{href}"'
+                f' data-back-label="{label}" data-back-text="{text}">' + m.group(0)[len('<div class="card">'):])
+    return re.sub(r'<div class="card"><img src="[^"]+"', add, part)
+
+
+PATIO_HTML = (
+    '<section class="section patio" data-noedit aria-labelledby="patio-h"><div class="wrap patio-wrap">'
+    '<div class="patio-copy">'
+    '<div class="patio-title" id="patio-h" role="heading" aria-level="2">Try Laying a Patio</div>'
+    '<div class="patio-sub">Pick a colour and lay a running-bond patio on the sand bed. '
+    '<span class="hint-mouse">Click or drag across the bed; click a paver again to lift it.</span>'
+    '<span class="hint-touch">Tap the bed, or drag sideways across it; tap a paver again to lift it.</span></div>'
+    '<div class="patio-swatches" role="radiogroup" aria-label="Paver colour">'
+    '<button type="button" class="patio-sw" role="radio" aria-checked="true" data-c="blend"><i></i>Blend</button>'
+    '<button type="button" class="patio-sw" role="radio" aria-checked="false" data-c="#585654"><i></i>Charcoal</button>'
+    '<button type="button" class="patio-sw" role="radio" aria-checked="false" data-c="#655a51"><i></i>Brown-grey</button>'
+    '<button type="button" class="patio-sw" role="radio" aria-checked="false" data-c="#8a7660"><i></i>Tan</button>'
+    '</div>'
+    '<div class="patio-count" aria-live="polite">0 pavers laid</div>'
+    '<div class="patio-actions"><button type="button" class="patio-fill">Fill the rest</button>'
+    '<button type="button" class="patio-clear">Clear</button></div>'
+    '<div class="patio-done" hidden><span>Looks good. Want the real one built?</span>'
+    '<a class="btn" href="#contact-form">Get My Free Estimate</a></div>'
+    '</div>'
+    '<div class="patio-bed" aria-hidden="true"></div>'
+    '</div></section>')
+
+
 def home_effects(body_parts):
     """Slot the three effects into the home page's body, by content markers."""
     def at(marker):
@@ -261,6 +308,13 @@ def home_effects(body_parts):
     i = at('>Where we work<')
     if i is not None:
         body_parts.insert(i, ticker_html())
+    i = at('<section class="section green">')
+    if i is not None:
+        body_parts[i] = _card_backs(body_parts[i])
+    i = at('Frequently Asked Questions')
+    if i is not None:
+        body_parts[i] = body_parts[i].replace('<div class="faq">', '<div class="faq faq-ink">', 1)
+        body_parts.insert(i, PATIO_HTML)
     return body_parts
 
 IMG_DIR = os.path.join(ROOT, 'img')
