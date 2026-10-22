@@ -267,7 +267,12 @@ def _card_backs(part):
         photo, href, label, text = back
         return (f'<div class="card" data-back-img="/img/{photo}-800.webp" data-back-href="{href}"'
                 f' data-back-label="{label}" data-back-text="{text}">' + m.group(0)[len('<div class="card">'):])
-    return re.sub(r'<div class="card"><img src="[^"]+"', add, part)
+    part = re.sub(r'<div class="card"><img src="[^"]+"', add, part)
+    # reserve the hint line from first paint (hidden until the script turns
+    # the card into a flip card) so nothing below moves when it does
+    hint = ('<span class="flip-hint" aria-hidden="true"><span class="hint-mouse">Click to flip</span>'
+            '<span class="hint-touch">Tap to flip</span></span>')
+    return re.sub(r'(<div class="card" data-back-img="[^"]+"[^>]*>.*?</p>)', lambda m: m.group(1) + hint, part, flags=re.S)
 
 
 PATIO_HTML = (
@@ -293,6 +298,25 @@ PATIO_HTML = (
     '</div></section>')
 
 
+def _step_title(text):
+    """'1. Consultation and Site Evaluation Our process begins...' ->
+    the number and the title wrapped for the timeline, every word unchanged.
+    The title is the run of capitalised words that ends where a sentence
+    starts (a capitalised word followed by a lower-case one)."""
+    m = re.match(r'\s*(\d+\.)\s+', text)
+    if not m:
+        return text
+    words = text[m.end():].split(' ')
+    minor = {'and', 'of', 'the', '&amp;', 'to', 'for', 'in'}
+    end = next((i for i in range(len(words) - 1)
+                if words[i][:1].isupper() and words[i + 1][:1].islower() and words[i + 1] not in minor), -1)
+    if end < 1:
+        return text
+    title = ' '.join(words[:end])
+    rest = text[m.end() + len(title):]
+    return f'<span class="tl-num">{m.group(1)} </span><strong class="tl-title">{title}</strong>{rest}'
+
+
 def home_effects(body_parts):
     """Slot the three effects into the home page's body, by content markers."""
     def at(marker):
@@ -301,6 +325,7 @@ def home_effects(body_parts):
     if i is not None:
         part = body_parts[i].replace('<section class="section"', '<section class="section steps-tl"', 1)
         part = re.sub(r'(What to Expect:?</h2>)', lambda m: m.group(1) + STEPS_HINT, part, count=1)
+        part = re.sub(r'<li>([^<]+)</li>', lambda m: f'<li>{_step_title(m.group(1))}</li>', part)
         body_parts[i] = part
     i = at('Why does Sevier County choose us?')
     if i is not None:

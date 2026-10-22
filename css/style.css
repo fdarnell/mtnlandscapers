@@ -807,32 +807,32 @@ ul.checks li::before {
 
 /* 71 timeline spine: the four "What to Expect" steps */
 .tl-hint { margin: -.2em 0 1.4em; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
-.steps-tl ul.tl { position: relative; list-style: none; padding: 10px 0 0; margin: 0; }
+.steps-tl ul { position: relative; list-style: none; padding: 10px 0 0; margin: 0; }
 .tl-spine { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--line); transform: translateX(-50%); }
 .tl-spine i { position: absolute; inset: 0; background: var(--amber); transform-origin: top; transform: scaleY(0); }
-.steps-tl ul.tl > li {
+.steps-tl ul > li {
   position: relative; width: 46%; padding: 18px 0 26px; margin: 0;
   color: var(--ink-soft); line-height: 1.7;
 }
-.steps-tl ul.tl > li:nth-of-type(odd) { margin-right: auto; text-align: right; padding-right: 36px; }
-.steps-tl ul.tl > li:nth-of-type(even) { margin-left: 54%; padding-left: 36px; }
+.steps-tl ul > li:nth-of-type(odd) { margin-right: auto; text-align: right; padding-right: 36px; }
+.steps-tl ul > li:nth-of-type(even) { margin-left: 54%; padding-left: 36px; }
 .tl-num { display: block; font-family: var(--font-display); font-size: clamp(2rem, 3.4vw, 2.8rem); line-height: 1; color: var(--amber); font-weight: 600; }
 .tl-title { display: block; margin: 8px 0 4px; color: var(--forest); font-size: 1.12rem; }
 .tl-dot {
   position: absolute; top: 30px; width: 14px; height: 14px; border-radius: 50%;
   background: #fff; border: 2.5px solid var(--line); transition: background .5s, border-color .5s, box-shadow .5s;
 }
-.steps-tl ul.tl > li:nth-of-type(odd) .tl-dot { right: -7px; }
-.steps-tl ul.tl > li:nth-of-type(even) .tl-dot { left: -7px; }
-.tl-live ul.tl > li { opacity: .3; transform: translateY(24px); transition: opacity .7s cubic-bezier(.19, 1, .22, 1), transform .7s cubic-bezier(.19, 1, .22, 1); }
-.tl-live ul.tl > li.lit, .tl-still ul.tl > li { opacity: 1; transform: none; }
-ul.tl > li.lit .tl-dot { border-color: var(--amber); background: var(--amber); box-shadow: 0 0 0 6px rgba(217, 158, 43, .18); }
+.steps-tl ul > li:nth-of-type(odd) .tl-dot { right: -7px; }
+.steps-tl ul > li:nth-of-type(even) .tl-dot { left: -7px; }
+.tl-live ul > li { opacity: .3; transform: translateY(24px); transition: opacity .7s cubic-bezier(.19, 1, .22, 1), transform .7s cubic-bezier(.19, 1, .22, 1); }
+.tl-live ul > li.lit, .tl-still ul > li { opacity: 1; transform: none; }
+.steps-tl ul > li.lit .tl-dot { border-color: var(--amber); background: var(--amber); box-shadow: 0 0 0 6px rgba(217, 158, 43, .18); }
 @media (max-width: 760px) {
   .tl-spine { left: 7px; }
-  .steps-tl ul.tl > li, .steps-tl ul.tl > li:nth-of-type(odd), .steps-tl ul.tl > li:nth-of-type(even) {
+  .steps-tl ul > li, .steps-tl ul > li:nth-of-type(odd), .steps-tl ul > li:nth-of-type(even) {
     width: 100%; margin: 0; text-align: left; padding: 14px 0 20px 36px;
   }
-  .steps-tl ul.tl > li:nth-of-type(odd) .tl-dot, .steps-tl ul.tl > li:nth-of-type(even) .tl-dot { left: 0; right: auto; }
+  .steps-tl ul > li:nth-of-type(odd) .tl-dot, .steps-tl ul > li:nth-of-type(even) .tl-dot { left: 0; right: auto; }
 }
 
 /* 63 ticker tape: towns we work in, services we do */
@@ -852,7 +852,7 @@ ul.tl > li.lit .tl-dot { border-color: var(--amber); background: var(--amber); b
 .ticker.small b { color: var(--amber); font-size: .6rem; margin: 0 1.4em; font-weight: 400; }
 @media (min-width: 761px) {
   /* steps sit on alternate sides, so each can tuck up beside the one before */
-  .steps-tl ul.tl > li + li { margin-top: -90px; }
+  .steps-tl ul > li + li { margin-top: -90px; }
 }
 
 /* flip cards: the three green service cards turn over to a real job photo */
@@ -874,6 +874,7 @@ ul.tl > li.lit .tl-dot { border-color: var(--amber); background: var(--amber); b
 .flip-link:hover { text-decoration: underline; }
 .flip-hint { display: block; text-align: center; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); margin: -2px 0 6px; }
 .flip-back .flip-hint { color: #c9d3c6; text-align: left; margin: 0; }
+.card:not(.flip) .flip-hint { visibility: hidden; }
 .card.flip:focus-visible { outline: 3px solid var(--amber); outline-offset: 4px; border-radius: var(--radius); }
 @media (hover: hover) { .card.flip:hover .flip-front { box-shadow: var(--shadow-lg); } }
 @media (prefers-reduced-motion: reduce) { .flip-inner { transition: none; } }

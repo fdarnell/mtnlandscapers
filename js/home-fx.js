@@ -260,9 +260,11 @@ function flipCards() {
     const inner = document.createElement('div'); inner.className = 'flip-inner';
     const front = document.createElement('div'); front.className = 'flip-front';
     while (card.firstChild) front.appendChild(card.firstChild);
-    const hint = document.createElement('span'); hint.className = 'flip-hint'; hint.setAttribute('aria-hidden', 'true');
-    hint.innerHTML = '<span class="hint-mouse">Click to flip</span><span class="hint-touch">Tap to flip</span>';
-    front.appendChild(hint);
+    if (!front.querySelector('.flip-hint')) {             // build.py normally reserves it
+      const hint = document.createElement('span'); hint.className = 'flip-hint'; hint.setAttribute('aria-hidden', 'true');
+      hint.innerHTML = '<span class="hint-mouse">Click to flip</span><span class="hint-touch">Tap to flip</span>';
+      front.appendChild(hint);
+    }
     const back = document.createElement('div'); back.className = 'flip-back'; back.setAttribute('aria-hidden', 'true');
     const txt = document.createElement('span'); txt.className = 'flip-text'; txt.textContent = card.dataset.backText;
     const a = document.createElement('a'); a.className = 'flip-link'; a.href = card.dataset.backHref; a.tabIndex = -1;
