@@ -174,8 +174,10 @@ PAVER3D = ('<div class="paver3d" aria-hidden="true"'
            ' data-albedo="/img/paver3d/paver-albedo.webp"'
            ' data-normal="/img/paver3d/paver-normal.webp"'
            ' data-orm="/img/paver3d/paver-orm.webp">'
-           '<img class="paver3d-still" src="/img/paver3d/paver-stack-still.webp"'
-           ' width="922" height="860" alt="" loading="lazy" decoding="async">'
+           '<img class="paver3d-still" data-src="/img/paver3d/paver-stack-still.webp"'
+           ' width="922" height="860" alt="" decoding="async">'
+           '<noscript><img class="paver3d-still" src="/img/paver3d/paver-stack-still.webp"'
+           ' width="922" height="860" alt="" loading="lazy"></noscript>'
            '</div>')
 FX_V = asset_hash('js/home-fx.js')
 HOME_FX = (f'<script type="module" src="/js/home-paver.js?v={HP_V}"></script>\n'

@@ -753,6 +753,7 @@ ul.checks li::before {
   transition: opacity .7s ease;
 }
 .paver3d-still { object-fit: contain; }
+.paver3d-still:not([src]) { visibility: hidden; }
 .paver3d canvas { opacity: 0; }
 .paver3d.is-live canvas { opacity: 1; }
 .paver3d.is-live .paver3d-still { opacity: 0; }

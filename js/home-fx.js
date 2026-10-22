@@ -201,8 +201,10 @@ function ticker() {
     const track = t.querySelector('.tk-track');
     const unit = track.innerHTML;
     // repeat the content until the track is over twice the screen width
-    let guard = 0;
-    while (track.scrollWidth < Math.max(innerWidth, 1600) * 2.2 && guard++ < 30) track.insertAdjacentHTML('beforeend', unit);
+    // (measured once, then written in one go: no layout thrash)
+    const w = track.firstElementChild.getBoundingClientRect().width || 600;
+    const copies = Math.min(30, Math.ceil((Math.max(innerWidth, 1600) * 2.2) / w));
+    if (copies > 1) track.insertAdjacentHTML('beforeend', unit.repeat(copies - 1));
     const r = { el: track, x: 0, half: track.scrollWidth / 2, speed: +t.dataset.speed, dir: +t.dataset.dir, cur: +t.dataset.speed, hover: false };
     if (CAN_HOVER) {
       t.addEventListener('mouseenter', () => { r.hover = true; });
@@ -228,6 +230,18 @@ function ticker() {
   whileVisible(band, () => { on = true; last = 0; if (!raf) raf = requestAnimationFrame(tick); }, () => { on = false; });
 }
 
-reel();
-steps();
-ticker();
+// Nothing here runs before the first paint: each effect starts only when its
+// section comes within ~800px of the screen (IntersectionObserver callbacks
+// arrive after layout), so a phone on a slow connection paints the hero
+// exactly as fast as before.
+function whenNear(sel, fn) {
+  const el = document.querySelector(sel);
+  if (!el) return;
+  const io = new IntersectionObserver((ents) => {
+    if (ents.some((e) => e.isIntersecting)) { io.disconnect(); fn(); }
+  }, { rootMargin: '800px 0px' });
+  io.observe(el);
+}
+whenNear('.reel', reel);
+whenNear('.steps-tl', steps);
+whenNear('.ticker-band', ticker);

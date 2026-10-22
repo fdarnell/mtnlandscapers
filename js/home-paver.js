@@ -191,7 +191,9 @@ function paverBar() {
   addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { layout(); update(); }, 120); });
 }
 
-paverBar();
+// after the first paint, so the bar never delays the hero (its sand strip is
+// plain CSS until then)
+requestAnimationFrame(() => requestAnimationFrame(paverBar));
 
 /* ------------------------------------------------------------------ */
 /* 3D paver stack                                                      */
@@ -205,10 +207,25 @@ function whenIdle(fn) {
   else setTimeout(fn, 300);
 }
 
+// The still render only downloads when it is about to be needed: for
+// reduced motion when the spot nears the screen, otherwise at the same moment
+// three.js starts loading (it covers the gap while the 3D arrives).
+function showStill() {
+  const im = spot && spot.querySelector('img.paver3d-still[data-src]');
+  if (im && !im.getAttribute('src')) im.src = im.dataset.src;
+}
+
+if (spot && REDUCE) {
+  const io = new IntersectionObserver((ents) => {
+    if (ents.some((e) => e.isIntersecting)) { io.disconnect(); showStill(); }
+  }, { rootMargin: '400px 0px' });
+  io.observe(spot);
+}
+
 if (spot && !REDUCE) {
   const arm = () => whenIdle(() => {
     const io = new IntersectionObserver((ents) => {
-      if (ents.some((e) => e.isIntersecting)) { io.disconnect(); boot().catch(() => {}); }
+      if (ents.some((e) => e.isIntersecting)) { io.disconnect(); showStill(); boot().catch(() => {}); }
     }, { rootMargin: '0px 0px 200px 0px' });   // only once it is about to scroll into view
     io.observe(spot);
   });
