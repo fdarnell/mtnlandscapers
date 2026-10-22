@@ -162,6 +162,186 @@ EDIT_BOOTSTRAP = (
 )
 
 
+# Home page only: the paver progress bar fixed along the top of the window,
+# and the 3D paver stack under the "Got Questions?" card. Both are drawn by
+# js/home-paver.js; three.js loads only after the page has loaded and the
+# stack is near the screen. The still photo is what visitors with reduced
+# motion (or no WebGL / no JavaScript) see. The data-* texture URLs are
+# cache-stamped by stamp_assets.py like any other image reference.
+HP_V = asset_hash('js/home-paver.js')
+PBAR = '<div class="pbar" aria-hidden="true"></div>\n'
+PAVER3D = ('<div class="paver3d" aria-hidden="true"'
+           ' data-albedo="/img/paver3d/paver-albedo.webp"'
+           ' data-normal="/img/paver3d/paver-normal.webp"'
+           ' data-orm="/img/paver3d/paver-orm.webp">'
+           '<img class="paver3d-still" data-src="/img/paver3d/paver-stack-still.webp"'
+           ' width="922" height="860" alt="" decoding="async">'
+           '<noscript><img class="paver3d-still" src="/img/paver3d/paver-stack-still.webp"'
+           ' width="922" height="860" alt="" loading="lazy"></noscript>'
+           '</div>')
+FX_V = asset_hash('js/home-fx.js')
+HOME_FX = (f'<script type="module" src="/js/home-paver.js?v={HP_V}"></script>\n'
+           f'<script type="module" src="/js/home-fx.js?v={FX_V}"></script>\n')
+
+# Three Prompt Arsenal effects on the home page (js/home-fx.js). The blocks
+# use no h1-h6/p/li tags (site_edits counts those even under data-noedit), so
+# the portal editor's data-e keys on the rest of the page do not shift. Photos are the crew's own job photos (see the commits that added
+# them); every slide links to the service it shows.
+REEL_SLIDES = [
+    ('hardscapes-flagstone-firepit', 'Flagstone patio &amp; fire pit', 'Hardscapes', '/hardscapes',
+     'Flagstone patio with a stone fire pit ring and chairs on a mountain deck'),
+    ('retaining-wall-build-crew', 'Setting a block wall', 'Retaining walls', '/retaining-walls',
+     'Crew and track loader setting the base course of a block retaining wall'),
+    ('retaining-wall-finished-hero', 'Block wall &amp; timber steps', 'Retaining walls', '/retaining-walls',
+     'Finished block retaining wall with timber and gravel steps on a wooded slope'),
+    ('design-build-yard-in-progress', 'Back yard, mid-build', 'Design &amp; build', '/landscape-design-build',
+     'A back yard part-way through a staged build with a retaining wall, putting green and new beds'),
+    ('concrete-stamped-walkway-cabin', 'Stamped walkway', 'Concrete', '/concrete',
+     'Stamped and colored concrete walkway curving past a cabin, with a river rock border'),
+    ('concrete-slab-prep-rebar', 'Steel on a stone base', 'Concrete', '/concrete',
+     'Reinforcing steel tied in a grid over a compacted stone base inside formed edges, before the pour'),
+    ('design-build-walkway-beds', 'Walkway &amp; new beds', 'Design &amp; build', '/landscape-design-build',
+     'Curving walkway edged in river rock beside a newly planted mulch bed and block wall'),
+    ('drainage-french-drain-run', 'French drain run', 'Drainage', '/drainage',
+     "Completed French drain run with filter fabric, gravel and pipe tied into the building's downspout"),
+    ('concrete-walkway-finished', 'Fresh walkway pour', 'Concrete', '/concrete',
+     'Crew finishing a new concrete walkway between brick pillars'),
+]
+
+
+def reel_html():
+    slides = ''.join(
+        f'<a class="reel-slide" href="{href}"><span class="reel-shot">'
+        f'<img src="/img/{img}-800.webp" alt="{esc(alt)}" loading="lazy" decoding="async" draggable="false"></span>'
+        f'<span class="reel-meta"><span class="reel-name">{name}</span><span class="reel-tag">{tag}</span></span></a>'
+        for img, name, tag, href, alt in REEL_SLIDES)
+    return (
+        '<section class="section reel" data-noedit aria-labelledby="reel-h">'
+        '<div class="wrap reel-head"><div class="reel-title" id="reel-h" role="heading" aria-level="2">Work From Our Crews</div>'
+        '<div class="reel-hint"><span class="hint-mouse">Drag to browse &mdash; it keeps rolling. Click a photo to see that service.</span>'
+        '<span class="hint-touch">Swipe sideways to browse &middot; tap a photo to see that service</span></div></div>'
+        f'<div class="reel-vp"><div class="reel-belt">{slides}</div></div>'
+        '<div class="wrap reel-rails">'
+        '<button class="reel-btn" type="button" data-dir="-1" aria-label="Previous photos">&larr;</button>'
+        '<span class="reel-track" aria-hidden="true"><i></i></span>'
+        '<button class="reel-btn" type="button" data-dir="1" aria-label="Next photos">&rarr;</button>'
+        '</div></section>')
+
+
+def ticker_html():
+    towns = CFG.get('serviceArea') or []
+    big = ''.join(f'<em>{esc(t)}</em><b>&#8212;</b>' if i % 2 else f'{esc(t)}<b>&#8212;</b>'
+                  for i, t in enumerate(towns))
+    services = ['Retaining Walls', 'Patios', 'Hardscapes', 'Concrete', 'Fire Pits', 'Water Features',
+                'Outdoor Lighting', 'Drainage', 'Excavation', 'Irrigation', 'Lawn Care', 'Landscape Design &amp; Build']
+    small = ''.join(f'{s}<b>&#9670;</b>' for s in services)
+    return (
+        '<div class="ticker-band" data-noedit aria-hidden="true">'
+        f'<div class="ticker big" data-speed="34" data-dir="1"><div class="tk-track"><span>{big}</span></div></div>'
+        f'<div class="ticker small" data-speed="26" data-dir="-1"><div class="tk-track"><span>{small}</span></div></div>'
+        '</div>')
+
+
+STEPS_HINT = ('<div class="tl-hint" data-noedit aria-hidden="true"><span class="hint-mouse">Scroll to follow the four steps</span>'
+              '<span class="hint-touch">Drag up to light each step</span></div>')
+
+
+# Flip cards: the back of each "green" service card on the home page shows a
+# real job photo and a sentence taken word for word from that service's page.
+CARD_BACKS = {
+    'retainingwall_2': ('retaining-wall-finished-hero', '/retaining-walls', 'See retaining walls',
+                        'We design and install retaining walls in concrete block, stone and brick across Sevier County.'),
+    'hardscapegarden': ('design-build-walkway-beds', '/landscape-design-build', 'See design &amp; build',
+                        'Every project starts with a simple drawing and a project plan, so you see the yard before we build it. The drawing is free.'),
+    'firepit_2': ('hardscapes-flagstone-firepit', '/fire-pits', 'See fire pits',
+                  'Perfect for chilly evenings, our expertly crafted fire pits add a captivating focal point to your outdoor space.'),
+}
+
+
+def _card_backs(part):
+    def add(m):
+        img = re.search(r'/img/([a-z0-9_-]+?)(?:-800)?\.webp', m.group(0))
+        back = CARD_BACKS.get(img.group(1)) if img else None
+        if not back:
+            return m.group(0)
+        photo, href, label, text = back
+        return (f'<div class="card" data-back-img="/img/{photo}-800.webp" data-back-href="{href}"'
+                f' data-back-label="{label}" data-back-text="{text}">' + m.group(0)[len('<div class="card">'):])
+    part = re.sub(r'<div class="card"><img src="[^"]+"', add, part)
+    # reserve the hint line from first paint (hidden until the script turns
+    # the card into a flip card) so nothing below moves when it does
+    hint = ('<span class="flip-hint" aria-hidden="true"><span class="hint-mouse">Click to flip</span>'
+            '<span class="hint-touch">Tap to flip</span></span>')
+    return re.sub(r'(<div class="card" data-back-img="[^"]+"[^>]*>.*?</p>)', lambda m: m.group(1) + hint, part, flags=re.S)
+
+
+PATIO_HTML = (
+    '<section class="section patio" data-noedit aria-labelledby="patio-h"><div class="wrap patio-wrap">'
+    '<div class="patio-copy">'
+    '<div class="patio-title" id="patio-h" role="heading" aria-level="2">Try Laying a Patio</div>'
+    '<div class="patio-sub">Pick a colour and lay a running-bond patio on the sand bed. '
+    '<span class="hint-mouse">Click or drag across the bed; click a paver again to lift it.</span>'
+    '<span class="hint-touch">Tap the bed, or drag sideways across it; tap a paver again to lift it.</span></div>'
+    '<div class="patio-swatches" role="radiogroup" aria-label="Paver colour">'
+    '<button type="button" class="patio-sw" role="radio" aria-checked="true" data-c="blend"><i></i>Blend</button>'
+    '<button type="button" class="patio-sw" role="radio" aria-checked="false" data-c="#585654"><i></i>Charcoal</button>'
+    '<button type="button" class="patio-sw" role="radio" aria-checked="false" data-c="#655a51"><i></i>Brown-grey</button>'
+    '<button type="button" class="patio-sw" role="radio" aria-checked="false" data-c="#8a7660"><i></i>Tan</button>'
+    '</div>'
+    '<div class="patio-count" aria-live="polite">0 pavers laid</div>'
+    '<div class="patio-actions"><button type="button" class="patio-fill">Fill the rest</button>'
+    '<button type="button" class="patio-clear">Clear</button></div>'
+    '<div class="patio-done" hidden><span>Looks good. Want the real one built?</span>'
+    '<a class="btn" href="#contact-form">Get My Free Estimate</a></div>'
+    '</div>'
+    '<div class="patio-bed" aria-hidden="true"></div>'
+    '</div></section>')
+
+
+def _step_title(text):
+    """'1. Consultation and Site Evaluation Our process begins...' ->
+    the number and the title wrapped for the timeline, every word unchanged.
+    The title is the run of capitalised words that ends where a sentence
+    starts (a capitalised word followed by a lower-case one)."""
+    m = re.match(r'\s*(\d+\.)\s+', text)
+    if not m:
+        return text
+    words = text[m.end():].split(' ')
+    minor = {'and', 'of', 'the', '&amp;', 'to', 'for', 'in'}
+    end = next((i for i in range(len(words) - 1)
+                if words[i][:1].isupper() and words[i + 1][:1].islower() and words[i + 1] not in minor), -1)
+    if end < 1:
+        return text
+    title = ' '.join(words[:end])
+    rest = text[m.end() + len(title):]
+    return f'<span class="tl-num">{m.group(1)} </span><strong class="tl-title">{title}</strong>{rest}'
+
+
+def home_effects(body_parts):
+    """Slot the three effects into the home page's body, by content markers."""
+    def at(marker):
+        return next((i for i, part in enumerate(body_parts) if marker in part), None)
+    i = at('Here\'s What to Expect')
+    if i is not None:
+        part = body_parts[i].replace('<section class="section"', '<section class="section steps-tl"', 1)
+        part = re.sub(r'(What to Expect:?</h2>)', lambda m: m.group(1) + STEPS_HINT, part, count=1)
+        part = re.sub(r'<li>([^<]+)</li>', lambda m: f'<li>{_step_title(m.group(1))}</li>', part)
+        body_parts[i] = part
+    i = at('Why does Sevier County choose us?')
+    if i is not None:
+        body_parts.insert(i, reel_html())
+    i = at('>Where we work<')
+    if i is not None:
+        body_parts.insert(i, ticker_html())
+    i = at('<section class="section green">')
+    if i is not None:
+        body_parts[i] = _card_backs(body_parts[i])
+    i = at('Frequently Asked Questions')
+    if i is not None:
+        body_parts[i] = body_parts[i].replace('<div class="faq">', '<div class="faq faq-ink">', 1)
+        body_parts.insert(i, PATIO_HTML)
+    return body_parts
+
 IMG_DIR = os.path.join(ROOT, 'img')
 _HAVE_IMG = set(os.listdir(IMG_DIR)) if os.path.isdir(IMG_DIR) else set()
 
@@ -221,9 +401,9 @@ def esc(s):
 # --------------------------------------------------------------------------
 ICONS = {
     'facebook': '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.12 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.96h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>',
-    'x': '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.584-6.64 7.584H.46l8.6-9.83L0 1.15h7.6l5.24 6.93zm-1.29 19.5h2.04L6.49 3.24H4.3z"/></svg>',
     'youtube': '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.08 0 12 0 12s0 3.92.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.92 24 12 24 12s0-3.92-.5-5.81zM9.55 15.57V8.43L15.82 12z"/></svg>',
-    'linkedin': '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>',
+    'tiktok': '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>',
+    'instagram': '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.71-2.13 1.38A5.88 5.88 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.71 1.46 1.38 2.13a5.88 5.88 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 0 0 2.13-1.38 5.88 5.88 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.88 5.88 0 0 0-1.38-2.13A5.88 5.88 0 0 0 19.86.63C19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>',
     'phone': '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02z"/></svg>',
     'calendar': '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14zM5 8V6h14v2z"/></svg>',
     'menu': '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>',
@@ -259,13 +439,24 @@ def rating_badge():
             f'<span><strong>{esc(g["rating"])}</strong> &middot; {esc(g["count"])} <span class="stars-word">Google </span>reviews</span></a>')
 
 
-def topbar():
+# The business's own social profiles, in display order: (site.config.json key, label).
+# The top bar, the footer and the schema sameAs list all read this, so a profile
+# added or dropped here changes everywhere at once. Each URL was checked by hand
+# against the profile itself (name, Sevier County, phone or mtnlandscapers.com).
+SOCIAL_PROFILES = [('facebook', 'Facebook'), ('youtube', 'YouTube'),
+                   ('tiktok', 'TikTok'), ('instagram', 'Instagram')]
+
+
+def social_links():
     s = CFG['social']
-    links = ''.join(
-        f'<a href="{esc(s[k])}" target="_blank" rel="noopener" aria-label="{lbl}">{ICONS[i]}</a>'
-        for k, i, lbl in [('facebook', 'facebook', 'Facebook'), ('twitter', 'x', 'X (Twitter)'),
-                          ('youtube', 'youtube', 'YouTube'), ('linkedin', 'linkedin', 'LinkedIn')]
-    )
+    return ''.join(
+        f'<a href="{esc(s[k])}" target="_blank" rel="noopener" '
+        f'aria-label="{esc(NAME)} on {lbl} (opens in a new tab)">{ICONS[k]}</a>'
+        for k, lbl in SOCIAL_PROFILES if s.get(k))
+
+
+def topbar():
+    links = social_links()
     return f'''<div class="topbar">
 <div class="wrap">
 {rating_badge()}
@@ -333,7 +524,6 @@ def cta_band():
 
 
 def footer(quote_href='/contact'):
-    s = CFG['social']
     navlis = ''.join(
         f'<li><a href="{esc(CFG["clientPortal"] if h == "PORTAL" else h)}"'
         f'{" target=_blank rel=noopener" if h == "PORTAL" else ""}>{esc(l)}</a></li>'
@@ -351,10 +541,7 @@ def footer(quote_href='/contact'):
 <div>
 <h2>{esc(NAME)}</h2>
 <p class="footer-tag">{esc(CFG['tagline'])}</p>
-<div class="foot-social">
-<a href="{esc(s['facebook'])}" target="_blank" rel="noopener" aria-label="Facebook">{ICONS['facebook']}</a>
-<a class="x" href="{esc(s['twitter'])}" target="_blank" rel="noopener" aria-label="X (Twitter)">{ICONS['x']}</a>
-</div>
+<nav class="foot-social" aria-label="{esc(NAME)} on social media">{social_links()}</nav>
 <a class="footer-blogcard" href="{esc(fp['href'])}">
 <img src="{img_src(fp["img"])}" width="260" height="347" loading="lazy" alt="Leaves being cleared from a lawn in autumn">
 <span class="fbc-body"><strong>{esc(fp['title'])}</strong><span>{esc(fp['date'])}</span></span>
@@ -788,7 +975,7 @@ def business_node():
         # Google Business Profile first: it is the entity anchor search and AI
         # engines use to match this page to the real-world business.
         'sameAs': [CFG['social'][k] for k in
-                   ('googleBusinessProfile', 'facebook', 'twitter', 'youtube', 'linkedin')
+                   ['googleBusinessProfile'] + [k for k, _ in SOCIAL_PROFILES]
                    if CFG['social'].get(k)],
     }
 
@@ -959,7 +1146,9 @@ def render_page(page):
             body_parts.append(
                 f'<section class="section"><div class="wrap"><div class="intro">'
                 f'<div class="intro-copy">{render_blocks(copy)}</div>'
-                f'<div>{cta_card("Got Questions?", quote_href=quote_href)}</div>'
+                f'<div{" class=\"intro-aside\"" if page.get("kind") == "home" else ""}>'
+                f'{cta_card("Got Questions?", quote_href=quote_href)}'
+                f'{PAVER3D if page.get("kind") == "home" else ""}</div>'
                 f'</div></div></section>')
             continue
         html_row = render_row(row, i, tint, kind=page.get('kind'))
@@ -982,8 +1171,6 @@ def render_page(page):
         body_parts.append(
             f'<section class="share-row" aria-label="Share this article"><div class="wrap">'
             f'<a href="https://www.facebook.com/sharer/sharer.php?u={enc}" target="_blank" rel="noopener" aria-label="Share on Facebook">{ICONS["facebook"]}</a>'
-            f'<a href="https://twitter.com/intent/tweet?url={enc}" target="_blank" rel="noopener" aria-label="Share on X">{ICONS["x"]}</a>'
-            f'<a href="https://www.linkedin.com/sharing/share-offsite/?url={enc}" target="_blank" rel="noopener" aria-label="Share on LinkedIn">{ICONS["linkedin"]}</a>'
             f'<a href="mailto:?body={enc}" aria-label="Share by email">{ICONS["mail"]}</a>'
             f'</div></section>')
 
@@ -1054,14 +1241,18 @@ def render_page(page):
             f'<div class="formcard calcard">{cal_inner}</div>'
             f'</div></section>')
 
+    if page.get('kind') == 'home':
+        body_parts = home_effects(body_parts)
+
     hero_cls = 'hero' if page.get('kind') in ('home', 'service', 'city') else 'hero compact'
     hero_extra = hero_lead_in(page)
     ld = jsonld_for(page, trail)
 
     robots_meta = ('\n<meta name="robots" content="noindex, follow">'
                    if page.get('noindex') else '')
+    is_home = page.get('kind') == 'home'
     return f'''<!DOCTYPE html>
-<html lang="en">
+<html lang="en"{' class="has-pbar"' if is_home else ''}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1090,7 +1281,7 @@ def render_page(page):
 <script type="application/ld+json">{ld}</script>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+{PBAR if is_home else ''}<a class="skip" href="#main">Skip to content</a>
 {topbar()}
 {header(path_for(slug), quote_href)}
 <main id="main">
@@ -1104,7 +1295,7 @@ def render_page(page):
 </main>
 {footer(quote_href)}
 <script src="/js/main.js?v={JS_V}" defer></script>
-{EDIT_BOOTSTRAP}
+{HOME_FX if is_home else ''}{EDIT_BOOTSTRAP}
 <script defer src="/_vercel/insights/script.js"></script>{tags(slug)}
 </body>
 </html>
