@@ -162,6 +162,23 @@ EDIT_BOOTSTRAP = (
 )
 
 
+# Home page only: the paver progress bar fixed along the top of the window,
+# and the 3D paver stack under the "Got Questions?" card. Both are drawn by
+# js/home-paver.js; three.js loads only after the page has loaded and the
+# stack is near the screen. The still photo is what visitors with reduced
+# motion (or no WebGL / no JavaScript) see. The data-* texture URLs are
+# cache-stamped by stamp_assets.py like any other image reference.
+HP_V = asset_hash('js/home-paver.js')
+PBAR = '<div class="pbar" aria-hidden="true"></div>\n'
+PAVER3D = ('<div class="paver3d" aria-hidden="true"'
+           ' data-albedo="/img/paver3d/paver-albedo.webp"'
+           ' data-normal="/img/paver3d/paver-normal.webp"'
+           ' data-orm="/img/paver3d/paver-orm.webp">'
+           '<img class="paver3d-still" src="/img/paver3d/paver-stack-still.webp"'
+           ' width="922" height="860" alt="" loading="lazy" decoding="async">'
+           '</div>')
+HOME_FX = f'<script type="module" src="/js/home-paver.js?v={HP_V}"></script>\n'
+
 IMG_DIR = os.path.join(ROOT, 'img')
 _HAVE_IMG = set(os.listdir(IMG_DIR)) if os.path.isdir(IMG_DIR) else set()
 
@@ -959,7 +976,9 @@ def render_page(page):
             body_parts.append(
                 f'<section class="section"><div class="wrap"><div class="intro">'
                 f'<div class="intro-copy">{render_blocks(copy)}</div>'
-                f'<div>{cta_card("Got Questions?", quote_href=quote_href)}</div>'
+                f'<div{" class=\"intro-aside\"" if page.get("kind") == "home" else ""}>'
+                f'{cta_card("Got Questions?", quote_href=quote_href)}'
+                f'{PAVER3D if page.get("kind") == "home" else ""}</div>'
                 f'</div></div></section>')
             continue
         html_row = render_row(row, i, tint, kind=page.get('kind'))
@@ -1060,8 +1079,9 @@ def render_page(page):
 
     robots_meta = ('\n<meta name="robots" content="noindex, follow">'
                    if page.get('noindex') else '')
+    is_home = page.get('kind') == 'home'
     return f'''<!DOCTYPE html>
-<html lang="en">
+<html lang="en"{' class="has-pbar"' if is_home else ''}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1090,7 +1110,7 @@ def render_page(page):
 <script type="application/ld+json">{ld}</script>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+{PBAR if is_home else ''}<a class="skip" href="#main">Skip to content</a>
 {topbar()}
 {header(path_for(slug), quote_href)}
 <main id="main">
@@ -1104,7 +1124,7 @@ def render_page(page):
 </main>
 {footer(quote_href)}
 <script src="/js/main.js?v={JS_V}" defer></script>
-{EDIT_BOOTSTRAP}
+{HOME_FX if is_home else ''}{EDIT_BOOTSTRAP}
 <script defer src="/_vercel/insights/script.js"></script>{tags(slug)}
 </body>
 </html>

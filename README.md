@@ -17,6 +17,9 @@ site.config.json    business facts: phone, address, hours, socials
 serve.py            local preview server
 css/style.css       one stylesheet for the whole site (~16 KB)
 js/main.js          nav toggle + dropdowns (~2 KB), nothing else
+js/home-paver.js    home page only: paver progress bar + 3D paver stack
+js/vendor/          self-hosted three.js 0.160.0 (loaded only by home-paver.js)
+img/paver3d/        3D paver textures (CC0, see SOURCE.txt) + still render
 img/                every photo, converted to WebP at 1600px and 800px
 fonts/              Poppins, self-hosted
 screenshots/        desktop + mobile captures of the built pages

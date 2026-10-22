@@ -730,3 +730,42 @@ ul.checks li::before {
 @media (max-width: 640px) {
   .g-card, .g-opt { padding: 18px; }
 }
+
+/* ---------- home: paver progress bar + 3D paver stack ---------- */
+/* The bar is fixed to the very top of the window. The page is pushed down by
+   exactly its height from the first paint (so nothing shifts when the script
+   arrives) and the sticky header docks just under it. */
+.has-pbar { --pbar: 14px; }
+@media (max-width: 600px) { .has-pbar { --pbar: 10px; } }
+.has-pbar body { padding-top: var(--pbar); }
+.has-pbar .site-header { top: var(--pbar); }
+.pbar {
+  position: fixed; top: 0; left: 0; right: 0; height: var(--pbar, 14px); z-index: 70;
+  pointer-events: none; overflow: hidden; contain: strict;
+  background: #cdb994; box-shadow: 0 1px 2px rgba(19, 32, 24, .28);
+}
+.pbar canvas { display: block; }
+
+.intro-aside { align-self: stretch; }
+.paver3d { position: relative; height: 430px; margin-top: 30px; pointer-events: none; }
+.paver3d canvas, .paver3d-still {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+  transition: opacity .7s ease;
+}
+.paver3d-still { object-fit: contain; }
+.paver3d canvas { opacity: 0; }
+.paver3d.is-live canvas { opacity: 1; }
+.paver3d.is-live .paver3d-still { opacity: 0; }
+@media (min-width: 1025px) {
+  /* rides along beside the services list while it turns */
+  .paver3d { position: sticky; top: calc(var(--pbar, 0px) + 120px); }
+}
+@media (max-width: 1024px) {
+  .paver3d { height: 300px; max-width: 480px; margin: 6px auto 0; }
+}
+@media (max-width: 600px) {
+  .paver3d { height: 230px; margin-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .paver3d canvas, .paver3d-still { transition: none; }
+}

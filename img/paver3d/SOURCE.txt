@@ -1,0 +1,8 @@
+Paver surface textures (paver-albedo, paver-normal, paver-orm) are derived from
+"Concrete040" by ambientCG (https://ambientcg.com/view?id=Concrete040), released
+under CC0 1.0 (public domain). Downloaded once and stored here; nothing is
+hotlinked. Recompressed to WebP: albedo desaturated and normalised so the 3D
+code can tint it to the paver blend; ORM = R ambient occlusion, G roughness.
+
+paver-stack-still.webp is a render of the 3D scene in js/home-paver.js. It is
+what visitors with reduced motion, no WebGL or no JavaScript see.
