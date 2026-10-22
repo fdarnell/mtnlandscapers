@@ -177,7 +177,89 @@ PAVER3D = ('<div class="paver3d" aria-hidden="true"'
            '<img class="paver3d-still" src="/img/paver3d/paver-stack-still.webp"'
            ' width="922" height="860" alt="" loading="lazy" decoding="async">'
            '</div>')
-HOME_FX = f'<script type="module" src="/js/home-paver.js?v={HP_V}"></script>\n'
+FX_V = asset_hash('js/home-fx.js')
+HOME_FX = (f'<script type="module" src="/js/home-paver.js?v={HP_V}"></script>\n'
+           f'<script type="module" src="/js/home-fx.js?v={FX_V}"></script>\n')
+
+# Three Prompt Arsenal effects on the home page (js/home-fx.js). The blocks
+# use no h1-h6/p/li tags (site_edits counts those even under data-noedit), so
+# the portal editor's data-e keys on the rest of the page do not shift. Photos are the crew's own job photos (see the commits that added
+# them); every slide links to the service it shows.
+REEL_SLIDES = [
+    ('hardscapes-flagstone-firepit', 'Flagstone patio &amp; fire pit', 'Hardscapes', '/hardscapes',
+     'Flagstone patio with a stone fire pit ring and chairs on a mountain deck'),
+    ('retaining-wall-build-crew', 'Setting a block wall', 'Retaining walls', '/retaining-walls',
+     'Crew and track loader setting the base course of a block retaining wall'),
+    ('retaining-wall-finished-hero', 'Block wall &amp; timber steps', 'Retaining walls', '/retaining-walls',
+     'Finished block retaining wall with timber and gravel steps on a wooded slope'),
+    ('design-build-yard-in-progress', 'Back yard, mid-build', 'Design &amp; build', '/landscape-design-build',
+     'A back yard part-way through a staged build with a retaining wall, putting green and new beds'),
+    ('concrete-stamped-walkway-cabin', 'Stamped walkway', 'Concrete', '/concrete',
+     'Stamped and colored concrete walkway curving past a cabin, with a river rock border'),
+    ('concrete-slab-prep-rebar', 'Steel on a stone base', 'Concrete', '/concrete',
+     'Reinforcing steel tied in a grid over a compacted stone base inside formed edges, before the pour'),
+    ('design-build-walkway-beds', 'Walkway &amp; new beds', 'Design &amp; build', '/landscape-design-build',
+     'Curving walkway edged in river rock beside a newly planted mulch bed and block wall'),
+    ('drainage-french-drain-run', 'French drain run', 'Drainage', '/drainage',
+     "Completed French drain run with filter fabric, gravel and pipe tied into the building's downspout"),
+    ('concrete-walkway-finished', 'Fresh walkway pour', 'Concrete', '/concrete',
+     'Crew finishing a new concrete walkway between brick pillars'),
+]
+
+
+def reel_html():
+    slides = ''.join(
+        f'<a class="reel-slide" href="{href}"><span class="reel-shot">'
+        f'<img src="/img/{img}-800.webp" alt="{esc(alt)}" loading="lazy" decoding="async" draggable="false"></span>'
+        f'<span class="reel-meta"><span class="reel-name">{name}</span><span class="reel-tag">{tag}</span></span></a>'
+        for img, name, tag, href, alt in REEL_SLIDES)
+    return (
+        '<section class="section reel" data-noedit aria-labelledby="reel-h">'
+        '<div class="wrap reel-head"><div class="reel-title" id="reel-h" role="heading" aria-level="2">Work From Our Crews</div>'
+        '<div class="reel-hint"><span class="hint-mouse">Drag to browse &mdash; it keeps rolling. Click a photo to see that service.</span>'
+        '<span class="hint-touch">Swipe sideways to browse &middot; tap a photo to see that service</span></div></div>'
+        f'<div class="reel-vp"><div class="reel-belt">{slides}</div></div>'
+        '<div class="wrap reel-rails">'
+        '<button class="reel-btn" type="button" data-dir="-1" aria-label="Previous photos">&larr;</button>'
+        '<span class="reel-track" aria-hidden="true"><i></i></span>'
+        '<button class="reel-btn" type="button" data-dir="1" aria-label="Next photos">&rarr;</button>'
+        '</div></section>')
+
+
+def ticker_html():
+    towns = CFG.get('serviceArea') or []
+    big = ''.join(f'<em>{esc(t)}</em><b>&#8212;</b>' if i % 2 else f'{esc(t)}<b>&#8212;</b>'
+                  for i, t in enumerate(towns))
+    services = ['Retaining Walls', 'Patios', 'Hardscapes', 'Concrete', 'Fire Pits', 'Water Features',
+                'Outdoor Lighting', 'Drainage', 'Excavation', 'Irrigation', 'Lawn Care', 'Landscape Design &amp; Build']
+    small = ''.join(f'{s}<b>&#9670;</b>' for s in services)
+    return (
+        '<div class="ticker-band" data-noedit aria-hidden="true">'
+        f'<div class="ticker big" data-speed="34" data-dir="1"><div class="tk-track"><span>{big}</span></div></div>'
+        f'<div class="ticker small" data-speed="26" data-dir="-1"><div class="tk-track"><span>{small}</span></div></div>'
+        '</div>')
+
+
+STEPS_HINT = ('<div class="tl-hint" data-noedit aria-hidden="true"><span class="hint-mouse">Scroll to follow the four steps</span>'
+              '<span class="hint-touch">Drag up to light each step</span></div>')
+
+
+def home_effects(body_parts):
+    """Slot the three effects into the home page's body, by content markers."""
+    def at(marker):
+        return next((i for i, part in enumerate(body_parts) if marker in part), None)
+    i = at('Here\'s What to Expect')
+    if i is not None:
+        part = body_parts[i].replace('<section class="section"', '<section class="section steps-tl"', 1)
+        part = re.sub(r'(What to Expect:?</h2>)', lambda m: m.group(1) + STEPS_HINT, part, count=1)
+        body_parts[i] = part
+    i = at('Why does Sevier County choose us?')
+    if i is not None:
+        body_parts.insert(i, reel_html())
+    i = at('>Where we work<')
+    if i is not None:
+        body_parts.insert(i, ticker_html())
+    return body_parts
 
 IMG_DIR = os.path.join(ROOT, 'img')
 _HAVE_IMG = set(os.listdir(IMG_DIR)) if os.path.isdir(IMG_DIR) else set()
@@ -1072,6 +1154,9 @@ def render_page(page):
             f'<p>Pick a day and time that works for you and it goes straight on our calendar.</p>'
             f'<div class="formcard calcard">{cal_inner}</div>'
             f'</div></section>')
+
+    if page.get('kind') == 'home':
+        body_parts = home_effects(body_parts)
 
     hero_cls = 'hero' if page.get('kind') in ('home', 'service', 'city') else 'hero compact'
     hero_extra = hero_lead_in(page)

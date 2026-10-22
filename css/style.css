@@ -769,3 +769,86 @@ ul.checks li::before {
 @media (prefers-reduced-motion: reduce) {
   .paver3d canvas, .paver3d-still { transition: none; }
 }
+
+/* ---------- home: Prompt Arsenal effects (js/home-fx.js) ---------- */
+.hint-touch { display: none; }
+@media (hover: none) { .hint-mouse { display: none; } .hint-touch { display: inline; } }
+
+/* 36 inertia drag carousel: the crew's own job photos */
+.reel { background: var(--forest-950); color: #ece9e2; overflow: hidden; }
+.reel-title { font-family: var(--font-display); font-weight: 600; line-height: 1.16; letter-spacing: -.012em; font-size: clamp(1.55rem, 3vw, 2.3rem); color: #fff; }
+.reel-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px 30px; flex-wrap: wrap; }
+.reel-hint { margin: 0; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: #a9b5a8; }
+.reel-vp {
+  margin-top: 26px; overflow: hidden; user-select: none; -webkit-user-select: none;
+  touch-action: pan-y; cursor: grab;
+}
+.reel-vp:active { cursor: grabbing; }
+.reel-belt { display: flex; gap: 26px; width: max-content; padding: 0 max(22px, calc((100vw - 1180px) / 2 + 22px)); will-change: transform; }
+.reel-slide { flex: 0 0 auto; width: min(380px, 72vw); color: #ece9e2; text-decoration: none; -webkit-touch-callout: none; }
+.reel-shot { display: block; overflow: hidden; border-radius: 12px; aspect-ratio: 4 / 5; background: var(--forest-900); }
+.reel-shot img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; transform: scale(1.06); transition: transform .6s; }
+@media (hover: hover) { .reel-slide:hover .reel-shot img { transform: scale(1.12); } }
+.reel-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-top: 12px; }
+.reel-name { font-family: var(--font-display); font-size: 1.22rem; font-weight: 600; color: #fff; }
+.reel-tag { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--amber); white-space: nowrap; }
+.reel-slide:focus-visible { outline: 3px solid var(--amber); outline-offset: 4px; border-radius: 12px; }
+.reel-rails { display: flex; align-items: center; gap: 18px; margin-top: 26px; }
+.reel-track { flex: 1; height: 1px; background: rgba(236, 233, 226, .2); position: relative; overflow: hidden; }
+.reel-track i { position: absolute; top: 0; left: 0; height: 100%; width: 12%; background: var(--amber); }
+.reel-btn {
+  flex: 0 0 auto; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid rgba(236, 233, 226, .45);
+  background: transparent; color: #fff; font-size: 1.1rem; cursor: pointer; line-height: 1;
+}
+.reel-btn:hover { border-color: var(--amber); color: var(--amber); }
+.reel-btn:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+/* 71 timeline spine: the four "What to Expect" steps */
+.tl-hint { margin: -.2em 0 1.4em; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
+.steps-tl ul.tl { position: relative; list-style: none; padding: 10px 0 0; margin: 0; }
+.tl-spine { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--line); transform: translateX(-50%); }
+.tl-spine i { position: absolute; inset: 0; background: var(--amber); transform-origin: top; transform: scaleY(0); }
+.steps-tl ul.tl > li {
+  position: relative; width: 46%; padding: 18px 0 26px; margin: 0;
+  color: var(--ink-soft); line-height: 1.7;
+}
+.steps-tl ul.tl > li:nth-of-type(odd) { margin-right: auto; text-align: right; padding-right: 36px; }
+.steps-tl ul.tl > li:nth-of-type(even) { margin-left: 54%; padding-left: 36px; }
+.tl-num { display: block; font-family: var(--font-display); font-size: clamp(2rem, 3.4vw, 2.8rem); line-height: 1; color: var(--amber); font-weight: 600; }
+.tl-title { display: block; margin: 8px 0 4px; color: var(--forest); font-size: 1.12rem; }
+.tl-dot {
+  position: absolute; top: 30px; width: 14px; height: 14px; border-radius: 50%;
+  background: #fff; border: 2.5px solid var(--line); transition: background .5s, border-color .5s, box-shadow .5s;
+}
+.steps-tl ul.tl > li:nth-of-type(odd) .tl-dot { right: -7px; }
+.steps-tl ul.tl > li:nth-of-type(even) .tl-dot { left: -7px; }
+.tl-live ul.tl > li { opacity: .3; transform: translateY(24px); transition: opacity .7s cubic-bezier(.19, 1, .22, 1), transform .7s cubic-bezier(.19, 1, .22, 1); }
+.tl-live ul.tl > li.lit, .tl-still ul.tl > li { opacity: 1; transform: none; }
+ul.tl > li.lit .tl-dot { border-color: var(--amber); background: var(--amber); box-shadow: 0 0 0 6px rgba(217, 158, 43, .18); }
+@media (max-width: 760px) {
+  .tl-spine { left: 7px; }
+  .steps-tl ul.tl > li, .steps-tl ul.tl > li:nth-of-type(odd), .steps-tl ul.tl > li:nth-of-type(even) {
+    width: 100%; margin: 0; text-align: left; padding: 14px 0 20px 36px;
+  }
+  .steps-tl ul.tl > li:nth-of-type(odd) .tl-dot, .steps-tl ul.tl > li:nth-of-type(even) .tl-dot { left: 0; right: auto; }
+}
+
+/* 63 ticker tape: towns we work in, services we do */
+.ticker-band { background: var(--forest-950); overflow: hidden; user-select: none; }
+.ticker { overflow: hidden; border-bottom: 1px solid rgba(236, 233, 226, .12); }
+.tk-track { display: flex; width: max-content; will-change: transform; }
+.tk-track > span { white-space: nowrap; display: inline-flex; align-items: center; }
+.ticker.big .tk-track > span {
+  font-family: var(--font-display); font-weight: 600; font-size: clamp(1.9rem, 4.4vw, 3.6rem);
+  color: #f2efe8; padding: 14px 0; letter-spacing: -.01em;
+}
+.ticker.big em { font-style: normal; color: transparent; -webkit-text-stroke: 1.2px #f2efe8; }
+.ticker.big b { color: var(--amber); font-weight: 400; margin: 0 .45em; }
+.ticker.small .tk-track > span {
+  font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; color: #cfd8cc; padding: 13px 0;
+}
+.ticker.small b { color: var(--amber); font-size: .6rem; margin: 0 1.4em; font-weight: 400; }
+@media (min-width: 761px) {
+  /* steps sit on alternate sides, so each can tuck up beside the one before */
+  .steps-tl ul.tl > li + li { margin-top: -90px; }
+}

@@ -14,10 +14,10 @@ const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* Paver progress bar                                                  */
 /* ------------------------------------------------------------------ */
 
-// Colours sampled from the crew's own wall-block and paver photos (tan,
-// buff, rose-brown, charcoal-brown blend), weighted the way a pallet mixes.
+// A dark tumbled blend: mostly charcoal and brown-grey with a little warm
+// tan, weighted the way a pallet mixes. The 3D stack uses the same colours.
 const BLEND = [
-  ['#b39577', 5], ['#c4a98b', 4], ['#9a7764', 3], ['#7a6a5f', 2], ['#a88a6f', 3],
+  ['#585654', 5], ['#454341', 4], ['#655a51', 3], ['#55514d', 3], ['#8a7660', 1.5],
 ];
 
 function seeded(seed) {
@@ -249,7 +249,7 @@ async function boot() {
 
   renderer.outputColorSpace = T.SRGBColorSpace;
   renderer.toneMapping = T.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
+  renderer.toneMappingExposure = 1.18;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = T.PCFShadowMap;
   renderer.setClearColor(0x000000, 0);
@@ -261,7 +261,7 @@ async function boot() {
   const camera = new T.PerspectiveCamera(22, 1, 0.1, 10);
 
   // light: warm late-afternoon sun from upper left, cool sky fill
-  const sun = new T.DirectionalLight(0xffedd6, 3.3);
+  const sun = new T.DirectionalLight(0xffedd6, 3.6);
   sun.position.set(-0.55, 1.6, 0.5);
   sun.castShadow = true;
   sun.shadow.mapSize.set(1024, 1024);
@@ -331,8 +331,11 @@ async function boot() {
     return m;
   }
 
-  // blended pallet: the same colours as the bar, darker blend reads truer in 3D
-  const mats = ['#a39279', '#b5a690', '#86705f', '#6a6661', '#978571'].map(material);
+  // the same dark blend as the bar: charcoal, deep charcoal, brown-grey,
+  // a little warm tan, dark brown-grey
+  const mats = ['#585654', '#454341', '#655a51', '#8a7660', '#55514d'].map(material);
+  // which colour each paver gets: one warm tan among ten, the rest dark
+  const STACK_MATS = [0, 4, 1, 2, 4, 0, 2, 1];
 
   const group = new T.Group();
   scene.add(group);
@@ -344,7 +347,7 @@ async function boot() {
   const LAYERS = 4;
   for (let layer = 0; layer < LAYERS; layer++) {
     for (let k = 0; k < 2; k++) {
-      const mesh = new T.Mesh(paver(L, H, Wd, seed++), mats[(layer * 2 + k * 3 + 1) % mats.length]);
+      const mesh = new T.Mesh(paver(L, H, Wd, seed++), mats[STACK_MATS[layer * 2 + k]]);
       const off = (k ? 1 : -1) * (Wd / 2 + J / 2);
       if (layer % 2 === 0) { mesh.position.set(jitter(0.003), 0, off + jitter(0.0015)); }
       else { mesh.rotation.y = Math.PI / 2; mesh.position.set(off + jitter(0.0015), 0, jitter(0.003)); }
@@ -355,8 +358,8 @@ async function boot() {
   }
   // two loose ones on the ground, the way a pallet gets picked from
   const loose = [
-    { x: 0.205, z: 0.085, ry: 0.42, m: 2 },
-    { x: -0.06, z: 0.205, ry: -0.18, m: 0 },
+    { x: 0.205, z: 0.085, ry: 0.42, m: 3 },
+    { x: -0.06, z: 0.205, ry: -0.18, m: 2 },
   ];
   for (const l of loose) {
     const mesh = new T.Mesh(paver(L, H, Wd, seed++), mats[l.m]);
