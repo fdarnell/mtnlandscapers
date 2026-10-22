@@ -3,7 +3,9 @@
 
    Nothing here loads from another server. three.js (0.160.0, self-hosted in
    /js/vendor/) is only fetched after the page has finished loading AND the 3D
-   spot is near the screen, so it never competes with the hero photo.
+   spot is within 200px of the screen, so on a first visit nothing 3D downloads
+   until the visitor starts scrolling toward it, and it never competes with
+   the hero photo.
 
    prefers-reduced-motion: the bar is drawn once, fully laid, and the 3D spot
    keeps its still photo; nothing moves. */
@@ -207,7 +209,7 @@ if (spot && !REDUCE) {
   const arm = () => whenIdle(() => {
     const io = new IntersectionObserver((ents) => {
       if (ents.some((e) => e.isIntersecting)) { io.disconnect(); boot().catch(() => {}); }
-    }, { rootMargin: '500px 0px' });
+    }, { rootMargin: '0px 0px 200px 0px' });   // only once it is about to scroll into view
     io.observe(spot);
   });
   if (document.readyState === 'complete') arm();
