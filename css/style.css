@@ -118,8 +118,9 @@ li { margin-bottom: .55em; }
 .related-links a { font-weight: 600; }
 .related-cities { display: flex; flex-wrap: wrap; gap: .6em; }
 .socials { display: flex; gap: 15px; align-items: center; }
-.socials a { display: flex; opacity: .85; transition: opacity .15s; }
-.socials a:hover { opacity: 1; }
+.socials a { display: flex; opacity: .85; transition: opacity .15s; padding: 6px; margin: -6px; border-radius: 4px; }
+.socials a:hover, .socials a:focus-visible { opacity: 1; }
+.socials a:focus-visible { outline: 2px solid var(--amber); outline-offset: 0; }
 .socials svg { width: 15px; height: 15px; fill: #e8ede6; }
 .topbar .employment { font-weight: 600; letter-spacing: .06em; font-size: .76rem; text-decoration: underline; text-underline-offset: 3px; }
 .topbar .tel { font-weight: 700; color: var(--amber); font-size: .9rem; }
@@ -553,15 +554,15 @@ ul.checks li::before {
 .footcols ul li { margin-bottom: 0; }
 .footcols ul li a { display: block; padding: 7px 0; }
 .footcols ul li + li { border-top: 1px solid rgba(255, 255, 255, .07); }
-.foot-social { display: flex; gap: 12px; justify-content: center; margin-bottom: 20px; }
+.foot-social { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 20px; }
 .foot-social a {
-  width: 32px; height: 32px; border-radius: 50%; background: rgba(255, 255, 255, .1);
+  width: 38px; height: 38px; border-radius: 50%; background: rgba(255, 255, 255, .1);
   display: flex; align-items: center; justify-content: center; transition: background .15s;
 }
-.foot-social a:hover { background: var(--leaf); }
-.foot-social a.x { background: rgba(255, 255, 255, .1); }
-.foot-social a.x:hover { background: #000; }
-.foot-social svg { width: 15px; height: 15px; fill: #fff; }
+.foot-social a:hover, .foot-social a:focus-visible { background: var(--leaf); text-decoration: none; }
+.foot-social a:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.foot-social svg { width: 16px; height: 16px; fill: #fff; }
+@media (max-width: 700px) { .foot-social a { width: 44px; height: 44px; } .foot-social svg { width: 18px; height: 18px; } }
 .hours-row { display: flex; justify-content: space-between; gap: 14px; padding: 6px 0; }
 .hours-row span:first-child { color: #fff; }
 .footer-blogcard { position: relative; display: block; margin: 0 auto; max-width: 250px; }
