@@ -453,3 +453,18 @@
   });
 })();
 
+/* Section photos load as their section comes within about a screen of view, so the
+   hero photo has the connection to itself on a slow phone (see .lazy-photo in the CSS). */
+(function () {
+  'use strict';
+  var els = Array.prototype.slice.call(document.querySelectorAll('.lazy-photo'));
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('is-near'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add('is-near'); io.unobserve(en.target); }
+    });
+  }, { rootMargin: '500px 0px' });
+  els.forEach(function (e) { io.observe(e); });
+})();
+

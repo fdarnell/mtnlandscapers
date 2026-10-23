@@ -151,6 +151,7 @@ JS_V = asset_hash('js/main.js')
 # someone else.
 EDIT_V = asset_hash('js/edit.js')
 EDIT_BOOTSTRAP = (
+    '<script>document.documentElement.classList.add("lazy-armed")</script>'
     '<script>(function(){try{'
     'var u=new URL(location.href),t=u.searchParams.get("edit");'
     'if(t){sessionStorage.setItem("slt_edit",t);u.searchParams.delete("edit");'
@@ -342,6 +343,15 @@ def home_effects(body_parts):
     return body_parts
 
 IMG_DIR = os.path.join(ROOT, 'img')
+
+
+def photo_style(src, shade):
+    """Background photo for a full-bleed section, as CSS variables rather than an inline
+    background-image, so it can wait until the section is near the screen (js/main.js
+    adds .is-near) and phones can take the 800px copy. Before this, every section photo
+    on the home page (~660 KB) downloaded at once and slowed the hero on slow phones."""
+    return (f' style="--shade:rgba(19,32,24,{shade});'
+            f'--photo:url({img_src(src, small=False)});--photo-sm:url({img_src(src)})"')
 _HAVE_IMG = set(os.listdir(IMG_DIR)) if os.path.isdir(IMG_DIR) else set()
 
 
@@ -829,14 +839,12 @@ def render_row(row, idx, tint_toggle, kind=None):
     # long list/article content over a photo: live shows it in a white panel
     # on the photo, not white-on-dark text
     if bg and body and (kind == 'post' or any(b['t'] == 'ol' for b in body)):
-        return (f'<section class="section photo panel" style="background-image:linear-gradient(rgba(19,32,24,.45),rgba(19,32,24,.45)),'
-                f'url({img_src(bg["src"], small=False)})">'
+        return (f'<section class="section photo panel lazy-photo"{photo_style(bg["src"], ".45")}>'
                 f'<div class="wrap"><div class="panel-card">{render_flow(row)}</div></div></section>')
 
     # full-bleed section with a parallax photo behind the copy
     if bg and body:
-        return (f'<section class="section photo" style="background-image:linear-gradient(rgba(19,32,24,.72),rgba(19,32,24,.72)),'
-                f'url({img_src(bg["src"], small=False)})">'
+        return (f'<section class="section photo lazy-photo"{photo_style(bg["src"], ".72")}>'
                 f'<div class="wrap">{render_flow(row)}</div></section>')
 
     if not body:
