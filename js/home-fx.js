@@ -451,5 +451,5 @@ whenNear('.steps-tl', steps);
 whenNear('.ticker-band', ticker);
 whenNear('.section.green', flipCards);
 whenNear('.patio', patio);
-whenNear('.faq-ink', faqInk);
+/* the FAQ is now handled site-wide in js/main.js (Prompt Arsenal 72) */
 buttonFeedback();

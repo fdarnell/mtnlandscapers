@@ -921,18 +921,54 @@ ul.checks li::before {
 @media (prefers-reduced-motion: reduce) { .pb.laid { animation: none; } }
 @media (max-width: 860px) { .patio-wrap { grid-template-columns: 1fr; gap: 24px; } }
 
-/* FAQ ink (arsenal 72): ink sweeps the open question, the plus turns */
-.faq-ink details { position: relative; }
-.faq-ink summary { position: relative; z-index: 0; isolation: isolate; transition: color .4s, padding-left .5s cubic-bezier(.19, 1, .22, 1); }
-.faq-ink summary::before {
-  content: ''; position: absolute; z-index: -1; inset: 0 -14px; border-radius: 8px; background: var(--forest);
-  transform: scaleX(0); transform-origin: left; transition: transform .6s cubic-bezier(.19, 1, .22, 1);
+/* FAQ ink (Prompt Arsenal 72): numbered questions; opening one sweeps forest ink
+   across the whole row, the plus twists into a minus, the answer glides open.
+   One answer at a time, and an idle walk-through while nobody is using it (js/main.js). */
+.faq-ink details {
+  position: relative; isolation: isolate; overflow: hidden; padding: 0;
+  transition: border-color .4s, box-shadow .4s;
 }
-.faq-ink details[open] summary { color: #fff; padding-left: 10px; }
-.faq-ink details[open] summary::before { transform: scaleX(1); }
-.faq-ink details[open] summary::after { border-color: var(--amber); }
-.faq-ink details[open] > summary + * { margin-top: 14px; }
-@media (prefers-reduced-motion: reduce) { .faq-ink summary, .faq-ink summary::before { transition: none; } }
+.faq-ink details::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; background: var(--forest);
+  transform: scaleX(0); transform-origin: left; transition: transform .6s cubic-bezier(.76, 0, .24, 1);
+}
+.faq-ink details[open]:not(.is-closing) { border-color: var(--forest); box-shadow: 0 10px 28px rgba(19, 32, 24, .16); }
+.faq-ink details[open]:not(.is-closing)::before { transform: scaleX(1); }
+.faq-ink summary { display: flex; align-items: center; gap: 18px; padding: 18px 22px; color: var(--ink); }
+.faq-ink summary::after { display: none; }
+.faq-ink .faq-idx {
+  flex-shrink: 0; min-width: 26px; font-size: .72rem; font-weight: 600; letter-spacing: .16em;
+  color: var(--ink-soft); font-variant-numeric: tabular-nums; transition: color .4s;
+}
+.faq-ink .faq-q { transition: color .4s, transform .5s cubic-bezier(.19, 1, .22, 1); }
+.faq-ink .faq-plus { margin-left: auto; width: 28px; height: 28px; position: relative; flex-shrink: 0; }
+.faq-ink .faq-plus::before, .faq-ink .faq-plus::after {
+  content: ''; position: absolute; left: 50%; top: 50%; background: var(--amber); border-radius: 1px;
+  transition: transform .5s cubic-bezier(.76, 0, .24, 1);
+}
+.faq-ink .faq-plus::before { width: 16px; height: 2px; transform: translate(-50%, -50%); }
+.faq-ink .faq-plus::after { width: 2px; height: 16px; transform: translate(-50%, -50%); }
+.faq-ink details[open]:not(.is-closing) .faq-idx { color: var(--amber); }
+.faq-ink details[open]:not(.is-closing) .faq-q { color: #fff; transform: translateX(8px); }
+.faq-ink details[open]:not(.is-closing) .faq-plus::before { transform: translate(-50%, -50%) rotate(180deg); }
+.faq-ink details[open]:not(.is-closing) .faq-plus::after { transform: translate(-50%, -50%) rotate(270deg); }
+.faq-ink summary { position: relative; }
+.faq-ink summary::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(217, 158, 43, .14);
+  transform: scaleX(0); transform-origin: left; transition: transform .6s cubic-bezier(.76, 0, .24, 1);
+}
+.faq-ink details.is-hint:not([open]) summary::before { transform: scaleX(1); }
+.faq-ink details.is-hint:not([open]) .faq-plus::after { transform: translate(-50%, -50%) rotate(90deg); }
+.faq-ink details.is-hint:not([open]) .faq-idx { color: var(--amber); }
+.faq-ink .faq-a { overflow: hidden; }
+.faq-ink .faq-a p { margin: 0; padding: 0 22px 22px 66px; color: rgba(255, 255, 255, .88); line-height: 1.7; }
+@media (max-width: 600px) {
+  .faq-ink summary { gap: 12px; padding: 16px 16px; }
+  .faq-ink .faq-a p { padding: 0 16px 18px 54px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-ink details, .faq-ink details::before, .faq-ink summary::before, .faq-ink .faq-idx, .faq-ink .faq-q, .faq-ink .faq-plus::before, .faq-ink .faq-plus::after { transition: none; }
+}
 
 /* button feedback on the home page: press-in, plus a soft ring where pressed */
 .has-pbar .btn { position: relative; overflow: hidden; }

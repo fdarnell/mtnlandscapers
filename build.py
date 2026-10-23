@@ -338,7 +338,6 @@ def home_effects(body_parts):
         body_parts[i] = _card_backs(body_parts[i])
     i = at('Frequently Asked Questions')
     if i is not None:
-        body_parts[i] = body_parts[i].replace('<div class="faq">', '<div class="faq faq-ink">', 1)
         body_parts.insert(i, PATIO_HTML)
     return body_parts
 
@@ -930,12 +929,20 @@ def render_where_we_work():
 def render_faqs(faqs):
     if not faqs:
         return ''
+    # Prompt Arsenal 72 (FAQ ink expand): numbered questions, ink sweeps the whole
+    # row, the plus twists to a minus, one answer at a time (js/main.js). Still
+    # <details>/<summary>, so it works without JavaScript and the answer <p>s keep
+    # the same order for the portal editor's data-e keys.
     items = ''.join(
-        f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in faqs)
+        f'<details class="faq-item"{" open" if i == 0 else ""}><summary>'
+        f'<span class="faq-idx">Q{i + 1}</span><span class="faq-q">{q}</span>'
+        f'<span class="faq-plus" aria-hidden="true"></span></summary>'
+        f'<div class="faq-a"><p>{a}</p></div></details>'
+        for i, (q, a) in enumerate(faqs))
     return f'''<section class="section tint">
 <div class="wrap">
 <h2 class="section-title">Frequently Asked Questions</h2>
-<div class="faq">{items}</div>
+<div class="faq faq-ink">{items}</div>
 </div>
 </section>'''
 
