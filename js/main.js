@@ -370,3 +370,86 @@
     }
   });
 })();
+
+/* FAQ (Prompt Arsenal 72, "FAQ ink expand"), on every page with a FAQ.
+   One answer open at a time; opening glides the answer down while the CSS sweeps
+   forest ink across the row and twists the plus into a minus. While the FAQ is on
+   screen and nobody has touched it, a light sweep walks down the closed questions
+   as an invitation to tap (it never opens one, so the page never shifts on its own);
+   the first tap or click on a question stops that for good.
+   Still plain <details>/<summary> underneath: no JavaScript, it just opens. */
+(function () {
+  'use strict';
+  var lists = Array.prototype.slice.call(document.querySelectorAll('.faq-ink'));
+  if (!lists.length) return;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var EASE = 'cubic-bezier(.76,0,.24,1)';
+
+  lists.forEach(function (list) {
+    var items = Array.prototype.slice.call(list.querySelectorAll('details'));
+    if (!items.length) return;
+    var touched = false, lastAct = 0, tour = 0, idx = 0, busy = 0;
+
+    function answer(d) { return d.querySelector('.faq-a'); }
+    function close(d) {
+      if (!d.open || d.classList.contains('is-closing')) return;
+      var a = answer(d);
+      if (reduce || !a || !a.animate) { d.open = false; return; }
+      busy++;
+      d.classList.add('is-closing');                  /* ink and plus turn back now; the answer shrinks */
+      var run = d._run = a.animate([{ height: a.offsetHeight + 'px' }, { height: '0px' }], { duration: 520, easing: EASE });
+      run.onfinish = run.oncancel = function () {
+        busy--;
+        if (d._run !== run) return;                   /* re-opened mid-close: leave it open */
+        d._run = null; d.open = false; d.classList.remove('is-closing');
+      };
+    }
+    function open(d) {
+      items.forEach(function (x) { if (x !== d) close(x); });
+      if (d.open && !d.classList.contains('is-closing')) return;
+      if (d._run) { var r = d._run; d._run = null; r.cancel(); }
+      d.classList.remove('is-closing');
+      d.open = true;
+      var a = answer(d);
+      if (reduce || !a || !a.animate) return;
+      var h = a.offsetHeight;
+      a.animate([{ height: '0px' }, { height: h + 'px' }], { duration: 600, easing: EASE });
+    }
+    function toggle(d) {
+      if (d.open && !d.classList.contains('is-closing')) close(d); else open(d);
+      idx = items.indexOf(d);
+    }
+
+    items.forEach(function (d) {
+      var s = d.querySelector('summary');
+      s.addEventListener('click', function (e) {
+        e.preventDefault();
+        touched = true; lastAct = Date.now();
+        items.forEach(function (x) { x.classList.remove('is-hint'); });
+        toggle(d);
+      });
+    });
+
+    if (reduce || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function (es) {
+      var on = es[0].isIntersecting;
+      if (on && !tour && !touched) {
+        tour = setInterval(function () {
+          items.forEach(function (x) { x.classList.remove('is-hint'); });
+          if (touched) { clearInterval(tour); tour = 0; return; }
+          if (busy || Date.now() - lastAct < 4200) return;
+          /* light the next closed question for a moment; nothing opens, so nothing moves */
+          for (var k = 0; k < items.length; k++) {
+            idx = (idx + 1) % items.length;
+            if (!items[idx].open) break;
+          }
+          var d = items[idx];
+          if (d.open) return;
+          d.classList.add('is-hint');
+          setTimeout(function () { d.classList.remove('is-hint'); }, 1700);
+        }, 2600);
+      } else if (!on && tour) { clearInterval(tour); tour = 0; }
+    }, { threshold: 0.5 }).observe(list);
+  });
+})();
+
