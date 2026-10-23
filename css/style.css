@@ -271,7 +271,15 @@ li { margin-bottom: .55em; }
 /* full-bleed photo band: white text over a darkened, parallax-scrolling photo */
 .section.photo {
   background-size: cover; background-position: center; color: #fff;
+  background-color: var(--forest-900);
+  background-image: linear-gradient(var(--shade), var(--shade)), var(--photo, none);
 }
+@media (max-width: 800px) {
+  .section.photo { background-image: linear-gradient(var(--shade), var(--shade)), var(--photo-sm, var(--photo, none)); }
+}
+/* photos wait until their section is near the screen (js/main.js adds .is-near);
+   until then the section shows its dark green shade, so the copy stays readable */
+.lazy-armed .section.photo.lazy-photo:not(.is-near) { background-image: linear-gradient(var(--shade), var(--shade)); }
 .section.photo h1, .section.photo h2, .section.photo h3, .section.photo h4,
 .section.photo p, .section.photo li { color: #fff; }
 .section.photo a { color: #fff; text-decoration: underline; }
