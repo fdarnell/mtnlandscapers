@@ -1400,11 +1400,6 @@ def write_sitemap():
                     f'    <lastmod>{page_lastmod(p["slug"])}</lastmod>\n'
                     f'    <changefreq>monthly</changefreq>\n'
                     f'    <priority>{"1.0" if p["slug"] == "" else "0.8"}</priority>\n  </url>')
-    # the rental calculator is built outside PAGES (write_rental_calculator)
-    urls.append(f'  <url>\n    <loc>{url_for(ROI_SLUG)}</loc>\n'
-                f'    <lastmod>{page_lastmod(ROI_SLUG)}</lastmod>\n'
-                f'    <changefreq>monthly</changefreq>\n'
-                f'    <priority>0.6</priority>\n  </url>')
     open(os.path.join(ROOT, 'sitemap.xml'), 'w').write(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
@@ -1681,12 +1676,18 @@ def write_product_guide():
 
 
 # --------------------------------------------------------------------------
-# Rental ROI calculator  —  public, linked from the footer
+# Rental ROI calculator  —  UNLISTED, for employees
 #
 # For cabin and Airbnb owners: how much landscaping the extra bookings can pay
 # for while the owner still comes out ahead every month, on each financing
 # plan. The page ships as plain HTML with every input and output in place; the
 # numbers are filled in by js/rental-roi.js, which has no dependencies.
+#
+# Unlisted the same way as the product guide (Franklin, 2026-10-28): the
+# client-facing version now lives on the estimate in the quoting software, so
+# this page is for staff who know the address. Not in the footer, sitemap or
+# llms.txt, and noindex,nofollow; deliberately NOT in robots.txt (see the
+# product guide's note for why).
 # --------------------------------------------------------------------------
 
 ROI_SLUG = 'rental-roi-calculator'
@@ -1718,12 +1719,7 @@ def write_rental_calculator():
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(ROI_TITLE)}</title>
 <meta name="description" content="{esc(ROI_DESC)}">
-<link rel="canonical" href="{url_for(ROI_SLUG)}">
-<meta property="og:title" content="{esc(ROI_TITLE)}">
-<meta property="og:description" content="{esc(ROI_DESC)}">
-<meta property="og:type" content="website">
-<meta property="og:url" content="{url_for(ROI_SLUG)}">
-<meta property="og:image" content="{SITE}/og-image.png">
+<meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -1844,7 +1840,7 @@ def write_rental_calculator():
 <script src="/js/main.js?v={JS_V}" defer></script>
 <script src="/js/rental-roi.js?v={ROI_V}" defer></script>
 {EDIT_BOOTSTRAP}
-<script defer src="/_vercel/insights/script.js"></script>{tags(ROI_SLUG)}
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
 '''
@@ -1865,7 +1861,7 @@ def main():
     write_404()
     write_product_guide()
     write_rental_calculator()
-    print(f'Built {len(written)} pages + sitemap.xml, robots.txt, llms.txt, 404.html, product-guide.html (unlisted), {ROI_SLUG}.html')
+    print(f'Built {len(written)} pages + sitemap.xml, robots.txt, llms.txt, 404.html, product-guide.html (unlisted), {ROI_SLUG}.html (unlisted)')
     print(f'  css/style.css?v={CSS_V}   js/main.js?v={JS_V}')
     for w in written:
         print('  ', w)
