@@ -1400,6 +1400,11 @@ def write_sitemap():
                     f'    <lastmod>{page_lastmod(p["slug"])}</lastmod>\n'
                     f'    <changefreq>monthly</changefreq>\n'
                     f'    <priority>{"1.0" if p["slug"] == "" else "0.8"}</priority>\n  </url>')
+    # the rental calculator is built outside PAGES (write_rental_calculator)
+    urls.append(f'  <url>\n    <loc>{url_for(ROI_SLUG)}</loc>\n'
+                f'    <lastmod>{page_lastmod(ROI_SLUG)}</lastmod>\n'
+                f'    <changefreq>monthly</changefreq>\n'
+                f'    <priority>0.6</priority>\n  </url>')
     open(os.path.join(ROOT, 'sitemap.xml'), 'w').write(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
@@ -1675,6 +1680,176 @@ def write_product_guide():
 
 
 
+# --------------------------------------------------------------------------
+# Rental ROI calculator  —  public, linked from the footer
+#
+# For cabin and Airbnb owners: how much landscaping the extra bookings can pay
+# for while the owner still comes out ahead every month, on each financing
+# plan. The page ships as plain HTML with every input and output in place; the
+# numbers are filled in by js/rental-roi.js, which has no dependencies.
+# --------------------------------------------------------------------------
+
+ROI_SLUG = 'rental-roi-calculator'
+ROI_TITLE = f'Rental Property Landscaping ROI Calculator | {NAME}'
+ROI_DESC = ('Cabin and Airbnb owners in Sevier County: see the most you can spend on '
+            'landscaping and still come out ahead every month, plan by plan.')
+ROI_V = asset_hash('js/rental-roi.js')
+
+
+def roi_field(fid, label, value, prefix='', suffix='', step='1', extra=''):
+    pre = f'<span class="roi-affix">{prefix}</span>' if prefix else ''
+    suf = f'<span class="roi-affix">{suffix}</span>' if suffix else ''
+    return (f'<label class="roi-field" for="{fid}"><span class="roi-label">{label}</span>'
+            f'<span class="roi-input">{pre}<input id="{fid}" type="number" inputmode="decimal" '
+            f'step="{step}" value="{value}"{extra}>{suf}</span></label>')
+
+
+def roi_stat(sid, label, wrap_id=''):
+    w = f' id="{wrap_id}"' if wrap_id else ''
+    return f'<div class="roi-stat"{w}><span class="roi-label">{label}</span><strong id="{sid}">—</strong></div>'
+
+
+def write_rental_calculator():
+    hero = img_src(HERO_DEFAULT, small=False)
+    body = f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(ROI_TITLE)}</title>
+<meta name="description" content="{esc(ROI_DESC)}">
+<link rel="canonical" href="{url_for(ROI_SLUG)}">
+<meta property="og:title" content="{esc(ROI_TITLE)}">
+<meta property="og:description" content="{esc(ROI_DESC)}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{url_for(ROI_SLUG)}">
+<meta property="og:image" content="{SITE}/og-image.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-600.woff2" crossorigin>
+<link rel="stylesheet" href="/css/style.css?v={CSS_V}">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+{topbar()}
+{header('/' + ROI_SLUG)}
+<main id="main">
+<section class="hero compact" style="background-image:url({hero})">
+<div class="wrap">
+<h1>Rental Property Landscaping ROI Calculator</h1>
+<p class="hero-sub">For cabin and Airbnb owners: see how much curb appeal your rental can afford and still keep you ahead every month.</p>
+</div>
+{RIDGE}
+</section>
+
+<section class="section roi-section">
+<div class="wrap">
+<noscript><p class="roi-noscript">This calculator needs JavaScript turned on. Or just call us at <a href="{TEL}">{PHONE}</a> and we&rsquo;ll run the numbers with you.</p></noscript>
+<div class="roi" id="roi">
+<div class="roi-inputs">
+<section class="roi-card">
+<h2>Your rental</h2>
+<div class="roi-grid2">
+{roi_field('roi-nights', 'Nights booked / year', 72)}
+{roi_field('roi-rate', 'Average nightly rate', 250, prefix='$')}
+{roi_field('roi-fee', 'Platform fee', 16, suffix='%', step='0.5')}
+{roi_field('roi-extra', 'Extra nights / year after', 30)}
+{roi_field('roi-inc', 'Nightly rate increase after', 0, prefix='$')}
+{roi_field('roi-target', 'Profit you want each month', 100, prefix='$')}
+</div>
+<p class="roi-fine">Cleaning fees are assumed to be paid by guests and are left out.</p>
+</section>
+<section class="roi-card">
+<h2>Financing</h2>
+<label class="roi-field" for="roi-plan"><span class="roi-label">Financing plan</span>
+<select id="roi-plan"></select></label>
+<div id="roi-f4188" hidden>{roi_field('roi-apr4188', 'APR (17.99&ndash;29.99)', 17.99, suffix='%', step='0.01', extra=' min="17.99" max="29.99"')}</div>
+<div id="roi-f2521" hidden>{roi_field('roi-apr2521', 'APR (15.85&ndash;24.77)', 15.85, suffix='%', step='0.01', extra=' min="15.85" max="24.77"')}</div>
+<div id="roi-fcustom" class="roi-grid2" hidden>
+{roi_field('roi-capr', 'APR', 9.99, suffix='%', step='0.01')}
+{roi_field('roi-cterm', 'Term (months)', 60)}
+</div>
+<p class="roi-note" id="roi-note"></p>
+{roi_field('roi-price', 'Install price to check', 15000, prefix='$', step='500')}
+</section>
+</div>
+
+<div class="roi-results">
+<section class="roi-hero" aria-live="polite">
+<p class="roi-kicker">Most you can spend on <span id="roi-plan-label">this plan</span></p>
+<div id="roi-max-ok">
+<p class="roi-big" id="roi-max">—</p>
+<p class="roi-sub">You stay <strong id="roi-max-target">—</strong> ahead while paying <span id="roi-max-pmt">—</span>/mo.</p>
+</div>
+<p class="roi-big roi-big--no" id="roi-max-no" hidden>Not profitable with these numbers</p>
+<p class="roi-fine">Extra income each month from the install: <span id="roi-gain">—</span></p>
+<button class="btn roi-print" id="roi-print" type="button">Print or save as PDF</button>
+</section>
+
+<section class="roi-card">
+<h2>At <span id="roi-at">—</span> on this plan</h2>
+<div class="roi-stats">
+{roi_stat('roi-pmt', 'Monthly payment')}
+{roi_stat('roi-net', 'Your net / mo while paying')}
+{roi_stat('roi-int', 'Total interest')}
+{roi_stat('roi-after', 'Your net / mo once paid off')}
+<div class="roi-stat"><span class="roi-label">Total extra profit (<span id="roi-months">—</span> mo)</span><strong id="roi-total">—</strong></div>
+{roi_stat('roi-defer', 'Months with no payment', wrap_id='roi-defer-stat')}
+</div>
+<div class="roi-need">
+<p><strong>To stay <span id="roi-need-target">—</span>/mo ahead at this price you need:</strong></p>
+<ul>
+<li><strong id="roi-need-nights">—</strong> extra nights a year (same nightly rate), or</li>
+<li>a <strong id="roi-need-rate">—</strong> nightly rate increase with <span id="roi-need-extra">—</span> extra nights</li>
+</ul>
+</div>
+</section>
+
+<section class="roi-card">
+<h2>Before and after</h2>
+<div class="roi-stats roi-stats--4">
+{roi_stat('roi-occ-now', 'Occupancy now')}
+{roi_stat('roi-occ-new', 'Occupancy after')}
+{roi_stat('roi-inc-now', 'Income / mo now')}
+{roi_stat('roi-inc-new', 'Income / mo after')}
+</div>
+<p class="roi-fine">Sevier County market: roughly 40&ndash;56% average occupancy and a $230&ndash;$370 average nightly rate (2026 AirDNA and AirROI data).</p>
+</section>
+
+<section class="roi-card">
+<h2>Compare every plan</h2>
+<p class="roi-fine">Tap a row to switch plans.</p>
+<div class="roi-tablewrap">
+<table class="roi-table">
+<thead><tr><th scope="col">Plan</th><th scope="col" class="num">Payment</th><th scope="col" class="num">Your net / mo</th><th scope="col" class="num">Total interest</th><th scope="col" class="num">Most you can spend</th></tr></thead>
+<tbody id="roi-compare"></tbody>
+</table>
+</div>
+</section>
+
+<p class="roi-disclaimer">Payments are estimates for illustration only and are not an offer of credit. Financing is subject to credit approval, and actual terms, APRs and approval vary by applicant. Deferred-interest plans charge all accrued interest if the balance isn&rsquo;t paid in full by the end of the promo period.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section tint">
+<div class="wrap">
+{cta_card("Want us to price your property?", "We'll walk the property, quote the work, and run these numbers with your real booking history.")}
+</div>
+</section>
+</main>
+{footer()}
+<script src="/js/main.js?v={JS_V}" defer></script>
+<script src="/js/rental-roi.js?v={ROI_V}" defer></script>
+{EDIT_BOOTSTRAP}
+<script defer src="/_vercel/insights/script.js"></script>{tags(ROI_SLUG)}
+</body>
+</html>
+'''
+    open(os.path.join(ROOT, ROI_SLUG + '.html'), 'w').write(body)
+
 
 def main():
     written = []
@@ -1689,7 +1864,8 @@ def main():
     write_llms()
     write_404()
     write_product_guide()
-    print(f'Built {len(written)} pages + sitemap.xml, robots.txt, llms.txt, 404.html, product-guide.html (unlisted)')
+    write_rental_calculator()
+    print(f'Built {len(written)} pages + sitemap.xml, robots.txt, llms.txt, 404.html, product-guide.html (unlisted), {ROI_SLUG}.html')
     print(f'  css/style.css?v={CSS_V}   js/main.js?v={JS_V}')
     for w in written:
         print('  ', w)
