@@ -1760,8 +1760,8 @@ def write_rental_calculator():
 <h2>Financing</h2>
 <label class="roi-field" for="roi-plan"><span class="roi-label">Financing plan</span>
 <select id="roi-plan"></select></label>
-<div id="roi-f4188" hidden>{roi_field('roi-apr4188', 'APR (17.99&ndash;29.99)', 17.99, suffix='%', step='0.01', extra=' min="17.99" max="29.99"')}</div>
-<div id="roi-f2521" hidden>{roi_field('roi-apr2521', 'APR (15.85&ndash;24.77)', 15.85, suffix='%', step='0.01', extra=' min="15.85" max="24.77"')}</div>
+<div id="roi-f4188" hidden>{roi_field('roi-apr4188', 'APR (17.99&ndash;29.99)', 22.99, suffix='%', step='0.01', extra=' min="17.99" max="29.99"')}</div>
+<div id="roi-f2521" hidden>{roi_field('roi-apr2521', 'APR (15.85&ndash;24.77)', 20.85, suffix='%', step='0.01', extra=' min="15.85" max="24.77"')}</div>
 <div id="roi-fcustom" class="roi-grid2" hidden>
 {roi_field('roi-capr', 'APR', 9.99, suffix='%', step='0.01')}
 {roi_field('roi-cterm', 'Term (months)', 60)}
