@@ -503,7 +503,6 @@ FOOTER_NAV = [
     ('Home', '/'),
     ('Client Portal', 'PORTAL'),
     ('Contact us', '/contact'),
-    ('Rental ROI Calculator', '/rental-roi-calculator'),
     ('Privacy Policy', '/privacy-policy'),
     ('TOS', '/tos'),
     ('Accessibility', '/accessibility'),
