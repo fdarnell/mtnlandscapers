@@ -20,6 +20,8 @@
 
   // Promo and fixed-rate plans. The APR on 4188 and 2521 depends on the
   // applicant, so the page asks for it within the lender's published range.
+  // Both START 5 POINTS ABOVE THEIR LOWEST (Franklin, 2026-10-28, the same
+  // rule as the quoting software): the lowest rate is the best case.
   var PLANS = [
     { id: '6124', name: '0% APR for 24 months', apr: 0, term: 24, defer: 0,
       note: '0% APR, 24 equal monthly payments.' },
@@ -29,9 +31,9 @@
       note: 'Deferred interest: waived if paid in full within 6 months.' },
     { id: '4129', name: '12-month promo, then 108 payments', apr: 9.99, term: 108, defer: 0,
       note: 'Deferred interest: waived if paid in full within 12 months.' },
-    { id: '4188', name: '18-month promo, then 84 payments', apr: 17.99, term: 84, defer: 0, range: [17.99, 29.99],
+    { id: '4188', name: '18-month promo, then 84 payments', apr: 22.99, term: 84, defer: 0, range: [17.99, 29.99],
       note: 'Deferred interest: waived if paid in full within 18 months.' },
-    { id: '2521', name: '12 months no payments, then 84', apr: 15.85, term: 84, defer: 12, range: [15.85, 24.77],
+    { id: '2521', name: '12 months no payments, then 84', apr: 20.85, term: 84, defer: 12, range: [15.85, 24.77],
       note: 'No payments for 12 months. Interest is waived if paid in full during the promo; otherwise deferred interest is charged (shown here).' },
     { id: 'custom', name: 'Custom rate and term', apr: 9.99, term: 60, defer: 0,
       note: 'Enter any APR and term.' }
