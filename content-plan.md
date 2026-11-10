@@ -28,7 +28,7 @@ hold until the owner decides whether mowing work is wanted.
 | Landscape and garden design and build | /landscape-design-build | — | Live |
 | Landscaping and retaining walls in Pigeon Forge (new city page) | /pigeon-forge | October 2026 | Live (pending merge) |
 | Paver, flagstone and concrete patios (new service page; owner confirmed 17 Oct that the crew lays pavers) | /patios | October 2026 | Live (pending merge) |
-| Fire pits refresh — restore the depth cut in the rebuild, add an FAQ; "fire pit builder" sits at pos 78 | /fire-pits | November 2026 | Planned |
+| Fire pits refresh — restore the depth cut in the rebuild, add an FAQ; "fire pit builder" sits at pos 78 | /fire-pits | November 2026 | In review (PR) |
 | Retaining wall cost guide (new article; needs the owner's price ranges first) | /retaining-wall-cost-sevierville | December 2026 | Planned |
 | Landscaping in Kodak (new city page) | /kodak | January 2027 | Planned |
 | Landscaping in Wears Valley (new city page) | /wears-valley | February 2027 | Planned |
