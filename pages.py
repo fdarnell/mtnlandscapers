@@ -214,9 +214,30 @@ PAGES = [
     },
     {
         'slug': 'fire-pits', 'src': 'fire-pits',
-        'title': 'Custom Fire Pit Design and Installation | Mountain Landscapers',
+        'title': 'Custom Fire Pit Design & Installation | Mountain Landscapers',
         'desc': 'Gather around warmth and beauty with our custom fire pit installations. Transform your outdoor space into a captivating haven of relaxation.',
         'kind': 'service', 'service': 'Fire Pit Design and Installation',
+        'faqs': [
+            ('How much does it cost to have a fire pit installed?',
+             'It depends mostly on the fuel and the ground. A wood-burning pit on a flat yard is '
+             'the smallest job. A gas pit adds a gas line run by a certified installer, and a pit '
+             'on a slope may need a retaining wall before anything else. We price each one after '
+             'seeing the spot, and the estimate is free.'),
+            ('Do you install gas fire pits?',
+             'Yes, and gas is the request we get most. We build the pit and everything around it, '
+             'and a certified gas installer we bring in runs the line so it goes in to code. '
+             'Propane is the option where the house has no natural gas.'),
+            ('Can you build a fire pit on a sloped yard?',
+             'Yes. Most of the work is making level ground first, usually with a retaining wall, '
+             'compacted fill and drainage so runoff doesn&rsquo;t undermine the base. We build '
+             'the wall and the pit ourselves.'),
+            ('Will you build the patio or seating around the fire pit too?',
+             'Yes. We lay paver, flagstone and concrete patios with our own crew, and build seating '
+             'walls, so the pit and the space around it come from one company.'),
+            ('Where do you build fire pits?',
+             'Across Sevier County: Sevierville, Pigeon Forge, Gatlinburg, Wears Valley, Kodak, '
+             'Seymour, Boyds Creek and Pittman Center, and up into Knoxville.'),
+        ],
     },
     {
         'slug': 'water-features', 'src': 'water-features',
