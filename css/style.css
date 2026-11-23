@@ -148,7 +148,7 @@ li { margin-bottom: .55em; }
   font-weight: 600; font-size: .93rem; color: var(--ink);
   text-decoration: none; background: none; border: 0; padding: 8px 0;
   font-family: var(--font); cursor: pointer;
-  display: inline-flex; align-items: center; gap: 5px;
+  display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
 }
 .mainnav a:hover, .mainnav .navtop:hover { color: var(--leaf); }
 .mainnav .navtop svg { width: 10px; height: 10px; fill: currentColor; transition: transform .18s; }
@@ -166,6 +166,7 @@ li { margin-bottom: .55em; }
 .submenu li { margin: 0; }
 .submenu a { display: block; padding: 10px 22px; font-weight: 400; font-size: .92rem; }
 .submenu a:hover { background: var(--cream); color: var(--leaf); }
+.submenu a[aria-current="page"] { box-shadow: none; font-weight: 600; }
 
 .btn {
   display: inline-block; background: var(--amber); color: var(--forest-950);
@@ -583,8 +584,12 @@ ul.checks li::before {
 }
 .footer-blogcard .fbc-body strong { color: #fff; font-size: 1rem; line-height: 1.35; }
 .footer-blogcard .fbc-body span { color: #dfe4dc; font-size: .78rem; margin-top: 9px; }
+.footnav { margin-top: 44px; }
+.footnav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 26px; }
+.footnav li { margin: 0; }
+.footnav a { display: inline-block; padding: 8px 0; }
 .footbar {
-  margin-top: 50px; border-top: 1px solid rgba(255, 255, 255, .08); padding: 17px 0;
+  margin-top: 22px; border-top: 1px solid rgba(255, 255, 255, .08); padding: 17px 0;
   font-size: .78rem; color: #93a091;
 }
 .footbar .wrap { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
@@ -600,6 +605,14 @@ ul.checks li::before {
   .zig .zig-media { padding: 40px 0 40px 24px; }
   .zig:nth-child(even) .zig-media { padding: 40px 24px 40px 0; }
   .zig .zig-text { padding: 44px 30px; }
+}
+
+/* six menu items: tighten the header between the phone menu and full width */
+@media (max-width: 1120px) {
+  .site-header .wrap { gap: 14px; }
+  .mainnav > ul { gap: 15px; }
+  .mainnav a, .mainnav .navtop { font-size: .85rem; }
+  .btn-quote { padding-left: 16px; padding-right: 16px; font-size: .85rem; }
 }
 
 @media (max-width: 900px) {
