@@ -517,7 +517,7 @@
       {
         "t": "img",
         "src": "woodfirepit",
-        "alt": ""
+        "alt": "Stacked-stone wood-burning fire pit with log benches on gravel"
       },
       {
         "t": "p",
@@ -526,7 +526,7 @@
       {
         "t": "img",
         "src": "propanefirepit",
-        "alt": ""
+        "alt": "Fire table with ceramic logs burning, seen from above"
       },
       {
         "t": "p",
@@ -535,7 +535,7 @@
       {
         "t": "img",
         "src": "naturalgasfirepit",
-        "alt": ""
+        "alt": "Round gas fire pit on a concrete patio with outdoor seating around it"
       },
       {
         "t": "p",
@@ -639,7 +639,7 @@
       {
         "t": "ul",
         "items": [
-          "<a href=\"/retaining-walls\">Retaining walls</a>, often with an engineered plan first. Walls here tend to be tall and close to a driveway or a foundation.",
+          "<a href=\"/retaining-walls-gatlinburg\">Retaining walls</a>, often with an engineered plan first. Walls here tend to be tall and close to a driveway or a foundation.",
           "Lot clearing, so there is room to work and to see what the ground is doing",
           "<a href=\"/landscape-design-build\">Planting and mulch beds</a> built for a grade, with 8 oz geofabric underneath and edging that keeps the mulch from sliding downhill",
           "<a href=\"/drainage\">Drainage</a> that catches water coming off the mountain before it reaches a wall or a foundation",
@@ -655,7 +655,7 @@
       {
         "t": "img",
         "src": "retainingwall_2",
-        "alt": ""
+        "alt": "Crew laying a concrete block retaining wall against a cut slope"
       },
       {
         "t": "p",
@@ -664,7 +664,7 @@
       {
         "t": "img",
         "src": "hardscapegarden",
-        "alt": ""
+        "alt": "Curved paver walkway between flower beds"
       },
       {
         "t": "p",
@@ -2514,7 +2514,7 @@
       {
         "t": "img",
         "src": "retainingwall_2",
-        "alt": ""
+        "alt": "Crew laying a concrete block retaining wall against a cut slope"
       },
       {
         "t": "p",
@@ -3130,7 +3130,7 @@
       {
         "t": "img",
         "src": "retainingwall_2",
-        "alt": ""
+        "alt": "Crew laying a concrete block retaining wall against a cut slope"
       },
       {
         "t": "p",
@@ -3139,7 +3139,7 @@
       {
         "t": "img",
         "src": "hardscapegarden",
-        "alt": ""
+        "alt": "Curved paver walkway between flower beds"
       },
       {
         "t": "p",
@@ -4047,21 +4047,9 @@
         "html": "From dirt to feature."
       },
       {
-        "t": "ul",
-        "items": [
-          "Title <a href=\"/\">Button</a>",
-          "Title <a href=\"/\">Button</a>",
-          "Title <a href=\"/\">Button</a>"
-        ]
-      },
-      {
         "t": "img",
         "src": "untitled-design-52",
         "alt": "Installing water feature 4"
-      },
-      {
-        "t": "h3",
-        "html": "Title"
       }
     ],
     [
@@ -4294,7 +4282,7 @@
       {
         "t": "ul",
         "items": [
-          "<strong>Driveways</strong> &mdash; full pours, extensions and aprons",
+          "<strong>Driveways</strong> &mdash; full pours, extensions and aprons (we also lay <a href=\"/paver-driveways\">paver driveways</a>)",
           "<strong>Walkways and sidewalks</strong> &mdash; paths and connecting runs between areas of a property",
           "<strong>Patios and slabs</strong> &mdash; patio slabs, shed and equipment pads, AC pads and general flatwork",
           "<strong>Steps and stoops</strong> &mdash; poured steps, landings and entries"
@@ -4674,7 +4662,7 @@
           "<strong>Fire pits and fire features</strong> &mdash; gas, propane or wood, built in or freestanding",
           "<strong>Pergolas and shade structures</strong> &mdash; for the hours the sun makes a patio unusable",
           "<strong>Seating walls and built-in seating</strong> &mdash; permanent seating that doubles as structure",
-          "<strong>Outdoor kitchens and grill stations</strong> &mdash; including the pad, gas and power they need"
+          "<strong><a href=\"/outdoor-kitchens\">Outdoor kitchens and grill stations</a></strong> &mdash; including the pad, gas and power they need"
         ]
       },
       {
@@ -4795,7 +4783,7 @@
       {
         "t": "img",
         "src": "retainingwall_2",
-        "alt": ""
+        "alt": "Crew laying a concrete block retaining wall against a cut slope"
       },
       {
         "t": "p",
@@ -4804,7 +4792,7 @@
       {
         "t": "img",
         "src": "hardscapegarden",
-        "alt": ""
+        "alt": "Curved paver walkway between flower beds"
       },
       {
         "t": "p",
@@ -4998,6 +4986,349 @@
       {
         "t": "p",
         "html": "A patio is often the first piece of a bigger plan: a <a href=\"/fire-pits\">fire pit</a>, seating walls, lighting, or a full <a href=\"/outdoor-living\">outdoor living area</a>. Tell us where you want to end up, even if you&rsquo;re only building part of it now, and we&rsquo;ll set the grade and the base so the later pieces fit."
+      }
+    ]
+  ],
+  "outdoor-kitchens": [
+    [
+      {
+        "t": "h1",
+        "html": "Outdoor Kitchens and Grill Stations in Sevierville, TN"
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "Most of an outdoor kitchen is under it and behind it"
+      },
+      {
+        "t": "p",
+        "html": "The grill is the easy part. An outdoor kitchen works when the pad under it stays level, the gas line is sized for what&rsquo;s burning on it, there&rsquo;s power where the fridge and the lights go, and rainwater has somewhere to run that isn&rsquo;t across the cooking area. We build the ground, the pad and the walls ourselves and bring in licensed trades for the gas and electrical."
+      },
+      {
+        "t": "p",
+        "html": "We build them across Sevierville, Pigeon Forge, Gatlinburg, Seymour and Kodak. We&rsquo;re insured and estimates are free."
+      },
+      {
+        "t": "h3",
+        "html": "What we build"
+      },
+      {
+        "t": "ul",
+        "items": [
+          "<strong>Grill stations</strong>: a built-in grill with counter beside it, on its own pad or added to a patio you already have",
+          "<strong>Full outdoor kitchens</strong>: grill, counter, storage and room for the appliances you pick",
+          "<strong>The pad underneath</strong>: poured <a href=\"/concrete\">concrete</a> or <a href=\"/patios\">pavers</a>, on a base we dig and compact",
+          "<strong>Gas and power</strong>, run by a certified gas installer and licensed electricians",
+          "<strong>What goes around it</strong>: a <a href=\"/fire-pits\">fire pit</a>, seating walls or a pergola, when the kitchen is one part of an <a href=\"/outdoor-living\">outdoor living space</a>"
+        ]
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "outdoorliving"
+      },
+      {
+        "t": "h3",
+        "html": "Where it goes"
+      },
+      {
+        "t": "p",
+        "html": "Close enough to the back door that carrying food out isn&rsquo;t a chore, and far enough that smoke doesn&rsquo;t blow straight into the house. On a sloped lot the flat spot often has to be made first, usually with a <a href=\"/retaining-walls\">retaining wall</a>. We look at that on the first visit."
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "concrete-slab-prep-rebar"
+      },
+      {
+        "t": "h3",
+        "html": "The pad"
+      },
+      {
+        "t": "p",
+        "html": "A kitchen island is heavy, and it doesn&rsquo;t forgive a pad that settles. We excavate, grade and compact the base ourselves, and on a concrete pad we tie steel into the pour. This photo is one of our slabs before the truck arrived."
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "naturalgasfirepit"
+      },
+      {
+        "t": "h3",
+        "html": "Gas and electrical"
+      },
+      {
+        "t": "p",
+        "html": "The gas line is run by a certified gas installer. Outlets, lighting and anything hard-wired go to licensed electricians. We schedule both, so you deal with one company and it all goes in to code."
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "drainage-french-drain-detail"
+      },
+      {
+        "t": "h3",
+        "html": "Water"
+      },
+      {
+        "t": "p",
+        "html": "If rain already runs across the spot, that gets fixed before anything is built on it. Sometimes that&rsquo;s a regrade and sometimes it&rsquo;s a <a href=\"/drainage\">French drain</a>."
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "A back yard we rebuilt around a grill station"
+      },
+      {
+        "t": "p",
+        "html": "The house came with a small fire pit area the builder had left out back, and the owner wanted a lot more. The finished yard has a concrete pad that took about 20 yards of concrete, a gas fire pit, a grill station, artificial turf big enough for cornhole, and a seating wall around the edge."
+      },
+      {
+        "t": "p",
+        "html": "None of it would sit level without the engineered retaining wall that went in first. Our certified gas installer and electricians ran the gas and the power. The whole story is on our <a href=\"/outdoor-living\">outdoor living page</a>."
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "Building it in stages"
+      },
+      {
+        "t": "p",
+        "html": "Plenty of people build the patio this year and the kitchen next year. That works, as long as we know at the start. The pad can be sized for the island, and the gas and power can be planned while the ground is open, which costs far less than cutting into a finished patio later."
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "Tell us what you want to cook on"
+      },
+      {
+        "t": "p",
+        "html": "Call <a href=\"tel:+18652804642\">(865) 280-4642</a> or use the form below and we&rsquo;ll come look at the yard. Estimates are free."
+      }
+    ]
+  ],
+  "paver-driveways": [
+    [
+      {
+        "t": "h1",
+        "html": "Paver Driveways in Sevierville and Sevier County"
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "A driveway is a patio that has to carry a truck"
+      },
+      {
+        "t": "p",
+        "html": "Pavers on a driveway take loads a patio never sees: your own vehicles every day, and now and then a delivery truck or a loaded trailer. What keeps them from rutting is the base, which has to go deeper and be compacted harder than a patio&rsquo;s. We dig and compact it ourselves, and our own crew lays the pavers."
+      },
+      {
+        "t": "p",
+        "html": "We build them across Sevierville, Pigeon Forge, Gatlinburg, Seymour and Kodak. We&rsquo;re insured and estimates are free."
+      },
+      {
+        "t": "h3",
+        "html": "What we build"
+      },
+      {
+        "t": "ul",
+        "items": [
+          "<strong>Full paver driveways</strong>, from the street to the garage",
+          "<strong>Paver aprons</strong> where a driveway meets the road or the garage",
+          "<strong>Parking pads and turnarounds</strong>, common on cabin lots where there&rsquo;s nowhere to back out",
+          "<strong>Driveway replacement</strong>: the old concrete or asphalt broken out and hauled off before the new base goes in"
+        ]
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "retaining-wall-build-crew"
+      },
+      {
+        "t": "h3",
+        "html": "The base decides how it ages"
+      },
+      {
+        "t": "p",
+        "html": "Ruts and dips in a paver driveway almost always trace back to the ground under them. We excavate to solid ground, build the base up in compacted stone, and only then set pavers."
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "drainage-french-drain-run"
+      },
+      {
+        "t": "h3",
+        "html": "Water gets handled first"
+      },
+      {
+        "t": "p",
+        "html": "If water runs toward the driveway, or down it, that gets solved before we build. Depending on the lot that&rsquo;s a regrade, a <a href=\"/drainage\">drain</a>, or both."
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "concrete-stamped-walkway-cabin"
+      },
+      {
+        "t": "h3",
+        "html": "Steep driveways"
+      },
+      {
+        "t": "p",
+        "html": "Pavers aren&rsquo;t the right answer for every driveway. On a steep one, broom-finished <a href=\"/concrete\">concrete</a> is often the better call, because it stays grippy when it&rsquo;s wet. We build both, and we&rsquo;ll tell you which one suits your grade."
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "Pavers or concrete for a driveway?"
+      },
+      {
+        "t": "p",
+        "html": "Concrete usually costs less up front and goes down as one slab. Pavers cost more to lay, but a single paver can be lifted and reset, so a repair years from now doesn&rsquo;t leave a patch. When a slab cracks, the fix is to break it out and pour again."
+      },
+      {
+        "t": "p",
+        "html": "Pavers also come in far more colors and patterns, which matters if the driveway is the first thing guests see at a rental cabin. If you&rsquo;re weighing the two, our <a href=\"/concrete\">concrete page</a> covers the poured options and our <a href=\"/patios\">patio page</a> covers pavers and flagstone."
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "Get a driveway estimate"
+      },
+      {
+        "t": "p",
+        "html": "Call <a href=\"tel:+18652804642\">(865) 280-4642</a> or use the form below. We&rsquo;ll come measure it and look at the grade. Estimates are free."
+      }
+    ]
+  ],
+  "retaining-walls-gatlinburg": [
+    [
+      {
+        "t": "h1",
+        "html": "Retaining Walls in Gatlinburg, TN"
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "Tall walls on steep ground, close to things that matter"
+      },
+      {
+        "t": "p",
+        "html": "A retaining wall in Gatlinburg is rarely a garden border. The cabin lots above town, up around Ski Mountain Road and Chalet Village, are cut into the hillside, and the wall that holds the cut is usually tall and sits right beside a driveway or a foundation. That changes how the job starts."
+      },
+      {
+        "t": "p",
+        "html": "We&rsquo;re based in Sevierville, about half an hour down the road, and Gatlinburg is one of the towns we work in most. Our recent wall work there began with commissioning engineered plans, before any block was ordered."
+      },
+      {
+        "t": "h3",
+        "html": "What we build in Gatlinburg"
+      },
+      {
+        "t": "ul",
+        "items": [
+          "Concrete block walls, including Everloc and Redi-Rock",
+          "Stone and brick walls",
+          "Replacements for timber walls that have started to lean or rot",
+          "Repairs to stone walls that are letting go, before they get worse",
+          "<a href=\"/drainage\">Drainage</a> and grading around the wall, which most of our wall contracts include"
+        ]
+      },
+      {
+        "t": "p",
+        "html": "For how we build any wall, see our main <a href=\"/retaining-walls\">retaining walls page</a>. For the rest of what we do in town, see <a href=\"/gatlinburg\">landscaping in Gatlinburg</a>."
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "retaining-wall-finished-hero"
+      },
+      {
+        "t": "h3",
+        "html": "Engineering comes first"
+      },
+      {
+        "t": "p",
+        "html": "If a wall holds up a driveway or a structure, the engineered plan is step one. We work with engineers we trust on a regular basis, and the footing, the block and the geogrid all follow their plan or the block maker&rsquo;s specification."
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "retaining-wall-build-crew"
+      },
+      {
+        "t": "h3",
+        "html": "Getting a machine in"
+      },
+      {
+        "t": "p",
+        "html": "On a steep lot there&rsquo;s less room to stage block and gravel, and equipment has to get in and out safely. We size the machine to the access and build the extra time into the price on day one."
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "drainage-french-drain-detail"
+      },
+      {
+        "t": "h3",
+        "html": "What goes behind the wall"
+      },
+      {
+        "t": "p",
+        "html": "Every wall we install has drain pipe at its base and clean #57 gravel behind it, with 7 oz geofabric keeping the gravel and the dirt apart. On a mountain lot the water usually starts above you, so we trace it before we price any pipe."
+      }
+    ],
+    [
+      {
+        "t": "colbg",
+        "src": "rockretainingwall"
+      },
+      {
+        "t": "h3",
+        "html": "How it looks from the porch"
+      },
+      {
+        "t": "p",
+        "html": "A rental cabin&rsquo;s wall shows up in the listing photos. Stone, split-face block and Redi-Rock all hold a slope, and they look very different doing it. We&rsquo;ll show you the options."
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "Permits inside and outside the city"
+      },
+      {
+        "t": "p",
+        "html": "Whether a wall needs a permit depends on its height and on whether the lot is inside Gatlinburg city limits or out in the county. In Sevier County it&rsquo;s any wall over 4 feet. We check which rules apply to your lot before we price the job."
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "Get a wall looked at"
+      },
+      {
+        "t": "p",
+        "html": "Call <a href=\"tel:+18652804642\">(865) 280-4642</a> or use the form below. If you&rsquo;re out of state, tell us how to get onto the property and we&rsquo;ll send the plan and the quote by email."
       }
     ]
   ]

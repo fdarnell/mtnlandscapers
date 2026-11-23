@@ -83,6 +83,24 @@ PATCHES = [
     ('contact', 'Adress', 'Address', 'spelling'),
     ('pressure-washing', 'PressureWashing Service', 'Pressure Washing Service',
      'missing space in an h3 on the live site'),
+
+    # --- leftovers found in the 23 Nov 2026 page check ------------------------
+    # The outdoor lighting page still carried another company's name and the
+    # water-feature heading from the template it was copied from.
+    ('outdoor-lighting-design',
+     'When you choose Affordable Landscapes Pasco for your water feature design and installation',
+     'When you choose Mountain Landscapers for your outdoor lighting design and installation',
+     "another company's name and the wrong service, left from a template"),
+    ('outdoor-lighting-design',
+     'Why You Should Choose Us for Your Next Water Feature Landscape Design Project',
+     'Why You Should Choose Us for Your Next Outdoor Lighting Project',
+     'heading named the wrong service'),
+    ('retaining-walls', 'Mountain Landscapes,', 'Mountain Landscapers,',
+     'company name misspelled'),
+    ('retaining-walls', 'Mountain Landscapes for', 'Mountain Landscapers for',
+     'company name misspelled'),
+    # (water-features: three empty "Title / Button" template cards were removed
+    # directly in content.json, a structural change outside this mechanism.)
 ]
 
 

@@ -221,25 +221,25 @@ PAGES = [
     {
         'slug': 'water-features', 'src': 'water-features',
         'title': 'Top-Notch Water Features | Mountain Landscapers',
-        'desc': 'Looking for the perfect water feature for your property? We have the experience. Call now!',
+        'desc': 'Ponds, waterfalls and custom water features designed and installed in Sevierville and across Sevier County. Free estimates: (865) 280-4642.',
         'kind': 'service', 'service': 'Water Feature Design and Installation',
     },
     {
         'slug': 'outdoor-lighting-design', 'src': 'outdoor-lighting-design',
         'title': 'Beautiful Outdoor Lighting Design | Mountain Landscapers',
-        'desc': 'Looking for the best when it comes to outdoor lighting designs? Our experts will not let you down! Give us a call to discuss your vision!',
+        'desc': 'Outdoor and landscape lighting designed and installed for homes and cabins in Sevierville and Sevier County. Free estimates: (865) 280-4642.',
         'kind': 'service', 'service': 'Outdoor Lighting Design and Installation',
     },
     {
         'slug': 'pressure-washing', 'src': 'pressure-washing',
         'title': 'Pressure Washing | Mountain Landscapers',
-        'desc': 'If you need a professional pressure washing on your property, we can take care of that!',
+        'desc': 'Pressure washing for driveways, patios, walkways and other outdoor surfaces in Sevierville and Sevier County. Free estimates: (865) 280-4642.',
         'kind': 'service', 'service': 'Pressure Washing',
     },
     {
         'slug': 'shrub-care', 'src': 'shrub-care',
         'title': 'Shrub Care | Mountain Landscapers',
-        'desc': 'Looking for professional soft scape maintenance? We do that!',
+        'desc': 'Shrub pruning, shaping, and pest and disease care for Sevierville and Sevier County properties. Free estimates: (865) 280-4642.',
         'kind': 'service', 'service': 'Shrub Care and Trimming',
     },
     {
@@ -264,7 +264,7 @@ PAGES = [
     {
         'slug': 'irrigation-services', 'src': 'irrigation-services',
         'title': 'Irrigation Install and Service | Mountain Landscapers',
-        'desc': 'Need irrigation installed or serviced? Mountain Landscapers is your go-to company! 865-280-4642',
+        'desc': 'Sprinkler and drip irrigation installed, repaired and winterized in Sevierville and Sevier County. Free estimates: (865) 280-4642.',
         'kind': 'service', 'service': 'Irrigation Installation and Service',
         'faqs': [
             ('How much does an irrigation system cost in Sevierville?',
@@ -313,6 +313,78 @@ PAGES = [
              'Usually, yes. On a slope the flat area often comes from a retaining wall, with drainage behind it, and the patio goes on top.'),
             ('Do you charge for an estimate?',
              'No. Estimates are free, and on design and build projects the simple drawing and project plan are free too.'),
+        ],
+    },
+
+    # Added 23 Nov 2026 from the hardscaping ranking research: the three searches
+    # with the least competition in Sevier County that the site had no page for.
+    {
+        'slug': 'outdoor-kitchens', 'src': 'outdoor-kitchens',
+        'title': 'Outdoor Kitchens in Sevierville, TN | Mountain Landscapers',
+        'desc': 'Outdoor kitchens and grill stations across Sevier County, built with the pad, the gas line and the power they need. Free estimates: (865) 280-4642.',
+        'kind': 'service', 'service': 'Outdoor Kitchens and Grill Stations',
+        'hero': 'outdoorliving',
+        'heroSub': 'Grill stations and outdoor kitchens across Sevier County, built with the '
+                   'pad, the gas line and the power they need.',
+        'heroActions': [('Get My Free Estimate', '#contact-form'), ('Call {phone}', 'TEL')],
+        'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
+        'faqs': [
+            ('How much does an outdoor kitchen cost in Sevierville?',
+             'There is no honest flat number, because most of the cost is the site work: the pad, any wall needed to make a flat spot, and how far the gas and power have to run. A grill station on a patio you already have is a small job. A full kitchen on a slope is a much bigger one. We&rsquo;ll look at the yard and price it for free.'),
+            ('Can you add an outdoor kitchen to a patio I already have?',
+             'Often, yes. It depends on whether the patio&rsquo;s base can carry the weight of an island and whether gas and power can reach it without tearing the patio up. We check both when we come out.'),
+            ('Who runs the gas line and the electrical?',
+             'A certified gas installer runs the gas line and licensed electricians do the power. We bring them in and schedule them as part of the job, so it goes in to code and you deal with one company.'),
+            ('Does an outdoor kitchen need a permit?',
+             'It depends on what the job includes. Where the work needs a permit or an engineer, it gets one. In Sevier County, for example, a retaining wall over 4 feet needs a permit, and that comes up when a slope has to be held back to make room for the kitchen.'),
+            ('Can I build the patio now and the kitchen later?',
+             'Yes. Tell us at the start, so the pad is sized for the island and the gas and power are planned while the ground is open. That costs far less than cutting into a finished patio later.'),
+        ],
+    },
+    {
+        'slug': 'paver-driveways', 'src': 'paver-driveways',
+        'title': 'Paver Driveways in Sevierville, TN | Mountain Landscapers',
+        'desc': 'Paver driveways, aprons and parking pads across Sevier County, laid on a base we dig and compact ourselves. Free estimates: (865) 280-4642.',
+        'kind': 'service', 'service': 'Paver Driveways',
+        'hero': 'hardscapegarden',
+        'heroSub': 'Paver driveways, aprons and parking pads across Sevier County, on a base '
+                   'built to carry vehicles.',
+        'heroActions': [('Get My Free Estimate', '#contact-form'), ('Call {phone}', 'TEL')],
+        'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
+        'faqs': [
+            ('How much does a paver driveway cost in Sevierville?',
+             'It depends on the size, the slope, how much digging the base needs and whether an old driveway has to come out first. We don&rsquo;t quote a driveway without measuring it. The estimate is free.'),
+            ('Can you replace my cracked concrete driveway with pavers?',
+             'Yes. We break out the old slab, haul it off, fix whatever made it fail, then build the base and lay pavers. Fixing the cause matters, or the new driveway goes the same way as the old one.'),
+            ('Will pavers work on a steep driveway?',
+             'Sometimes. On a steep grade, broom-finished concrete is often the better choice because it stays grippy when wet. We build both and will tell you which suits your driveway after we see it.'),
+            ('What happens if one spot sinks later?',
+             'Pavers can be lifted, the base corrected underneath, and the same pavers set back down. That is the main advantage over a slab, which has to be broken out and poured again.'),
+        ],
+    },
+    {
+        'slug': 'retaining-walls-gatlinburg', 'src': 'retaining-walls-gatlinburg',
+        'title': 'Retaining Walls in Gatlinburg, TN | Mountain Landscapers',
+        'desc': 'Retaining walls for steep Gatlinburg lots and cabins: engineered plans, block and stone walls, and drainage behind every wall. Free estimates: (865) 280-4642.',
+        'kind': 'service', 'service': 'Retaining Walls in Gatlinburg',
+        # a service page scoped to one town: schema and breadcrumbs follow these two
+        'areaCity': 'Gatlinburg', 'parent': 'retaining-walls',
+        'hero': 'retaining-wall-finished-hero',
+        'heroSub': 'Engineered block and stone walls for steep Gatlinburg lots, with jobs run '
+                   'for owners who live out of state.',
+        'heroActions': [('Get My Free Estimate', '#contact-form'), ('Call {phone}', 'TEL')],
+        'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
+        'faqs': [
+            ('Do I need a permit for a retaining wall in Gatlinburg?',
+             'It depends on the wall&rsquo;s height and on whether the lot is inside Gatlinburg city limits or out in the county. In Sevier County, any wall over 4 feet needs a permit. We check which rules apply to your lot before we price the job.'),
+            ('My timber retaining wall is leaning. Can it be repaired?',
+             'Usually it needs replacing. Wood does not take on water well, and failing timber walls are one of the most common reasons people call us. We normally put a block wall in where the timber one has given way.'),
+            ('Does my wall need an engineer?',
+             'If it holds up a driveway or a structure, yes, and that is the first step. We work with engineers we trust on a regular basis and start that process for you.'),
+            ('How long does a retaining wall take on a steep Gatlinburg lot?',
+             'Anywhere from one to four weeks. Gatlinburg walls tend toward the longer end, because access and working space on a steep slope are limited.'),
+            ('I live out of state. Can you build the wall without me there?',
+             'Yes, and it is routine. You get the plan and the quote by email, you can sign online, and any change is approved by you before we make it.'),
         ],
     },
 
@@ -443,68 +515,72 @@ PAGES = [
     },
 ]
 
-# Main navigation, mirroring the live site exactly. (Tree removal was orphaned
-# on the live site and the service has since been discontinued — the page is
-# gone and /tree-removal-and-service 301s to the home page via vercel.json.)
-NAV = [
-    {'label': 'Home', 'href': '/'},
-    {'label': 'Services', 'children': [
-        {'label': 'Concrete', 'href': '/concrete'},
-        {'label': 'Outdoor Living', 'href': '/outdoor-living'},
-        {'label': 'Landscape Design & Build', 'href': '/landscape-design-build'},
-        {'label': 'Excavation', 'href': '/excavation'},
-        {'label': 'Drainage', 'href': '/drainage'},
-        {'label': 'Fire Pits', 'href': '/fire-pits'},
-        {'label': 'Water Features', 'href': '/water-features'},
-        {'label': 'Outdoor Lighting Design', 'href': '/outdoor-lighting-design'},
-        {'label': 'Pressure Washing', 'href': '/pressure-washing'},
-        {'label': 'Shrub Care', 'href': '/shrub-care'},
-        {'label': 'Leaf Removal', 'href': '/leaf-removal'},
-        {'label': 'Hardscapes', 'href': '/hardscapes'},
-        {'label': 'Patios', 'href': '/patios'},
-        {'label': 'Retaining Walls', 'href': '/retaining-walls'},
-        {'label': 'Irrigation Services', 'href': '/irrigation-services'},
-        {'label': 'Lawn Care', 'href': '/lawn-care'},
-    ]},
-    {'label': 'Industrial Services', 'children': [
-        {'label': 'Retaining Walls', 'href': '/retaining-walls'},
-        {'label': 'Outdoor Lighting Design', 'href': '/outdoor-lighting-design'},
-        {'label': 'Hardscapes', 'href': '/hardscapes'},
-        {'label': 'Patios', 'href': '/patios'},
-        {'label': 'Concrete', 'href': '/concrete'},
-        {'label': 'Outdoor Living', 'href': '/outdoor-living'},
-        {'label': 'Landscape Design & Build', 'href': '/landscape-design-build'},
-        {'label': 'Excavation', 'href': '/excavation'},
-        {'label': 'Drainage', 'href': '/drainage'},
-    ]},
-    {'label': 'Our Blog', 'href': '/our-blog'},
-]
-
-FOOTER_SERVICES = [
-    ('Retaining Walls', '/retaining-walls'),
-    ('Concrete', '/concrete'),
-    ('Outdoor Living', '/outdoor-living'),
-    ('Landscape Design & Build', '/landscape-design-build'),
-    ('Excavation', '/excavation'),
-    ('Drainage', '/drainage'),
-    ('Fire Pits', '/fire-pits'),
-    ('Water Features', '/water-features'),
-    ('Outdoor Lighting Design', '/outdoor-lighting-design'),
-    ('Pressure Washing', '/pressure-washing'),
-    ('Shrub Care', '/shrub-care'),
-    ('Leaf Removal', '/leaf-removal'),
+# Main navigation. Reorganized 23 Nov 2026: the old menu mirrored the Duda site
+# (one 16-item "Services" list plus an "Industrial Services" list repeating nine
+# of them, and no way to reach a town page from the header). Services are now
+# grouped by the kind of job, hardscapes first because that is the work the
+# business wants, and the town pages have their own menu.
+# (Tree removal was discontinued: /tree-removal-and-service 301s to the home
+# page via vercel.json.)
+HARDSCAPE_LINKS = [
     ('Hardscapes', '/hardscapes'),
     ('Patios', '/patios'),
-    ('Irrigation Services', '/irrigation-services'),
-    ('Lawn Care', '/lawn-care'),
+    ('Paver Driveways', '/paver-driveways'),
+    ('Retaining Walls', '/retaining-walls'),
+    ('Fire Pits', '/fire-pits'),
+    ('Outdoor Kitchens', '/outdoor-kitchens'),
+    ('Outdoor Living', '/outdoor-living'),
+    ('Concrete', '/concrete'),
 ]
+LANDSCAPE_LINKS = [
+    ('Landscape Design & Build', '/landscape-design-build'),
+    ('Drainage', '/drainage'),
+    ('Excavation', '/excavation'),
+    ('Irrigation', '/irrigation-services'),
+    ('Outdoor Lighting', '/outdoor-lighting-design'),
+    ('Water Features', '/water-features'),
+]
+YARD_CARE_LINKS = [
+    ('Lawn Care', '/lawn-care'),
+    ('Shrub Care', '/shrub-care'),
+    ('Leaf Removal', '/leaf-removal'),
+    ('Pressure Washing', '/pressure-washing'),
+]
+# Town pages come from site.config.json (cityPages); these are the service
+# pages written for one town, listed under them.
+AREA_SERVICE_LINKS = [
+    ('Gatlinburg Retaining Walls', '/retaining-walls-gatlinburg'),
+]
+
+
+def _menu(links):
+    return [{'label': l, 'href': h} for l, h in links]
+
+
+NAV = [
+    {'label': 'Hardscapes', 'children': _menu(HARDSCAPE_LINKS)},
+    {'label': 'Landscaping', 'children': _menu(LANDSCAPE_LINKS)},
+    {'label': 'Yard Care', 'children': _menu(YARD_CARE_LINKS)},
+    {'label': 'Service Areas', 'children': 'AREAS'},   # filled in by build.py
+    {'label': 'Blog', 'href': '/our-blog'},
+    {'label': 'Contact', 'href': '/contact'},
+]
+
+# Footer: the same three groups, in the same order as the header.
+FOOTER_GROUPS = [
+    ('Hardscapes', HARDSCAPE_LINKS),
+    ('Landscaping', LANDSCAPE_LINKS),
+    ('Yard Care', YARD_CARE_LINKS),
+]
+FOOTER_SERVICES = HARDSCAPE_LINKS + LANDSCAPE_LINKS + YARD_CARE_LINKS
 
 FOOTER_NAV = [
     ('Home', '/'),
+    ('Contact', '/contact'),
+    ('Blog', '/our-blog'),
     ('Client Portal', 'PORTAL'),
-    ('Contact us', '/contact'),
     ('Privacy Policy', '/privacy-policy'),
-    ('TOS', '/tos'),
+    ('Terms', '/tos'),
     ('Accessibility', '/accessibility'),
-    ('SiteMap', '/sitemap.xml'),
+    ('Sitemap', '/sitemap.xml'),
 ]

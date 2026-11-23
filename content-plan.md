@@ -28,11 +28,16 @@ hold until the owner decides whether mowing work is wanted.
 | Landscape and garden design and build | /landscape-design-build | — | Live |
 | Landscaping and retaining walls in Pigeon Forge (new city page) | /pigeon-forge | October 2026 | Live (pending merge) |
 | Paver, flagstone and concrete patios (new service page; owner confirmed 17 Oct that the crew lays pavers) | /patios | October 2026 | Live (pending merge) |
+| Outdoor kitchens and grill stations (new service page; emptiest search in the 23 Nov ranking research) | /outdoor-kitchens | November 2026 | Live (pending merge) |
+| Paver driveways (new service page; the patio page already showed 3rd for it) | /paver-driveways | November 2026 | Live (pending merge) |
+| Retaining walls in Gatlinburg (new town + service page; the general wall page showed 9th there) | /retaining-walls-gatlinburg | November 2026 | Live (pending merge) |
 | Fire pits refresh — restore the depth cut in the rebuild, add an FAQ; "fire pit builder" sits at pos 78 | /fire-pits | November 2026 | Planned |
 | Retaining wall cost guide (new article; needs the owner's price ranges first) | /retaining-wall-cost-sevierville | December 2026 | Planned |
 | Landscaping in Kodak (new city page) | /kodak | January 2027 | Planned |
 | Landscaping in Wears Valley (new city page) | /wears-valley | February 2027 | Planned |
-| Retaining walls for cabins on steep lots, Gatlinburg and Pigeon Forge (new page) | /cabin-retaining-walls | March 2027 | Planned |
+| Retaining walls in Pigeon Forge (new town + service page, following the Gatlinburg one) | /retaining-walls-pigeon-forge | March 2027 | Planned |
+| Landscaping and hardscapes in Newport (new city page; no local contractor site ranks there; needs a real Newport job from the owner first) | /newport | — | Waiting on owner |
+| Landscaping and hardscapes in Dandridge (new city page; needs a real Dandridge job from the owner first) | /dandridge | — | Waiting on owner |
 | Lawn care page refresh — 'lawn care / mowing near me' sit at positions 10–14, 1,172 impressions in 28 days, 0 clicks | /lawn-care | — | On hold (owner decision) |
 | Leaf removal refresh | /leaf-removal | — | On hold (owner decision) |
 
@@ -60,5 +65,8 @@ customer names. Anything not listed here goes in as a TODO for the owner.
 - **Gatlinburg:** engineered plans commissioned for a wall; lot clearing; a
   full planting install on a cabin property; a flagstone walkway repair quote
   on the Parkway.
+- **Newport, Dandridge:** no job on record. The 23 Nov 2026 research found
+  no local contractor site ranking for patios there, so a page should win
+  quickly, but it needs one real job each before it is written.
 - **Seymour:** a pea-gravel walkway with edging; a planting job (dwarf
   Burford holly, Blue Rug juniper, mulch over 8 oz geofabric).

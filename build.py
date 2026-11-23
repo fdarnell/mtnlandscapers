@@ -10,7 +10,8 @@ import json, os, re, html, hashlib, shutil, subprocess, sys, urllib.parse
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
-from pages import PAGES, NAV, FOOTER_SERVICES, FOOTER_NAV, HERO_DEFAULT  # noqa: E402
+from pages import (PAGES, NAV, FOOTER_SERVICES, FOOTER_NAV, FOOTER_GROUPS,  # noqa: E402
+                   AREA_SERVICE_LINKS, HERO_DEFAULT)
 
 from patches import apply_patches  # noqa: E402
 
@@ -476,12 +477,22 @@ def topbar():
 </div>'''
 
 
+def area_links():
+    """Town pages (site.config.json) followed by service pages written for one town."""
+    return ([(c['name'], '/' + c['slug']) for c in CFG['cityPages']] + list(AREA_SERVICE_LINKS))
+
+
 def nav_html(current):
     out = []
     for item in NAV:
         if 'children' in item:
+            kids = item['children']
+            if kids == 'AREAS':
+                kids = [{'label': l, 'href': h} for l, h in area_links()]
             subs = ''.join(
-                f'<li><a href="{esc(c["href"])}">{esc(c["label"])}</a></li>' for c in item['children'])
+                f'<li><a href="{esc(c["href"])}"'
+                f'{" aria-current=\"page\"" if c["href"] == current else ""}>{esc(c["label"])}</a></li>'
+                for c in kids)
             out.append(
                 f'<li><button class="navtop" type="button" aria-expanded="false">'
                 f'{esc(item["label"])}{ICONS["chev"]}</button>'
@@ -537,8 +548,10 @@ def footer(quote_href='/contact'):
         f'<li><a href="{esc(CFG["clientPortal"] if h == "PORTAL" else h)}"'
         f'{" target=_blank rel=noopener" if h == "PORTAL" else ""}>{esc(l)}</a></li>'
         for l, h in FOOTER_NAV)
-    svclis = ''.join(f'<li><a href="{esc(h)}">{esc(l)}</a></li>' for l, h in FOOTER_SERVICES)
-    citylis = ''.join(f'<li><a href="/{c["slug"]}">{esc(c["name"])}</a></li>' for c in CFG['cityPages'])
+    def lis(links):
+        return ''.join(f'<li><a href="{esc(h)}">{esc(l)}</a></li>' for l, h in links)
+    groups = {name: lis(links) for name, links in FOOTER_GROUPS}
+    citylis = lis(area_links())
     hours = ''.join(
         f'<div class="hours-row"><span>{esc(h["label"])}</span><span>{esc(h["value"])}</span></div>'
         for h in CFG['hours'])
@@ -557,18 +570,20 @@ def footer(quote_href='/contact'):
 </a>
 </div>
 <div>
-<h3>Navigation</h3>
-<ul>{navlis}</ul>
+<h3>Hardscapes</h3>
+<ul>{groups['Hardscapes']}</ul>
 </div>
 <div>
-<h3>Services</h3>
-<ul>{svclis}</ul>
+<h3>Landscaping</h3>
+<ul>{groups['Landscaping']}</ul>
+<h3 style="margin-top:1.6em">Yard Care</h3>
+<ul>{groups['Yard Care']}</ul>
 </div>
 <div>
-<h3>Business Hours</h3>
-{hours}
-<h3 style="margin-top:1.6em">Service Areas</h3>
+<h3>Service Areas</h3>
 <ul>{citylis}</ul>
+<h3 style="margin-top:1.6em">Business Hours</h3>
+{hours}
 <address style="text-align:center;margin-top:1.4em">
 <a href="{TEL}">{PHONE}</a><br>
 <a href="mailto:{esc(CFG['email'])}">{esc(CFG['email'])}</a><br>
@@ -576,6 +591,7 @@ def footer(quote_href='/contact'):
 </address>
 </div>
 </div>
+<nav class="footnav" aria-label="Footer"><ul>{navlis}</ul></nav>
 </div>
 <div class="footbar"><div class="wrap">
 <span>&copy; {BUILD_YEAR} All Rights Reserved | {esc(NAME)}</span>
@@ -891,12 +907,12 @@ def render_reviews(reviews, rating=None, count=None, profile_url=None):
 # exist, but links inside the copy are the ones search engines weigh, and on
 # 17 Oct 2026 most service pages had none.
 RELATED = {
-    'retaining-walls': ['drainage', 'excavation', 'hardscapes', 'concrete'],
-    'hardscapes': ['patios', 'retaining-walls', 'fire-pits', 'outdoor-living'],
-    'patios': ['hardscapes', 'concrete', 'retaining-walls', 'fire-pits'],
-    'fire-pits': ['hardscapes', 'outdoor-living', 'outdoor-lighting-design', 'water-features'],
-    'outdoor-living': ['hardscapes', 'fire-pits', 'outdoor-lighting-design', 'landscape-design-build'],
-    'concrete': ['patios', 'hardscapes', 'retaining-walls', 'drainage'],
+    'retaining-walls': ['retaining-walls-gatlinburg', 'drainage', 'excavation', 'hardscapes', 'concrete'],
+    'hardscapes': ['patios', 'paver-driveways', 'retaining-walls', 'fire-pits', 'outdoor-kitchens'],
+    'patios': ['paver-driveways', 'outdoor-kitchens', 'retaining-walls', 'fire-pits', 'concrete'],
+    'fire-pits': ['outdoor-kitchens', 'hardscapes', 'outdoor-living', 'outdoor-lighting-design', 'water-features'],
+    'outdoor-living': ['outdoor-kitchens', 'hardscapes', 'fire-pits', 'outdoor-lighting-design', 'landscape-design-build'],
+    'concrete': ['paver-driveways', 'patios', 'hardscapes', 'retaining-walls', 'drainage'],
     'drainage': ['retaining-walls', 'excavation', 'irrigation-services', 'concrete'],
     'excavation': ['drainage', 'retaining-walls', 'concrete', 'landscape-design-build'],
     'landscape-design-build': ['hardscapes', 'retaining-walls', 'outdoor-living', 'irrigation-services'],
@@ -907,6 +923,9 @@ RELATED = {
     'leaf-removal': ['lawn-care', 'shrub-care', 'pressure-washing', 'drainage'],
     'shrub-care': ['lawn-care', 'leaf-removal', 'landscape-design-build', 'irrigation-services'],
     'pressure-washing': ['hardscapes', 'concrete', 'lawn-care', 'leaf-removal'],
+    'outdoor-kitchens': ['outdoor-living', 'patios', 'fire-pits', 'concrete'],
+    'paver-driveways': ['patios', 'concrete', 'drainage', 'excavation'],
+    'retaining-walls-gatlinburg': ['retaining-walls', 'drainage', 'excavation', 'hardscapes'],
 }
 
 
@@ -1019,7 +1038,11 @@ def jsonld_for(page, trail):
             'serviceType': page['service'],
             'url': url_for(page['slug']),
             'provider': {'@id': SITE + '/#business'},
-            'areaServed': [{'@type': 'City', 'name': c} for c in CFG['serviceArea']],
+            'areaServed': ({'@type': 'City', 'name': page['areaCity'],
+                            'containedInPlace': {'@type': 'AdministrativeArea',
+                                                 'name': 'Sevier County, TN'}}
+                           if page.get('areaCity') else
+                           [{'@type': 'City', 'name': c} for c in CFG['serviceArea']]),
             'description': page['desc'],
         })
 
@@ -1074,7 +1097,9 @@ def build_trail(page):
     home = ('Home', '/')
     k = page.get('kind')
     if k == 'service':
-        return [home, (page['service'], path_for(page['slug']))]
+        parent = next((p for p in PAGES if p['slug'] == page.get('parent')), None)
+        mid = [(parent['service'], path_for(parent['slug']))] if parent else []
+        return [home] + mid + [(page['service'], path_for(page['slug']))]
     if k == 'city':
         return [home, (f'Landscaping in {page["city"]}', path_for(page['slug']))]
     if k == 'post':
