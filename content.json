@@ -515,6 +515,20 @@
     ],
     [
       {
+        "t": "h2",
+        "html": "What our fire pits are made of"
+      },
+      {
+        "t": "p",
+        "html": "We&rsquo;ve built fire pits out of retaining wall block, stacked stone and poured concrete. The concrete ones can be stamped and dyed to match the patio or walkway around them."
+      },
+      {
+        "t": "p",
+        "html": "A company favorite so far is a fully custom smokeless fire pit. It has its own stone veneer and custom caps, and it sits in the middle of a flagstone patio lit with LEDs."
+      }
+    ],
+    [
+      {
         "t": "img",
         "src": "woodfirepit",
         "alt": "Stacked-stone wood-burning fire pit with log benches on gravel"
@@ -802,6 +816,20 @@
       {
         "t": "p",
         "html": "<a class=\"btn\" href=\"/contact\">Get Instant Quote</a>"
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "A back yard we&rsquo;re proud of"
+      },
+      {
+        "t": "p",
+        "html": "One of the hardscape projects we&rsquo;re proudest of is a back yard that needed almost everything we build. A curved sidewalk in stamped and dyed concrete wraps around the house, and the wood-burning fire pit is built in the same stamped and dyed concrete. There&rsquo;s a putt-putt area too."
+      },
+      {
+        "t": "p",
+        "html": "Several tiers of retaining wall hold the low side of the yard, with professional-grade railing on top. A flagstone step and hanging lights finish it."
       }
     ],
     [
@@ -2095,6 +2123,16 @@
       {
         "t": "p",
         "html": "<a class=\"btn\" href=\"/contact\">Get a Quick Quote!</a>"
+      }
+    ],
+    [
+      {
+        "t": "h2",
+        "html": "The lighting we install"
+      },
+      {
+        "t": "p",
+        "html": "We install outdoor lighting and offer Cast Lighting fixtures. If you already have fixtures you like, or you&rsquo;d rather buy your own, we&rsquo;ll install those instead."
       }
     ],
     [
@@ -3932,6 +3970,20 @@
     ],
     [
       {
+        "t": "h2",
+        "html": "Water features we&rsquo;ve built"
+      },
+      {
+        "t": "p",
+        "html": "Our water features run from small to very large. We&rsquo;ve installed frog ponds, vase-style fountains and single-boulder features that fit a corner of a yard."
+      },
+      {
+        "t": "p",
+        "html": "The largest one wraps around an entire house, with boulder grottos along the way, and ends in a large pool at the bottom."
+      }
+    ],
+    [
+      {
         "t": "img",
         "src": "waterfeatures_2",
         "alt": "simple pond surrounded by simple landscaping"
@@ -4914,7 +4966,7 @@
       {
         "t": "ul",
         "items": [
-          "<strong>Paver patios and walkways</strong>: pavers laid by our own crew on a base we dig and compact ourselves",
+          "<strong>Paver patios and walkways</strong>: pavers laid on a base that is dug and compacted first",
           "<strong>Flagstone patios and walkways</strong>: 2-inch flagstone set on a prepared base, with mortared joints where you want a solid surface",
           "<strong>Concrete patios</strong>: broom finish, stamped or colored, poured over steel on a compacted stone base (more on our <a href=\"/concrete\">concrete page</a>)",
           "<strong>Steps and landings</strong> where a patio meets a slope or a door",
@@ -4933,7 +4985,7 @@
       },
       {
         "t": "p",
-        "html": "Pavers give you a finished, even surface in almost any color and pattern, and a single paver can be lifted and reset if something underneath ever needs work. Our own crew lays them. The part that decides how they age is the base, which is why we dig and compact it ourselves instead of setting pavers on whatever ground is there."
+        "html": "Pavers give you a finished, even surface in almost any color and pattern, and a single paver can be lifted and reset if something underneath ever needs work. The part that decides how they age is the base, which is why we dig and compact it ourselves instead of setting pavers on whatever ground is there."
       }
     ],
     [
@@ -5017,7 +5069,7 @@
         "t": "ul",
         "items": [
           "<strong>Grill stations</strong>: a built-in grill with counter beside it, on its own pad or added to a patio you already have",
-          "<strong>Full outdoor kitchens</strong>: grill, counter, storage and room for the appliances you pick",
+          "<strong>Full outdoor kitchens</strong>: a custom island with grill, counter, storage and room for the appliances you pick. Every island is custom, and we&rsquo;ll show you a range of options",
           "<strong>The pad underneath</strong>: poured <a href=\"/concrete\">concrete</a> or <a href=\"/patios\">pavers</a>, on a base we dig and compact",
           "<strong>Gas and power</strong>, run by a certified gas installer and licensed electricians",
           "<strong>What goes around it</strong>: a <a href=\"/fire-pits\">fire pit</a>, seating walls or a pergola, when the kitchen is one part of an <a href=\"/outdoor-living\">outdoor living space</a>"
@@ -5129,7 +5181,7 @@
       },
       {
         "t": "p",
-        "html": "Pavers on a driveway take loads a patio never sees: your own vehicles every day, and now and then a delivery truck or a loaded trailer. What keeps them from rutting is the base, which has to go deeper and be compacted harder than a patio&rsquo;s. We dig and compact it ourselves, and our own crew lays the pavers."
+        "html": "Pavers on a driveway take loads a patio never sees: your own vehicles every day, and now and then a delivery truck or a loaded trailer. What keeps them from rutting is the base under them."
       },
       {
         "t": "p",
@@ -5160,7 +5212,7 @@
       },
       {
         "t": "p",
-        "html": "Ruts and dips in a paver driveway almost always trace back to the ground under them. We excavate to solid ground, build the base up in compacted stone, and only then set pavers."
+        "html": "We excavate as far as the ground needs. Where the driveway has to come up, we bring in soil to raise it. Then at least 4 inches of base stone is delivered, tamped and, where needed, screeded level. Only then does the surface go on."
       }
     ],
     [
