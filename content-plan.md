@@ -36,6 +36,7 @@ hold until the owner decides whether mowing work is wanted.
 | Landscaping in Kodak (new city page) | /kodak | January 2027 | Planned |
 | Landscaping in Wears Valley (new city page) | /wears-valley | February 2027 | Planned |
 | Retaining walls in Pigeon Forge (new town + service page, following the Gatlinburg one) | /retaining-walls-pigeon-forge | March 2027 | Planned |
+| Hardscaping in Knoxville (new city page; owner asked for it 24 Nov; the one town with measurable search volume; needs a real Knoxville job first) | /knoxville | — | Waiting on owner |
 | Landscaping and hardscapes in Newport (new city page; no local contractor site ranks there; needs a real Newport job from the owner first) | /newport | — | Waiting on owner |
 | Landscaping and hardscapes in Dandridge (new city page; needs a real Dandridge job from the owner first) | /dandridge | — | Waiting on owner |
 | Lawn care page refresh — 'lawn care / mowing near me' sit at positions 10–14, 1,172 impressions in 28 days, 0 clicks | /lawn-care | — | On hold (owner decision) |

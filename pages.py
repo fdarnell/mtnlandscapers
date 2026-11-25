@@ -37,10 +37,9 @@ PAGES = [
             ('How soon will I hear back?',
              'We call back the same day.'),
             ('Do you do the work yourselves, or subcontract it?',
-             'We do it ourselves. The same crew handles the excavation, drainage, concrete, walls '
-             'and planting, which is why the water, the grade and the structure end up agreeing '
-             'with each other. Where a job needs gas or electrical, that part goes to a certified '
-             'gas installer and licensed electricians.'),
+             'Both. When we have an experienced technician for the work, we do it ourselves. When we '
+             'do not, we bring in the right person from our list of professionals. Gas and '
+             'electrical always go to a certified gas installer and licensed electricians.'),
             ('How soon can you start?',
              'It varies with the project, mostly according to how many different trades it needs. '
              'A patio and some planting schedules faster than a job that has to line up gas, '
@@ -205,8 +204,8 @@ PAGES = [
              'situation, so the right move is to get in touch early and let us start the '
              'engineering process. We work with engineers we trust on a regular basis.'),
             ('Is the wall under warranty?',
-             'Yes. Every wall we install comes with a warranty, and the terms are settled with you '
-             'as part of the quote.'),
+             'Yes. All of our work includes a 30-day warranty, except living things such as plants '
+             'and sod. Longer warranties are optional, so you only pay for one if you want it.'),
         ],
         'title': 'Retaining Wall Installation in Sevierville, TN | Mountain Landscapers',
         'desc': "Enhance your property with expert retaining wall solutions. Custom designs that harmonize with East Tennessee's climate. Contact us for functional beauty.",
@@ -217,18 +216,34 @@ PAGES = [
         'title': 'Custom Fire Pit Design and Installation | Mountain Landscapers',
         'desc': 'Gather around warmth and beauty with our custom fire pit installations. Transform your outdoor space into a captivating haven of relaxation.',
         'kind': 'service', 'service': 'Fire Pit Design and Installation',
+        'faqs': [
+            ('What are your fire pits built from?',
+             'Retaining wall block, stacked stone or poured concrete. The concrete ones can be stamped and dyed to match the patio around them.'),
+            ('Can you build a smokeless fire pit?',
+             'Yes. One of our favorite builds so far is a fully custom smokeless fire pit with its own stone veneer and custom caps, set in a flagstone patio lit with LEDs.'),
+        ],
     },
     {
         'slug': 'water-features', 'src': 'water-features',
         'title': 'Top-Notch Water Features | Mountain Landscapers',
         'desc': 'Ponds, waterfalls and custom water features designed and installed in Sevierville and across Sevier County. Free estimates: (865) 280-4642.',
         'kind': 'service', 'service': 'Water Feature Design and Installation',
+        'faqs': [
+            ('What kinds of water features do you install?',
+             'Small ones and very large ones. We have installed frog ponds, vase-style fountains and single-boulder features, and one water feature that wraps around an entire house with boulder grottos and ends in a large pool.'),
+        ],
     },
     {
         'slug': 'outdoor-lighting-design', 'src': 'outdoor-lighting-design',
         'title': 'Beautiful Outdoor Lighting Design | Mountain Landscapers',
         'desc': 'Outdoor and landscape lighting designed and installed for homes and cabins in Sevierville and Sevier County. Free estimates: (865) 280-4642.',
         'kind': 'service', 'service': 'Outdoor Lighting Design and Installation',
+        'faqs': [
+            ('What brand of outdoor lighting do you install?',
+             'We offer Cast Lighting fixtures and install them ourselves.'),
+            ('Can I supply my own lights?',
+             'Yes. If you already have fixtures or would rather buy your own, we will install those instead.'),
+        ],
     },
     {
         'slug': 'pressure-washing', 'src': 'pressure-washing',
@@ -260,6 +275,10 @@ PAGES = [
         'heroActions': [('Get My Free Estimate', '#contact-form'),
                         ('Call {phone}', 'TEL')],
         'heroTrust': ['Insured', 'Free estimates', 'Same-day callback'],
+        'faqs': [
+            ('Is your hardscape work under warranty?',
+             'Yes. All of our work includes a 30-day warranty, except living things such as plants and sod. Longer warranties are optional, so you only pay for one if you want it.'),
+        ],
     },
     {
         'slug': 'irrigation-services', 'src': 'irrigation-services',
@@ -337,6 +356,8 @@ PAGES = [
              'A certified gas installer runs the gas line and licensed electricians do the power. We bring them in and schedule them as part of the job, so it goes in to code and you deal with one company.'),
             ('Does an outdoor kitchen need a permit?',
              'It depends on what the job includes. Where the work needs a permit or an engineer, it gets one. In Sevier County, for example, a retaining wall over 4 feet needs a permit, and that comes up when a slope has to be held back to make room for the kitchen.'),
+            ('What is the island made of?',
+             'Whatever suits the space and the budget. Every island is custom, and we show you a range of options before you choose.'),
             ('Can I build the patio now and the kitchen later?',
              'Yes. Tell us at the start, so the pad is sized for the island and the gas and power are planned while the ground is open. That costs far less than cutting into a finished patio later.'),
         ],
@@ -344,7 +365,7 @@ PAGES = [
     {
         'slug': 'paver-driveways', 'src': 'paver-driveways',
         'title': 'Paver Driveways in Sevierville, TN | Mountain Landscapers',
-        'desc': 'Paver driveways, aprons and parking pads across Sevier County, laid on a base we dig and compact ourselves. Free estimates: (865) 280-4642.',
+        'desc': 'Paver driveways, aprons and parking pads across Sevier County, laid on at least 4 inches of tamped base stone. Free estimates: (865) 280-4642.',
         'kind': 'service', 'service': 'Paver Driveways',
         'hero': 'hardscapegarden',
         'heroSub': 'Paver driveways, aprons and parking pads across Sevier County, on a base '
@@ -358,6 +379,8 @@ PAGES = [
              'Yes. We break out the old slab, haul it off, fix whatever made it fail, then build the base and lay pavers. Fixing the cause matters, or the new driveway goes the same way as the old one.'),
             ('Will pavers work on a steep driveway?',
              'Sometimes. On a steep grade, broom-finished concrete is often the better choice because it stays grippy when wet. We build both and will tell you which suits your driveway after we see it.'),
+            ('How thick is the base under a paver driveway?',
+             'At least 4 inches of base stone, tamped and screeded level where needed. Before that the ground is excavated as far as it needs, and soil is brought in wherever the driveway has to be raised.'),
             ('What happens if one spot sinks later?',
              'Pavers can be lifted, the base corrected underneath, and the same pavers set back down. That is the main advantage over a slab, which has to be broken out and poured again.'),
         ],
